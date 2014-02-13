@@ -1,0 +1,15 @@
+SVM-light Version V6.02
+0 # kernel type
+3 # kernel parameter -d 
+1 # kernel parameter -g 
+1 # kernel parameter -s 
+1 # kernel parameter -r 
+empty# kernel parameter -u 
+2 # highest feature index 
+6 # number of training documents 
+5 # number of support vectors plus 1 
+0.9378617 # threshold b, each following line is a SV (starting with alpha*y)
+-1.0815861290879583 1:0.666336 2:0.054945 # Vivifiemme Restaurant type
+1.0815861290879583 1:0.28578499 2:1 # Osterie Restaurant name
+-1.0815861290879583 1:0.63373899 2:0.145833 # Osterie Restaurant type
+1.0815861290879583 1:1 2:0.99450499 # Vivifiemme Restaurant name

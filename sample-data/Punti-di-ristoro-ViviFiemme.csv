@@ -1,0 +1,648 @@
+id,tipo,nome,indirizzo,descrizioneIt,descrizioneEn,foursquareId,contatto - fax,contatto - url,contatto - cell,contatto - nome,contatto - email,contatto - telefono,posizione - latitudine,posizione - longitudine,foto - labelEn,foto - labelIt,foto - imageUrl
+fa9ca0b0-46c7-49e8-859e-01ac2e1891d3,Pizzeria,PIZZA SHOP,"Via Nazionale, 10 - 38030 Carano","Pizza al taglio
+orari: 12.00-14.00 , 17.00-21.00
+chiuso lunedì (fuori stagione)","Pizza's shop
+opening time: 12 p.m.-2 p.m. , 5-9 p.m.
+closed on Monday  (only in out of season)
+",4f15619de4b01eeff20b291b,,http://,, PIZZA SHOP,,+39 (0462)232156,46.2876474315177,11.4440846443176,,,
+8537e68d-3f48-4a63-bd3f-01bc212cba2d,Pizzeria,PIZZA HOUSE,"Via Roma, 43 - 38038 Tesero","pizza al taglio e da asporto
+orari: 16.00-21.30 
+chiuso lunedì
+","take away Pizza's shop 
+opening time: 4-9.30 p.m.
+closed on Monday
+
+",50e956401648f444d3ad5f66,,http://,, PIZZA HOUSE,,+39 (0462)814668,46.2888336644683,11.5112042427063,,,
+f20cd573-78af-4037-a173-029f8247ea57,Bar,BAR DE VAL,"Loc. Val, 20 - 38038 Tesero","bar
+orari: 5.30-14.00 , 16.00-20.00
+chiuso domenica
+","Bar
+opening time: 5.30 a.m.- 2 p.m. , 4-8 p.m.
+closed on Sunday
+",,,http://www.panificiobetta.it,, BAR DE VAL,info@panificiobetta.it,+39 (0462)814364,46.2852007449248,11.5153455734253,,,
+b2087683-7909-418b-963b-04ca9b12eb76,Prodotto enogatronomico,I DOLCI SAPORI DEL BOSCO,Via Stazione 4/a - 38030 CASTELLO DI FIEMME,,,,,http://www.idolcisaporidelbosco.it,, I DOLCI SAPORI DEL BOSCO,,+39 (329)0807952,46.2823179,11.433337,,,
+eddc5b5e-7c1b-468b-9636-0548cee23d1a,Birreria / Pub,B'ART,Via Saronch 2/A - 38037 Predazzo (TN),"Bar
+Orari: lunedì-venerdì 16.00-1.00 sabato-domenica: 10.00-1.00",,4e3ea38a1f6e844231f4bc26,,http://,, B'ART,putzy46@alice.it,+39 (348)6926360,46.31492,11.60063,,,
+2e3c108e-744c-4e05-a99f-0676187caccc,Pizzeria,RISTORANTE PIZZERIA MAJESTIC,Via Fiamme Gialle 20/A - 38037 Predazzo,"Ristorante- Pizzeria
+orari: 12.00-14.00 , 18.00-22.00","Restaurant-Pizzeria
+opening time: 12-2 p.m. , 6-10 p.m.",,,http://,, RISTORANTE PIZZERIA MAJESTIC,,+39 (0462)500076,46.30619,11.5982299,,,
+d0ad75d1-db6a-4f38-9890-07855cd36885,Rifugio / Malga,MALGA LA MENS,Loc. Pampeago - 38038 Tesero,,,4c5d684794fd0f478138cb45,,http://,, MALGA LA MENS,,+39 (333)6234245,46.3616931970851,11.5437984466553,,,
+a96f8c29-cb69-4f83-82f6-095aaaaec3ef,Pizzeria,RISTORANTE PIZZERIA MILLENIUM,Via Fiamme Gialle 2/c - 38037 Predazzo (TN),"Ristorante/Pizzeria
+Cucina: Tipica Trentina
+Orari: 12.00-14.30 , 18.00-00.00","Restaurant/Pizzeria
+Speciality: Local Food
+Opening Time: 12-2.30 p.m. , 6p.m.-12 a.m.",,,http://,, RISTORANTE PIZZERIA MILLENIUM,,+39 (0462)502449,46.309262494812,11.6013479232788,,,
+9785dea5-9176-4bf6-b434-09dcdab6f66a,Rifugio / Malga,RIFUGIO MALGA MONTE CORNO,Loc. Monte Corno - 38030 Capriana,,,,,http://,, RIFUGIO MALGA MONTE CORNO,,+39 (338)1022342,46.2880329600445,11.3273549079895,,,
+02453d46-32db-4942-a3a1-0a82e839cd9c,Pizzeria,RISTORANTE PIZZERIA LA BAITA,"Via Bancoline, 1 - 38030 Varena","Bar- ristorante - pizzera, cucina tipica
+orari: 8.00 -24.00
+chiuso mercoledì","Bar- Restaurant- Pizzeria
+opening time: 8 a.m.-12 a.m.
+closed on Wednesday",,,http://www.ristorantelabaita.eu,, RISTORANTE PIZZERIA LA BAITA,info@ristorantelabaita.eu,+39 (0462)230283,46.3145982339805,11.4715719223022,,,
+95d84900-2ce5-473c-86db-0b48d55aaca1,Bar,BAR PLAZA,"Via Barattieri, 9 - 38033 Cavalese","Bar/tavola fredda/internet point
+orari: 7.00-21.00
+","Bar/Internet point
+opening time: 7 a.m.-9 p.m.
+",4f8040f4e4b024a26d04f6b1,,http://,, BAR PLAZA,barplaza@hotmail.it,+39 (0462)340825,46.2912505346107,11.4623022079468,,,
+2828b0b3-13a8-47dc-b8c3-0e14e405172a,Rifugio / Malga,MALGA GURNDIN,Passo Oclini - 38030 Varena,,,,,http://,, MALGA GURNDIN,,+39 (330)765083,46.3473423454688,11.4312744140625,,,
+37c2a0ef-f979-4467-8bc2-0eb45664a059,Bar,ARMONJ CAFE',Via Fiamme Gialle 54 - 38037 Predazzo (TN),"Bar/Paninoteca/Snack
+Orari: 8.00-22.00","Coffee Bar/Sandwiches/Snacks
+Opening Time: 8 a.m. , 10 p.m.",50ec32ca582ffe4ceec65d2f,,http://,, ARMONJ CAFE',,+39 (0462)500289,46.3038224696968,11.5937733650208,,,
+a213b94e-0d55-4051-a6cb-0ebdd55324ff,Bar,BAR STAZIONE,Piazza Stazione 1 - 38033 Cavalese,"Orari:6.00-21.00
+Chiuso:domenica",,,,http://,, BAR STAZIONE,,+39 (339)7213671,46.2880552019921,11.4633214473724,,,
+e2f31ec7-f150-4205-98ff-0f9b2586a7ed,Bar,BAR GELATERIA MEZZALUNA,Via Roma 2 - 38037 Predazzo (TN),,,50ec3591067d4553b5ba4bc0,,http://,, BAR GELATERIA MEZZALUNA,,+39 (329)0852600,46.31179,11.60269,,,
+2a653c7d-8d1b-4b65-9071-1053cdb4dd0b,Bar,CAFE' STRADIVARI,Loc. stava 17/B - 38038 Tesero,"Bar- panini e piatti veloci
+orari: 8.00-01.00
+chiuso mercoldì (solo fuori stagione)","Bar - Sandwiches - Fastfood
+opening time: 8 a.m.- 01 a.m.
+closed on Wednesday  (only in out of season)
+",,,http://,, CAFE' STRADIVARI,carla-viola@virgilio.it,+39 (339)8679414,46.3171012,11.5015078,,,
+24611d70-b5af-41d8-a47a-1296ab37a7e3,Rifugio / Malga,RIFUGIO TORRE DI PISA,Cima Cavignon - 38037 Predazzo (TN),,,4e412af76284809c9f3badbf,,http://www.rifugiotorredipisa.it,, RIFUGIO TORRE DI PISA,info@rifugiotorredipisa.it,,46.3616487730195,11.5586042404175,,,
+5c2c4ca7-85c3-4832-aedd-1341df280975,Pizzeria,VECCHIA OSTERIA,"Via IX Novembre, 14 - 38033 Cavalese","Ristorante/Pizzeria
+orari: 12.00-15.00 , 19.00-24.00
+chiuso giovedì
+","Restaurant/Pizzeria
+opening time: 12 p.m.-3 p.m. , 7 p.m.-12 a.m.
+Closed on Thursday",,,http://,, VECCHIA OSTERIA,v.osteriacavalese@libero.it,+39 (0462)230361,46.2925404768632,11.4577746391296,,,
+6aeb7012-4d59-456d-b93b-14e0e7c59f09,Bar,BAR PASTICCERIA LISA,Via Trento 7/c - 38037 Predazzo (TN),"Bar, Pasticceria
+Orari: 07.30-12.30 , 15.00-20.00
+","Coffee Bar, Confectioner's
+Opening Time: 07.00-12.30 , 15.00-20.00",50ec37bf067d4553b5bd9b41,,http://www.pasticcerialisa.com,, BAR PASTICCERIA LISA,info@pasticcerialisa.com,+39 (0462)501438,46.31016,11.60222,,,
+67bcc002-00f7-4c09-aa65-15d9b076ac13,Bar,SKI BAR SCUOLA DI SCI,Loc. Pampeago - 38038 Tesero,"Bar-Rifugio-Piatti tipici-Cene su prenotazione
+Orari: 7:00-18:00/19:00",,50e97ae819a9ad111964977e,,http://,, SKI BAR SCUOLA DI SCI,,+39 (340)0532283,46.3419505461732,11.5410733222961,,,
+8f6aa25a-6ba0-4690-92c5-1679dea02bd6,negozio,"PANE, DOLCI, CAFFE'",Via Miramonti 17 - 38030 Daiano,,,50dc48ebe4b06b91b120628c,,http://,," PANE, DOLCI, CAFFE'",,,46.3009021242376,11.4458870887756,,,
+69334c05-349b-491e-a5f8-1709de2cde4f,Rifugio / Malga,RIFUGIO PAION,Loc Alpe di Cermis 1  - 38030 CAVALESE,"Bar-Self Service-Pizzeria-Paninoteca
+Orari:8.30-16.30",,4e3274301f6e2137f931cab6,,http://www.baitaparadiso.it/rifugiopaion/,, RIFUGIO PAION,rifugiopaion@baitaparadiso.it,+39 (0039)341616,46.2420024501933,11.5040373802185,,,
+bc239f6d-0c31-4330-a7cd-175efb97ff6e,Bar,MEETNESS CAFE',"Loc. Piera,  2/B - 38038 Tesero","Bar - panini
+orario: 7.30-19.30
+chiuso domenica","Bar - sandwiches
+opening time:  7.30 a.m. -7.30 p.m.
+closed on Sunday
+",50e88486011c06dc42104487,,http://,, MEETNESS CAFE',,+39 (340)9525011,46.2926739174312,11.4907336235046,,,
+5ceafb0d-ca37-4adf-86b5-17cb79098184,Bar,BAR GIARDINETTO,"Via Scario, 12 - 38033 Cavalese","Bar/Primi piatti
+orari: 7.00-22.00
+chiuso domenica
+","Bar/ Snack bar
+opening time: 7 a.m.-10 p.m.
+closed on Sunday
+",50f466bb29a62edf096ea99a,,http://,, BAR GIARDINETTO,bargiardinetto@pec.umione.tn.it,+39 (0462)342286,46.29115,11.458937,,,
+009e37c6-5cae-4be1-a91e-17ec5891e704,Pizzeria,RISTORANTE PIZZERIA ROMA,"Via Roma, 54 - 38038 Tesero","Bar-ristorante-pizzeria
+orari: 12.00-14.30 , 17.00 - 24.00 (Ristorante/pizzeria)
+chiuso martedì (fuori stagione)","Bar- Restaurant-Pizzeria
+opening time: 12-2.30 p.m. , 5 p.m.-00 a.m. 
+closed on Tursday  (only in out of season)
+",,+39 (0462)813220,http://www.risto-pizzaroma.com,, RISTORANTE PIZZERIA ROMA,pizzaclub@virgilio.it,+39 (0462)813220,46.289412,11.5097609,,,
+c3c2f3ac-f13b-42a0-ab2e-1816884a2d25,Birreria / Pub,DIXIE PUB,Via Benesin - 38038 Tesero,"Pub/Birreria
+Orario di Apertura: 17.00-01.00
+Chiuso: Domenica","Pub
+Opening Time: 5 p.m.-1 a.m.
+Close: Sunday",,,http://,, DIXIE PUB,,+39 (340)4671824,46.2897084948101,11.5100240707397,,,
+370063c8-fc5b-4008-ada7-18a9616ceb0c,Rifugio / Malga,RIFUGIO PASSO MANGHEN,Strada provinciale 31 del passo Manghen -  ,"Bar- Ristorante-rifugio
+apertura: dal 1 maggio al 31 ottobre. 
+chiuso in inverno","Bar/restaurant/mountain refuge
+opening from 1. May to 31. October
+closed in winter",,,http://,, RIFUGIO PASSO MANGHEN,,+39 (347)8564172,46.1743775329804,11.4402437210083,,,
+7e8c1772-a065-4932-bb8f-18c79a2db240,Pizzeria,PIZZERIA DES ALPES,via Marco 135 - 380330 CAVALESE,"Pizzeria
+Orari: 8.00-14.30, 17.00-23.00",,,,http://,, PIZZERIA DES ALPES,,+39 (0462)231117,46.290197800603,11.478009223938,,,
+f340c085-9525-4f61-b3cb-18f491928444,Pizzeria,RISTORANTE PIZZERIA ANCORA,Via IV Novembre 32 - 38038 Tesero,"Ristorante, Pizzeria
+Orari: 10.00-14.30 , 17.00-24.00
+Cucina: Tpica Trentina ","Restaurant, Pizzeria
+Opening Time: 10 a.m.-14.30 p.m. , 5 p.m.-12 a.m.
+Speciality: Tipical Local Dishes ",50e95e0e1648f444d3b74006,,http://,, RISTORANTE PIZZERIA ANCORA,,+39 (0462)813117,46.2895427,11.5105439,,,
+4b3f9545-4a2d-414b-b6a2-1a22c530dc02,Bar,BAR CAFFETTERIA BETTA BISTROT,"Via Sorelle Sighel, 10 - 38033 Cavalese","Dolci e pasticceria, colazioni e brunch, pizza
+Orari di apertura:
+lun-dom 7:00 - 21:00","Sweets pastries, breakfast brunch, pizza
+opening times:
+mon-sun 7:00 am - 9:00 pm",,,http://,, BAR CAFFETTERIA BETTA BISTROT,,(0039) 0462 340168,46.290598138455,11.4618408679962,,,
+696682ff-b8f2-4448-9c93-1a8f6e42d676,Ristorante,RISTORANTE AGRITUR PIANRESTEL,Via del Gastaldo - 38033 Cavalese,"Ristorante 
+Orari: 11.30-14.30 , 16.30-24.00","Restaurant
+Opening Time: 11.30 a.m.-2.30 p.m. , 4.30 p.m.-12 a.m.",,+39 (0462)239231,http://www.agriturpianrestel.com,, ,lasalera@libero.it,+39 (0462)340960,46.2883888301223,11.478009223938,,,
+5c7ab1cc-8ff3-4ec8-8253-1e85c675450d,Ristorante,RISTORANTE AGRITUR FIOR DI BOSCO,Loc. Comuni - 38040 Valfloriana,"Aperti solo durante i Mondiali
+Orari: 12.00-14.30 , 19.00-22.00","Open during Nordic World Ski Championship only.
+Opening Time: 12-2.30 p.m. , 7-10 p.m.",,,http://www.agriturfiordibosco.com,+39 (329)0125349, AGRITUR FIOR DI BOSCO,info@agriturfiordibosco.com,+39 (0462)910002,46.2286295989053,11.3632965087891,,,
+75feac06-89de-4ab6-9e92-1edaf496f106,Pizzeria,RISTORANTE AL LAGO,Stramentizzo Nuovo - 38030 MOLINA DI FIEMME,"Ristorante/Pizzeria
+Orari: 06.30-23.00
+Cucina: Tipica Trentina e Classica Nazionale","Restaurant/Pizzeria
+Opening Time: 6.30 a.m.-11 p.m.
+Speciality: Traditional Local Dishes and Classic National Dishes",,,http://,, RISTORANTE AL LAGO,loazzeri87@gmail.com,+39 (0462)341235,46.2665331,11.406282,,,
+55e45730-47f7-4195-b286-1fe2bf6118dc,Pizzeria,LA PELLE DELL'ORSO,Via del Nonéndol - loc. veronza - 38030 Carano,"Ristorante-Pizzeria
+orari: 12.30-14.00 , ristorante 19.30-21.00 , pizzeria 19.30-23.00
+","Restaurant-Pizzeria
+opening time: 12.30 p.m.-2 p.m. , Restaurant 7.30-9 p.m. , Pizzeria 7.30-11 p.m.",50e160d2e4b05f3e950b2f3f,,http://www.clubres.com,, LA PELLE DELL'ORSO,veronza@clubres.com,+39 (0462)240654,46.2901384910427,11.4340853691101,,,
+b8d26ea3-542b-498a-aac0-220e244e82c4,Birreria / Pub,BIRRERIA PUB STALA DEL NONO,Loc. Pampeago 1 - 38038 Tesero,Orari: 14.00-02.00,Opening Time: 2 p.m.-2 a.m.,,,http://www.scoiattolo.it,, BIRRERIA PUB STALA DEL NONO,info@scoiattolo.it,+39 (0462)813244,46.341713531805,11.5392923355103,,,
+107001c2-ce4e-44ce-8778-25ebcab70dc4,Rifugio / Malga,BAITA PASSO LUSIA,Alpe di Lusia - 38035 Moena (TN),,,,,http://www.rifugiolusia.it,+39 (0039)6268437, BAITA PASSO LUSIA,,+39 (0039)573101,46.3433726108052,11.7014694213867,,,
+2d6f8a14-5717-44c9-8ac1-2607d254ef57,Pizzeria,RISTORANTE PIZZERIA RELAX,Via Venezia 28 - 38037 Predazzo (TN),"Ristorante/Pizzeria
+Cucina: Tipica Trentina
+Orari: 12.00-14.00 , 18.00-02.00
+Chiuso: Lunedì","Restaurant/Pizzeria
+Speciality: Tipical Local Dishes
+Opening Time: 12-2 p.m. , 6 p.m.-2 a.m.
+Close: Monday",,,http://,, RISTORANTE PIZZERIA RELAX,,+39 (0462)502344,46.3112041712146,11.6078925132751,,,
+3a337e20-ae88-4ac5-9270-2858d44c24e6,Rifugio / Malga,BAR RISTORANTE BUCANEVE,Loc. Castelir - 38037 Bellamonte (TN),,,,,http://,+39 (347)7740699, BAR RISTORANTE BUCANEVE,baitabucaneve@alice.it,+39 (0462)576088,46.3217413813807,11.6969203948975,,,
+3afaa0c0-87f6-46a2-b7ff-29a5c0abcb4e,Pizzeria,PIZZERIA RISTORANTE L'ARCADE,"Via IX Novembre, 1  - 38037 Predazzo (TN)","Pizzeria Ristorante
+Orari:12.00-14.30, 18.00-23.00",,,,http://,, PIZZERIA RISTORANTE L'ARCADE,,+39 (340)0021359,46.3109522018304,11.6034078598022,,,
+21de0bdc-5703-4b9e-a6ed-2a1fc99c929f,Rifugio / Malga,MALGA JURIBELLO, - 38030 Passo Rolle,,,4e33ce331838df3b5f724178,,http://,, MALGA JURIBELLO,,+39 (348)8925841,46.3120934656518,11.7751979827881,,,
+0d888857-5315-4351-bebe-2d23e1eeca72,Bar,BAR BOCCE - TESERO,Via Stava 59/d - 38038 Tesero,chiuso: periodo invernale,,50e44151e4b0454c7d965a82,,http://,, BAR BOCCE,,+39 (0462)813661,46.292658,11.506665,,,
+c64b052e-76c6-4969-8822-2df098cae999,Ristorante,RISTORANTE COSTA SALICI,"Via Costa Salici, 10 - 38033 Cavalese","Ristorante
+orari: 12.00-14.30 , 19.00-21.30
+Chiuso lunedì e martedì a pranzo
+","Restaurant
+opening time: 12 p.m.-2.30 p.m. , 7-9.30 p.m.
+",,,http://www.costasalici.com,, RISTORANTE COSTA SALICI,info@costasalici.com,+39 (0462)340140,46.2934004214863,11.4566373825073,,,
+6ba15ea0-c518-478b-80fd-2ea2187660ca,Bar,BAR PASTICCERIA SCARABELLIN,Via Marconi 17 - 38037 Predazzo (TN),"Bar, Pasticceria, Gelateria, Paninoteca
+Orari: 07.00-00.00","Coffee Bar, Confectioner's, Ice Creams, Sandwiches
+Opening Time: 7-12 a.m.",50ec3831067d4553b5be59c7,,http://,, BAR PASTICCERIA SCARABELLIN,,+39 (0462)502220,46.3096330490621,11.6049528121948,,,
+dfb33a11-3d67-4870-8109-30b2cc8263ea,Bar,BAR LAGORAI,Via Fiamme Gialle 30 - 38037 Predazzo (TN),"Bar
+Orari: 07.30-12.30 , 14.30-19.00","Coffee Bar
+Opening Time: 7.30 a.m.-12.30 p.m. , 2.30-7 p.m.",50ec3761067d4553b5bd086e,,http://,, BAR LAGORAI,,+39 (0462)502174,46.30584,11.59728,,,
+a2a6b50c-76a6-4412-8435-314da28719a9,Pizzeria,STALA DEL NONO,"Loc. Pampeago, 1 - 38038 Tesero","Bar, Après Ski, ristorante e pizzeria
+Cucina tipica, anche per celiaci solo ristorante, e pizzeria
+orari: 14.00 - 02.00
+aperto solo in stagione","Bar- Après Ski - Restaurant - Pizzeria 
+Typical food, Restaurant also for coeliac
+opening time: 2-8 p.m.
+Open only in season
+",50e97cb790e7ee08def9ddc4,,http://www.scoiattolo.it,, STALA DEL NONO,info@scoiattolo.it,+39 (0462)813244,46.3416246511521,11.5393352508545,,,
+75707f3b-c001-49e8-84f5-32fc775a033f,Rifugio / Malga,BAITA CIAMP DELE STRIE,Loc. Castelir - 38037 Bellamonte (TN),,,,,http://www.ciampdelestrie.it,, BAITA CIAMP DELE STRIE,info@ciampdelestrie.it,+39 (339)8685080,46.3360248787215,11.701340675354,,,
+8036d8aa-69db-4d06-9a00-336630ff2893,Bar,SPORT HOTEL PAMPEAGO,"Loc. Pampeago,  8 - 38038 Tesero","Bar e ristorante self-service
+orari: bar 07.30-17.00 - ristorante 11.30-14.30","Bar - Self-service Restaurant
+opening time: bar 7.30 a.m.-5 p.m. / restaurant 11.30 a.m.-2.30 p.m.
+
+",4f6676c4e4b06cb9fd1c82ed,,http://www.sporthotelpampeago.it,, SPORT HOTEL PAMPEAGO,info@sporthotelpampeago.it,+39 (0462)813500,46.3421134929553,11.540515422821,,,
+2c51c5db-bc91-4725-a39a-378969ae4e6e,Pizzeria,PIZZERIA PRONTO PIZZA,"Via Dante, 1 - 38037 Predazzo","Bar-Pizza al taglio
+orari: Bar 10.00-14.00, Pizzeria: 12.00-14.00 , 17.00-20.00
+chiuso sabato (solo fuori stagione)","Bar- Pizza take away
+opening time: Bar 10 a.m.-2 p.m. / Pizzeria: 12 -2 p.m. , 5-8 p.m.
+closed on Saturday (only in out of season)",,,http://,, PIZZERIA PRONTO PIZZA,pizzacesare@alice.it,+39 (0462)502227,46.31311,11.60245,,,
+79b5583a-a9ae-4305-aa26-385b72c3dfc6,Ristorante,STEAK HOUSE DA POLDO,Via Mazzini 48 - 38037 Predazzo (TN),"Ristorante
+Orari:12.00-14.00-18.30-22.00
+Chiuso:martedì",,,,http://,, STEAK HOUSE DA POLDO,w.defrancesco@tin.it,+39 (0462)502472,46.31663,11.59824,,,
+66d8aacb-c897-4d57-b9b0-38b43f9d56d2,Bar,CAFFE DA TE,"P.zza Scopoli, 6 - 38033 Cavalese","bar
+orari: 7.30 , 22.00
+","Bar
+opening time: 7.30 a.m.-10 p.m.",4f017bb2722e0f07737eaa6c,,http://,, CAFFE DA TE,,+39 (0462)340427,46.2912208804086,11.46036028862,,,
+28b1b219-1ae4-40a1-a9c7-3b207ebbafbf,Rifugio / Malga,CAPANNA CERVINO,Passo Rolle - 38054 San Martino di Castrozza,,,4e61fc81b993678bb630c4b5,+39 (0462)501774,http://www.capannacervino.it,+39 (340)0747643, CAPANNA CERVINO,capanna.cervino@tin.it,+39 (0439)769095,46.3006352828755,11.79283618927,,,
+3eab97b4-d1a8-4d43-9ef5-3c0265d0bba9,Rifugio / Malga,EPIRCHER LANER,Loc. Pampeago - 38038 Tesero,,,,,http://,, EPIRCHER LANER,,+39 (335)5986253,46.3722206819016,11.5334987640381,,,
+63b8e10d-ca8d-4c07-bc21-40e15dc42ae7,Rifugio / Malga,MALGA COSTA,Passo Lavazè - 38030 Varena,,,,,http://,, MALGA COSTA,,+39 (340)3387269,46.3708585899875,11.4756488800049,,,
+7d3d6dcd-418d-420a-b6cc-4108011d619a,Rifugio / Malga,BAITA GARDONE,Loc. Gardoné - 38037 Predazzo,,,4e33ca3d1838df3b5f721faf,,http://www.baitagardone.com,, BAITA GARDONé,info@baitagardone.com,+39 (0462)503110,46.3405136307985,11.5790319442749,,,
+83f71611-585e-442e-b2c0-4133d7ed527d,Birreria / Pub,BIRRERIA PUB GAMS,Corso Dolomiti 13 - 38037 Predazzo (TN),Orari: 17.00-01.00,Opening Time: 5 p.m.-1 a.m.,,,http://,, BIRRERIA PUB GAMS,,+39 (0462)502322,46.3150873173768,11.5977001190186,,,
+220d9da2-34d3-49e0-8f20-43c3df7d12f9,Pizzeria,PIZZERIA BARCOLLO,c/o Centro Servizi - 38037 Bellamonte (TN),"Bar/Pizzeria
+Orari: 7.00-22.00","Bar/Pizzeria
+Opening Time 7 a.m.-10 p.m.",,,http://,, PIZZERIA BARCOLLO,barcollo.bellamonte@gmail.com,+39 (338)6704809,46.3128123014276,11.6650986671448,,,
+71f74a99-0939-4e1d-bc36-45d8e979ad3b,Rifugio / Malga,BAITA DOSS DEI LARESI,località Doss dei Laresi via Chiesa 93 - 38030 CAVALESE,"Rifugio
+Orari:7.30-17.00 e mercoledì,venerdì e sabato 19.30-22.30",,50f461d529a62edf09677b18,,http://,, BAITA DOSS DEI LARESI,elianabonelli@hotmail.it,+39 (0462)235411,46.2646294288033,11.4804553985596,,,
+3eeca27f-031b-4d12-abd0-465f6823e383,Pizzeria,RISTORANTE PIZZERIA GAMS,Corso Dolomiti 13 - 38037 Predazzo (TN),"Bar, Ristorante, Pizzeria
+Cucina servita: Tipica Trentina
+Orari: 10.00-12.30 , 17.00-01.00
+","Coffee Bar, Restaurant, Pizzeria
+Speciality: Tipical Local Dishes
+Opening Time: 10 a.m.-12.30 p.m. , 5 p.m.-1 a.m.",,,http://,, RISTORANTE PIZZERIA GAMS,,+39 (0462)502322,46.3137238012574,11.5995669364929,,,
+ba97c906-65ee-4ce8-815f-4663adac0fc6,Bar,BAR CASTELLO,Via Roma 11 - 38030 Castello di Fiemme,"Bar 
+Orari: 07.30-12.30 , 14.30-23.00
+Chiuso: Venerdì","Coffee Bar
+Opening Time: 7.30 a.m.-12.30 p.m. , 2.20-11 p.m.
+Close: Friday",4e3060f7a809711248fdb40f,,http://,, BAR CASTELLO,,+39 (0462)340033,46.281633,11.4348379,,,
+c307df35-f510-4d43-be8d-484dc1fd1de3,Bar,SUAN'CAFE',P.zza Italia 4/A - 38030 Ziano di Fiemme,"Bar/Panificio
+orari: 6.00-20.00
+domenica: 6.00-13.00","Bar and Bakery
+opening time: 6 a.m.-8 p.m.
+On Sunday: 6 a.m.-1 p.m.
+",50df345a498e2bcb1a93dce5,,http://,, SUAN'CAFE',,+39 (346)2434468,46.2864463444822,11.5621340274811,,,
+0c1a4434-6253-4146-9dd6-486fa98618de,Pizzeria Ristorante,RISTORANTE PIZZERIA DEJAVU',Via A. Cantelger 2 - 38030 Varena,"Bar Ristorante Pizzeria
+Orari:11.00-14.30, 17.30-24.00
+Chiuso: martedì (mai in stagione)",,,,http://,, RISTORANTE PIZZERIA DEJAVU',,+39 (347)7686059,46.305422,11.462465,,,
+1f8084ee-0ac1-47c6-a646-48bf4bcebd3c,Pizzeria,PIZZERIA L'INCONTRO,Via Verdi 13/a - 38037 Predazzo (TN),"Pizzeria
+Orari: 18.00-00.00","Pizzeria
+Opening Time: 6 p.m.-12 a.m.",4e7cdd0302d5f53715fcc9ff,,http://,+39 (328)5319273, PIZZERIA L'INCONTRO,vacanzeinliberta@hotmail.it,+39 (0462)502716,46.3142425342196,11.6011548042297,,,
+73c72b97-abe4-4778-b5a4-48f052bc8ac4,Bar,BAR CORONA,Piazza Italia 1 - 38033 Cavalese,"Orari:7.00-24.00
+Chiuso:giovedì",,,,http://,, BAR CORONA,dalukacorona@yahoo.it,+39 (340)1221926,46.2908,11.46276,,,
+9a50a3bb-a5d5-431e-a5a5-4bcabbf8c3a6,Rifugio / Malga,BAITA SEGANTINI,Passo Rolle - 38054 San Martino di Castrozza,,,4e3d15d818a83d5b283f0f9e,,http://,+39 (342)5828218, BAITA SEGANTINI,,+39 (0439)68251,46.2985894558939,11.8045091629028,,,
+b7b1c5ff-032f-4eba-a8c0-4d60e20795a6,Bar,TANA DEL GRILLO,"P.zza Verdi, 2 - 38033 Cavalese","Bar/creperia
+orari: 7.00-03.00
+","Bar
+opening time: 7 a.m.-3 a.m.",4e209fd9b61cdcf1ecb4c1c7,,http://,, TANA DEL GRILLO,davidetana@tisclali.it,+39 (0462)235617,46.2910355412815,11.4606392383575,,,
+7b2c2190-ed21-4dc2-96ad-4f34f7660045,Bar,BAR LA CAPANNA,"Via Stazione, 21 - 38030 Ziano di Fiemme","Bar/pasti veloci
+orari: 8.30 -24.00
+CHIUSO INVERNO 2012/13
+chiuso lunedì","Bar/snack bar
+opening time: 8.30 a.m.-12 a.m.
+closed on Monday
+CLOSED IN WINTER SEASON 2012/13",,,http://,, BAR LA CAPANNA,focolotti@live.com,+39 (349)1286485,46.2831098534246,11.5574669837952,,,
+2f030f80-b6c1-46cc-848f-525cfc182252,Pizzeria,PIZZA TIME,Via Trento 15 - 38037 Predazzo (TN),"Pizza al Taglio
+Orari: 11.30-14.00 , 16.00-21.00","Pizza by the slice
+Opening Time: 11.30 a.m.-2 p.m. , 4-9 p.m.",,,http://,, PIZZA TIME,,+39 (0462)501555,46.3098924355446,11.6021418571472,,,
+067770aa-3cac-4f60-a4db-528540f82764,Bar,BAR BOCCE - DAIANO,Via San Tommaso 55 - 38030 Daiano,,,50dc5433e4b05e3a0c99da22,,http://,, BAR BOCCE,,,46.3001608950206,11.4498138427734,,,
+c4ae13e2-1022-42d1-b55b-53bf38b70b95,Pizzeria,PIZZERIA LA PIEVE,"Via Marconi, 13 - 38033 Cavalese","Ristorante/Pizzeria
+orari: 11.00-14.30 , 18.00-23.00
+chiuso giovedì
+","Restaurant-Pizzeria
+opening time: 11 a.m.-2.30 p.m. , 6-11 p.m.
+closed on Thursday",4dc7cdf618387d1bd5775147,,http://,, PIZZERIA LA PIEVE,,+39 (0462)232060,46.2886779728581,11.4615726470947,,,
+c8e66b2a-ae7e-456a-9580-57daf6e79931,Pizzeria,RISTORANTE PIZZERIA ANGELO D'ORO,"Vicolo rasmo, 3 - 38033 Cavalese","Ristorante/Pizzeria
+orari: 12-14.00 , 19.30-22.30
+pizzeria 18.30-23.00
+chiuso lunedi
+","Restaurant/Pizzeria
+opening time: 12-2 p.m. , 7.30-10.30 p.m.
+pizzeria: 6.30-11 p.m.
+Closed on Monday
+",,,http://,, RISTORANTE PIZZERIA ANGELO D'ORO,,+39 (0462)235760,46.2904869337896,11.4606070518494,,,
+063194fe-7014-404d-b536-5912735ddbc2,Bar,BAR NUOVO POME,Via Dossi - 38033 Cavalese,"Orari:6.30-20.00
+Chiuso:sabato pomeriggio, domenica mattina (periodo mondiali mai)",,50f4673f29a62edf096f64dc,,http://,, BAR NUOVO POME,mara.garzia@virgilio.it,+39 (0462)340549,46.2884745,11.4543516,,,
+1bca42af-4539-449b-a79e-5b46004b90b0,Ristorante,RISTORANTE CINESE LA GIADA,Via Roma 29 - 38030 CASTELLO - MOLINA DI FIEMME,Cucina Cinese,,4e65185afa76cd64cf5d2040,,http://,, RISTORANTE CINESE LA GIADA,,+39 (0462)230192,46.2836881931,11.4367246627808,,,
+6077853a-7b94-44be-a0fe-5d4f4f5e560d,Gelateria / Pasticceria,PASTICCERIA ELISIANA,"Via IV Novembre, 4 - 38038 Tesero","Bar- pasticceria - gelateria
+orari: 8.00-12.30/14.00-23.00
+","Bar- Bakery-icecream
+opening time: 8 a.m.-12.30 p.m. , 2-11 p.m.
+
+",50e8856b16485605cf317586,,http://,, PASTICCERIA ELISIANA,pasticceria.elisiana@tiscali.it,+39 (0462)814050,46.2886112477469,11.5127062797546,,,
+c128210c-cfba-4f10-813d-60989fa2dfcd,Ristorante,RISTORANTE VILLAGGIO,Fraz. Villaggio 2/a - 38040 Valfloriana,"Ristorante
+Orari: Sabato, Domenica 9.00-12.00 , 14.00-23.00
+Durante la settimana cene solo su prenotazione.
+Chiuso: Lunedì","Restaurant
+Opening Time: Saturday, Sunday 9 a.m.-12 p.m. , 2-11 p.m.
+During the Week dinner under reservation only.
+Close: Monday",,,http://,, RISTORANTE VILLAGGIO,ristorante.villaggio@alice.it,+39 (0462)910098,46.2476853,11.3463739,,,
+6e749695-d996-4e85-9fcf-60aa680683c5,Ristorante,MASO DELLO SPECK,Via Pozze di Sopra 2 - 38030 Daiano,"Caratteristico locale arredato in stile rustico dove si possono gustare piatti tipici della Valle di Fiemme e degli ottimi taglieri con salumi di nostra produzione.
+Accanto al ristorante troverete un piccolo spaccio ricco di specialità trentine.
+Aperto tutti i giorni    
+orari: 12.00-14.30 , 19.00-23.00","Characteristic rustic style restaurant , where you can enjoy homemade dishes from the Fiemme Valley along with our famous Cold Cuts Platters. Next to the restaurant you'll find our shop where you can buy all kinds of specialties from Trentino.
+opening time. 12 p.m.-2.30 p.m. , 7-11 p.m.",,+39 (0462)232982 ,http://www.titospeck.it,, MASO DELLO SPECK,info@titospeck.it,+39 (0462)342244,46.3054382284177,11.4361667633057,Maso dello speck Daiano Val di Fiemme,Maso dello speck Daiano Val di Fiemme,http://interface.deskline.net/Handlers/Document?code=TRN&id=621be179-5267-4a5b-9266-d47fb90397cb
+038d2e7a-236e-4ad3-a592-6139a22a0fdb,Bar,BAR TRENTO,"Via Dossi, 38 - 38033 Cavalese","bar
+orari: 6.30-20.00
+chiuso domenica","Bar
+opening time: 6.30 a.m.-8 p.m.
+Closed on Sunday",50f4689b29a62edf09715bfd,,http://,, BAR TRENTO,,+39 (0462)340532 ,46.28896,11.45467,,,
+8d74e150-1ed7-47af-a383-615cc8970df2,Ristorante,RISTORANTE LE CAORE,"loc. Stava, 31 - 38038 Tesero","Bar-ristorante-cucina tipica
+orari: 12.00-14.30 , 19.00-21.00
+chiuso mercoledì (non in stagione)","Bar- restaurant
+opening time: 12 p.m.-2 p.m. , 7-9 p.m.
+closed on wednesday (only in out of season)
+
+",,,http://www.lecaore.it,, RISTORANTE LE CAORE,info@lecaore.it,+39 (0462)814679,46.3196667043666,11.5028142929077,,,
+713e4847-6390-429b-ae7a-655c89b1c218,Pizzeria,PIZZERIA HOTEL CANADA,Via della Torba 1 - 38037 Bellamonte (TN),,,,,http://www.webhotelcanada.com,, ,info@webhotelcanada.com,,46.3112856904729,11.6761708259583,,,
+783958c4-952c-449b-bf6c-65e35f02803c,Ristorante,RISTORANTE ANCORA,"Via IX Novembre, 1 - 38037 Predazzo (TN)","Ristorante
+Orari: 12.30-14.00 , 19.30-21.00
+Cucina: Tpica Trentina
+
+","Restaurant
+Opening Time: 12.30 p.m.- 2.00 p.m. , 7.30 p.m.- 9 p.m.
+Speciality: Tipical Local Dishes
+",,(0039) 0462 502745,http://www.fiemmeholidays.it,, RISTORANTE ANCORA,info@ancora.it,(0039) 0462 501651,46.3111078301165,11.6027855873108,,,
+0e39935d-10b9-4f51-b88c-65f483774128,Rifugio / Malga,MALGA VENEGIA,Val Venegia - 38054 San Martino di Castrozza,,,4e493961d164155c0e089157,,http://,, MALGA VENEGIA,,+39 (348)0627886,46.3218302943519,11.7961835861206,,,
+f8a54e4e-e083-479e-83e4-663de56aa238,Pizzeria Ristorante,PIZZERIA RISTORANTE EL CALDERON,"Via Cermis, 4 - 38033 Cavalese","Pizzeria/ristorante
+orari: 10.00-24.00
+chiuso mercoledì
+","Pizzeria/Restaurant
+opening time: 10 a.m.-12 a.m.
+closed on Wednesday",,,http://,, PIZZERIA EL CALDERON,info@elcalderon.it,+39 (0462)340111,46.2855566334027,11.4656496047974,,,
+b3280b6e-f4c4-47ac-85bd-6a52741ceadb,Ristorante,RISTORANTE AGRITUR MASO LENA,Località Löze - 38037 Predazzo (TN),,,,,http://www.masolena.it,, ,info@masolena.it,+39 (340)5923104,46.2976109898811,11.6019487380981,,,
+17326440-d0ee-4cca-b47f-6c1653995d0a,Rifugio / Malga,RIFUGIO LATEMAR,"Obereggen, 39 - 39050 Nova Ponente","Bar ristorante - cucina tipica
+orari: 8.30-20.00","Bar - Restaurant
+typical food
+opening time: 8.30 a.m.-8 p.m.
+",,,http://www.zischgalm.it,, RIFUGIO LATEMAR,info@zischgalm.it,+39 (0462)813600,46.3481125591,11.5451717376709,,,
+8f125be0-49c8-45b0-8954-6cdb2f4532a0,Birreria / Pub,OLIMPIA SKI BAR,Stazione Fondovalle Cermis - 38033 Cavalese,"Orari: Luned', Martedì, Giovedì, Domenica 10.00-18.00
+          Mercoledì, Venerdì, Sabato 10.00-24.00","Opening Time: Monday, Tuesday, Thursday, Sunday 10 a.m.-6 p.m.
+                        Wednesday, Friday, Saturday 10 a.m.-12 a.m.",,,http://www.baitaparadiso.it/rifugiopaion/,, OLIMPIA SKI BAR,rifugiopaion@baitaparadiso.it,+39 (329)7217777,46.2843851584426,11.4727306365967,,,
+54fe1d89-7043-47db-972e-6d4663973d99,Rifugio / Malga,MALGHETTE, - 39040 Anterivo,,,,,http://,+39 (336)873043, MALGHETTE,,+39 (0471)882104,46.2937266038456,11.360034942627,,,
+9398de09-53e0-4447-a37e-6e025260c6ee,Bar,BAR ALLA TORRE,Via Avisio 6 - 38030 CASTELLO - MOLINA DI FIEMME,,,4e3c13ee7d8b0e9610567ec3,,http://,, BAR ALLA TORRE,,,46.280368,11.434943,,,
+0533a2ae-3aa5-4ca6-84c4-6f53111e6ab7,Bar,PICCOLO BAR,"Via Chiesa, 26 - 38033 Masi di Cavalese","Bar
+orari: 6.30-23.00
+chiuso lunedì
+","Bar
+opening time: 6.30 a.m.-11 p.m.
+closed on Monday
+",4f65c774e4b08b47709665f6,,http://,, PICCOLO BAR,,+39 (0462)342450,46.2832719,11.483345,,,
+8a4a920e-ab62-4fe2-a4dd-700b976268d8,Pizzeria,RISTORANTE PIZZERIA LA TRATTORIA,Lago di Tesero - 38038 Tesero,"Ristorante, Pizzeria
+Orari: 8.30-14.00 , 17.30-23.00
+Cucina: Tipica Trentina e Pesce","Restaurant, Pizzeria
+Opening Time: 8.30 a.m.-2 p.m. , 5.30-11 p.m.
+Speciality: Tipical Local Dishes and Fish",50e95ede1648f444d3b85f0d,,http://,, RISTORANTE PIZZERIA LA TRATTORIA,,+39 (0462)810203,46.2825759959976,11.5234351158142,,,
+082a9812-e4a6-44f7-887c-753542c70bf2,Rifugio / Malga,MALGA SASS,Loc. Malga Sass - 38040 Valfloriana,,,,,http://www.malgasass.com,, MALGA SASS,,+39 (345)1116762,46.2013691740937,11.3793253898621,,,
+c80540b9-2cc5-4a98-97ad-753acf629baa,Rifugio / Malga,MALGA VALMAGGIORE,Loc. Valmaggiore - 38037 Predazzo (TN),,,,,http://,, MALGA VALMAGGIORE,,+39 (347)7730839,46.2796841778629,11.6485548019409,,,
+37a803be-a1a9-410c-abba-75d845296fbb,Bar,BAR AL TABIO,Via Libertà 1 - 38033 Carano,,,50f1974270430e8fbf0631f8,,http://,, BAR AL TABIO,,,46.2914699,11.43875,,,
+9528f349-16ef-4e04-a5a1-7828e652b947,Bar,CAFFE' CROCE,Via Dellagiacoma 5 - 38037 Predazzo (TN),"Orari: tutti i giorni 5.00-21.30
+",,,,http://,, CAFFE' CROCE,,+39 (349)6812712,46.31271,11.6027799,,,
+1f16f037-3eb4-424b-8113-78a1351f0be7,Bar,BAR PAN & CAFFE',Via Roma 41 - 38038 Tesero,,,,,http://,, BAR PAN & CAFFE',info@bottegadelpan.it,+39 (0462)813037,46.2887446978881,11.5115261077881,,,
+f135b7a4-9b0b-48b2-8126-791cb0fb5afc,Ristorante,"RISTORANTE ""EL MOLIN""",Piazza Cesare Battisti 11 - 38033 Cavalese,"Gourmet
+Orari: 19.30-22.00
+Chiuso: Martedì","Gourmet
+Opening Time: 7.30-10 p.m.
+Close: Tuesday",4e4d58f9fa769ce595bc539e,,http://www.elmolin.info,," RISTORANTE ""EL MOLIN""",info@elmolin.info,,46.2919696440967,11.4602476358414,,,
+63c830a5-5908-4eb8-bfd3-795d83b110b7,Rifugio / Malga,MALGA ORA,Passo Lavazè - 38030 Varena,,,,,http://,, MALGA ORA,,+39 (339)8889293,46.3537110935444,11.4651560783386,,,
+22b94855-df49-405c-8655-799d91b7d7bd,Bar,VIDEO MUSIC,Corso Degasperi 5/a - 38037 Predazzo (TN),"Bar, Paninoteca, Gelateria e Rivendita Super Enalotto
+Orari: 07.00-21.30
+Chiuso: Domenica","Coffee Bar, Sandwiches, Ice-Cream and Super Enalotto ShopKeeper
+Opening Time: 7 a.m.-9.30 p.m.
+Close: Sunday",4ceb9461baa6a1cdfe063f6c,,http://,, VIDEO MUSIC,,+39 (0462)502771,46.3119007864166,11.5995132923126,,,
+7899f248-8ddd-4097-9821-7cacda92b037,Bar,BAR BOCCE - CARANO,via Giovanneli A. 38/a - 38033 Carano,,,50dc5433e4b05e3a0c99da22,,http://,, BAR BOCCE,,,46.2925553036091,11.4398574829102,,,
+f9eb5cd8-fc42-44d8-a750-7d0a10b2b706,Rifugio / Malga,BAITA CASERINA,Loc. Pampeago - 38038 Tesero,"Rifugio - bar - ristorante
+cucina tipica
+orari: 8.30 - 24.00","Mountain refuge- Bar- Restaurant
+typical food
+opening time: 8.30 a.m.- 00 a.m.",4f00bba0f9abd5b39159abb8,,http://www.cenainbaita.net,, BAITA CASERINA,info@cenainbaita.net,+39 (320)9485875,46.3377730173987,11.5498924255371,,,
+dd6fcd50-3847-42ce-bbd8-7dee5f4755f1,Rifugio / Malga,CHALET LA BAITA,Passo Rolle - 38037 Predazzo,,,,,http://,+39 (348)3575442, CHALET LA BAITA,,+39 (0439)68315,46.293059410579,11.7783737182617,,,
+5969ccf3-77ec-48c3-9839-847752c1da92,Bar,SPORTING,Via Venezia 28 - 38037 Predazzo (TN),"Bar
+Orari: tutti i giorni 7.00-23.00
+",,,,http://,, SPORTING,,+39 (333)4160031,46.3111893495183,11.6079783439636,,,
+e9e9806c-fd3d-4d5e-a1f3-8578a8dc56da,Bar,BAR  BUNKER,"Via Prof.Vanzetta, 38 - 38030 Ziano di Fiemme","Bar/Paninoteca
+orari: 7.00-12.30 , 14.00-19.00
+chiuso giovedì
+","Snack-bar
+opening time: 7 a.m.- 12.30 p.m. , 2-7 p.m.
+closed on Thursday
+",50fc13a1fe701afd99ab0f29,,http://,, BAR BUNKER,,+39 (0462)571185,46.2850376285998,11.5624666213989,,,
+0b9b746e-68eb-4be3-abb6-85d1768118c8,Bar,BAR AL DRAGO,"Via Mercato, 25 - 38030 Varena","Bar
+orari: 7.00-24.00
+chiuso mercoledì
+","Bar
+opening time 7 a.m.-12 a.m.
+closed on Wednesday",50e430d6e4b0167bf1ac03ea,,http://,, BAR AL DRAGO,,+39 (0462)340150,46.3032146,11.4560116,,,
+f34fd198-1445-4930-a708-863e22fe6b06,Bar,FITNESS BAR,Via Rossini - 38033 Cavalese,"Bar/Paninoteca
+Orari: Lun-Ven 8.30-22.00
+          Sab-Dom 9.00-21.30","Bar/Sandwiches
+Opening Time: Mon-Fri 8.30 a.m.-10 p.m.
+                        Sat-Sun 9 a.m.-9.30 p.m.",,,http://,, FITNESS BAR,,+39 (0462)340211,46.2892784952017,11.4664649963379,,,
+1a2fe39f-c389-4625-8ac6-86914c3d54ef,Pizzeria,"BAR PIZZERIA ""I VOLTI""","Via Chiesa, 33/a - 38033 Masi di Cavalese","Ristorante/Pizzeria
+orari: lun 6.30-22.00 , mar-gio-ven 10.00-13.00 ,17.00-22.00 , sa-dom 10.00-15.00 , 17.00-24.00
+chiuso mercoledì
+","Restaurant/Pizzeria
+opening time: monday 6.30 a.m.-10 p.m. , tursday-thursday-friday 10 a.m.-1 p.m. , 5-10 p.m. , saturday-sunday 10 a.m.-3 p.m. , 5 p.m.-12 a.m.
+closed on Wednesday",,,http://,," BAR PIZZERIA ""I VOLTI""",,+39 (0462)231567,46.2833655,11.48388,,,
+5ff3d049-3f6d-4b9d-a143-86dcb6ac9861,Bar,BLACKOUT BAR,Via Cesare Battisti 13 - 38037 Predazzo (TN),"Bar/Paninoteca
+Orario: 06.30-00.00","Coffee Bar/Sandwiches
+Opening Time: 6.30 a.m.-12 a.m.",4c285d45ce3fc92862106d88,,http://,, BLACKOUT BAR,,,46.3131383681514,11.6007900238037,,,
+e6274cc8-3dc7-4ace-80c6-8a42ad3b4d19,Ristorante,RISTORANTE AL CONVENTO,"P.zza Rizzoli, 4 - 38033 Cavalese","Ristorante
+orari: 12.00-14.00 , 19.00-21.00
+disponibili prodotti per celiaci
+","Restaurant
+opening time: 12 p.m.-2 p.m. , 7-9 p.m.
+",4c48ab8e417b20a184c7e1a9,,http://,, RISTORANTE AL CONVENTO,ristorante@alconvento.com,+39 (0462)342250,46.29189,11.4587299,,,
+ed6b84b9-8c34-443b-97ef-8d0861cc5a36,Bar,BAR AL PARCO - CAVALESE,P. tta S. Maria della Lasta - 38033 Cavalese,"Orari: tutti i giorni 8.00-23.00
+Inverno chiuso",,50f465d629a62edf096d5e61,,http://,+39 (328)6538505, BAR AL PARCO,baralparco@libero.it,+39 (0462)340003,46.2858976910245,11.462345123291,,,
+fe9a5d93-d7c4-49fe-affc-8f12831bb96b,Ristorante,RISTORANTE LA STUA,Piazza Dante - 38033 Cavalese,"Ristorante
+Orari: 12.00-14.30 , 19.00-21.30
+","Restaurant
+Opening Time: 12-2.30 p.m. , 7-9.30 p.m.",,,http://www.hotellastua.com,, ,info@hotellastua.com,+39 (0462)340235,46.292629437278,11.4588904380798,,,
+6614794c-1a4a-4a71-91d4-8fbce1e91bf8,Birreria / Pub,BAR PUB CANTON,"Via Unterberger,2 - 38033 Cavalese","Bar
+orari: 7.00-24.00
+venerdi e sabato: 7.00-02.00","Bar
+Opening time: 7 a.m.- 12 a.m.
+On Friday and saturday: 7 a.m.-02.00 a.m.
+",4e3d7557e4cdab9b934313d5,,http://,, BAR PUB CANTON,barcanton@tiscali.it,+39 (0462)232400,46.2912134668555,11.4606821537018,,,
+b823a277-b52a-4a2c-9668-8ffdf6f9f891,Pizzeria,RISTORANTE PINETA,"Via Cadino, 2 - 38030 Castello-Molina di Fiemme","Ristorante-pizzeria
+orari: 7.00-23.00","Restaurant-pizzeria
+opening time: 7 a.m.-11 p.m.",,,http://www.ristorantealbergopineta.it,, RISTORANTE PINETA,bonelli.enzo@virgilio.it,+39 (0462)341332,46.2700288488885,11.4207172393799,,,
+d8144a56-6bbb-4028-9ab8-912bd48b9978,Ristorante,RISTORANTE AGRITUR MASO CORRADINI,Via Milano 28 - 38030 CASTELLO DI FIEMME,Pranzo e Cena su prenotazione.,Lunch and Dinner under reservation only.,,,http://www.agriturismocorradini.it,+39 (328)3622170, ,info@agriturismocorradini.it,+39 (0462)231010,46.2796841778629,11.4326691627502,,,
+72c3c7f5-1439-47b7-bc7b-95a70d3805cd,Ristorante,HORSES RISTO PUB,Via Lagorai 117 - 38037 Predazzo (TN),"Ristorante, Steak House, Pub
+Orario: 09.00-02.00","Restaurant, Steak House, Pub
+Opening Time: 9-2 a.m.",,,http://www.clubippicofontanelle.it,, HORSES RISTO PUB,info@clubippicofontanelle.it,+39 (0462)500116,46.3000422974147,11.5981721878052,,,
+41d3801f-cafc-45ab-a05e-981a4a0fdf4b,Bar,BAR POZZO,"Via Roma,  31 - 38038 Tesero","Bar
+orari: 08.30-12.30 , 15.00-20.00
+chiuso lunedì","Bar
+opening time: 08.30 a.m.-12.30 p.m. , 3-8 p.m.
+closed on Monday",50e4528ee4b047166930b45b,,http://,, BAR POZZO,,+39 (348)5633092,46.289486081641,11.5101957321167,,,
+489eb0e1-0e92-4d56-8ece-986ff90a7210,Ristorante,AL CANTUCCIO,"Via Unterberger, 14 - 38033 Cavalese","Ristorante
+orari: 12.00-15.00 , 18.30-23.00
+chiuso lunedì","Restaurant
+opening time: 12 p.m.-3 p.m. , 6.30 p.m.-11 p.m.
+Closed on Monday
+",,,http://,, AL CANTUCCIO,,+39 (0462)235040,46.29159,11.46059,,,
+19e31189-d83a-44ab-a686-99ebccc1d450,Pizzeria,PIZZERIA LA LANTERNA,"Via Ancona,2 - 38030 Daiano","Pizzeria
+orari: 17.00-24.00
+chiuso martedì","Pizzeria
+opening time: 7 p.m.-00 a.m.
+closed on Tursday",50dc4f57e4b03fcf3941c231,,http://,, PIZZERIA LA LANTERNA,vargiu.f@alice.it,+39 (0462)340607,46.300078,11.44749,,,
+32a401bb-45e0-4eb8-8899-9cbd1f46da5c,Pizzeria,LA RUOTA,Via Quirino Prada 2 - 38030 CASTELLO - MOLINA DI FIEMME,"Pizzeria
+Orari:17.00-23.00
+Chiuso:lunedì",,50e45c3de4b01580bed15f88,,http://,, LA RUOTA,,+39 (0462)230220,46.2713637883303,11.4178204536438,,,
+540ee71b-f395-4465-8995-a0adbffc148e,Birreria / Pub,OSTARIA AL SANTO,"Vicolo Canopi, 11/A - 38037 Predazzo","Osteria/ wine bar
+orari: 17.00-01.00
+chiuso martedì (solo fuori stagione)","Wine Bar
+opening time: 5 p.m.-01 a.m.
+closed on Tursday  (only in out of season)
+",4db4498b4159ca03c914451e,,http://,, OSTARIA AL SANTO,rizzitanja@gmail.com,+39 (0462)501791,46.31547,11.60214,,,
+03d95200-d4f3-47a0-8c1b-a3edb9bd7da9,Rifugio / Malga,GANISCHGER ALM,Loc Pampeago (Obereggen) - 38038 Tesero,"Ristorante e self service
+Orari: 8.00-18.00",,4d1c8eb67e10a35dbe320083,,http://www.ganischgeralm.it,, GANISCHGER ALM,info@ganischgeralm.it,+39 (0462)814600 ,46.3510155744718,11.5467596054077,,,
+9d29c090-2769-4cc7-8d8e-a528f2386774,Bar,BAR GIMA,"Via Cavelonte, 2 - 38030 Panchià","Bar
+orari: 06.30-00.00
+chiuso martedì pomeriggio","Bar
+opening time: 06.30 a.m.-00 a.m.
+closed on Tursday afternoon",50fc0bb5e4b0870daf0b6a9f,,http://,, BAR GIMA,,+39 (0462)813100 ,46.2852872,11.5422467,,,
+b54063df-9197-47bc-99af-a63facdf780b,Bar,BAR BIVIO,"Via Nazionale, 1 - 38030 Carano","Bar
+orari: 5.30-01.00
+chiuso venerdì","Bar
+openign time: 5.30 a.m.-01 a.m.
+closed on Friday",,,http://,, BAR BIVIO,,+39 (0462)230770,46.2872322439159,11.4402866363525,,,
+5407eeed-be63-4476-a2e5-a840d1faee15,Bar,BAR STELLA,"Via Roma, 29 - 38038 Tesero","bar
+orari: 7.30-13.30 , 14.30-24.00
+chiuso giovedì
+","Bar
+opening time: 7.30 a.m.-1.30 p.m. , 2.30 p.m.-12 a.m.
+closed on Thursday
+",50e44fdee4b0454c7e05b22d,,http://,, BAR STELLA,,+39 (0462)813111,46.2895157367824,11.5100026130676,,,
+bb64fa83-0b6d-423f-a21c-a85e03c12742,Ristorante,RISTORANTE AGRITUR SALANZADA,Loc. Salanzada 1 - 38033 Cavalese,"Ristorante
+Orari: Venerdì, Sabato, Domenica 12.00-14.00 , 19.00-21.00
+Cucina: Piatti Tipici","Restaurant
+Opening Time: Friday, Saturday, Sunday 12-2 p.m. , 7-9 p.m.
+Tipical Food",,+39 (0462)342932,http://www.agritursalanzada.it,+39 (333)3937327, ,info@agritursalanzada.it,+39 (0462)235480,46.2722833943649,11.4645767211914,,,
+6f9dfd7c-a077-41a5-a1bb-aa7132bb4cde,Bar,CAFFE GELATERIA KISS,"P.zza Italia, 5 - 38033 Cavalese","Bar/Pasticceria/Gelateria/Primi Piatti
+orari: 7.30-24.00
+chiuso martedì
+","Bar/Bakery/Ice cream
+opening time: 7.30 a.m.-12 a.m.
+closed on Tuesday
+",,,http://,, CAFFE GELATERIA KISS,gelateriakiss@hotmail.com,+39 (0462)230160,46.2909,11.46304,,,
+d4a4438b-e5ec-4559-8ff5-aa8aa5988544,Rifugio / Malga,BAITA PASSO FEUDO,Passo Feudo - 38037 Predazzo (TN),,,,,http://,, BAITA PASSO FEUDO,baitafeudo@alice.it,,46.3471053544758,11.5595483779907,,,
+ed3c1c31-0a90-43cf-810c-aaec70069422,Bar,CAORER,Vicolo Caorer 11 - 38037 Predazzo (TN),"Bar
+Orari:6.00-23.00
+Chiuso:domenica",,,,http://,, CAORER,,+39 (346)1826041,46.3108632711826,11.6019058227539,,,
+d7447f8d-46ed-4cc7-920b-ac37ac3a5bca,Ristorante,TRATTORIA LA BERLOCCA,Via Venezia 10/a - 38037 Predazzo (TN),"Trattoria
+Cucina: Locale Trentina e Specialità di altre Regioni
+Orari: 19.30-00.00","Trattoria
+Speciality: Traditional Local Dishes and other Italian Food
+Opening Time: 7.30 p.m.-00.00 a.m.",,,http://www.laberlocca.it,, TRATTORIA LA BERLOCCA,info@laberlocca.it,+39 (0462)502880,46.3113968529022,11.606605052948,,,
+5d181f00-2cb3-4e38-bddd-ac9a8cf45650,Bar,EL PIRLE,Via Dante 32 - 38037 Predazzo (TN),"Bar
+Orari:7.00-21.30
+Chiuso:mercoledì",,,,http://,, EL PIRLE,,+39 (347)2974278,46.313513,11.6023099,,,
+9cde866d-a91c-46b5-8b8b-ad47d7fab2e5,Pizzeria,PIZZERIA EXCELSIOR,Piazza Cesare Battisti 11 - 38033 Cavalese,"Pizzeria/Wine Bar
+Orari: 12.00-14.30 , 18.30-23.00
+Chiuso: Martedì","Pizzeria/Wine Bar
+Opening Time: 12-2.30 p.m. , 6.30-11 p.m.
+Close: Tuesday",,,http://,, ,,+39 (0462)248421,46.2918769758785,11.4590406417847,,,
+3dbd2723-1b21-48d7-9937-adeb608ad849,Bar,BAR SPORT,"Via Italia,12 - 38030 Castello-Molina di Fiemme","Bar
+orari: 6.30 -21.00
+chiuso giovedì pomeriggio","Bar
+opening time: 6.30 a.m.-9 p.m.
+closed on Thursday afternoon",,,http://,, BAR SPORT,,+39 (0462)340065,46.2727728558009,11.4168334007263,,,
+7effb713-0126-41cb-89a3-b122272405bf,Bar,BAR VARENA,Via Mercato 6 - 38030 Varena,"Bar 
+Orari:7.00-22.00
+Chiuso:domenica",,,,http://,, BAR VARENA,,+39 (0462)341044,46.30368,11.45611,,,
+3a6eb406-0ac1-455c-9327-b1db391ebc94,Rifugio / Malga,WAIGLER SCHUPF,Loc. Pampeago - 38038 Tesero,,,4efef4389911b33a10147a1e,,http://,, WAIGLER SCHUPF,,+39 (348)7031412,46.3581835846143,11.5407514572144,,,
+a1f98eff-b27e-48d0-a47a-b331f0373803,Rifugio / Malga,BAITA MONTE CAURIOL,Val di Sadole - 38030 Ziano di Fiemme,,,,,http://www.baitamontecauriol.it,+39 (348)5161123, BAITA MONTE CAURIOL,bepone@hotmail.it,+39 (337)230202,46.2602828059463,11.5990304946899,,,
+cb23baf2-2d92-4bb8-9b36-b45f9219acdb,Birreria / Pub,BAR PUB SOTTOZERO,Via Cermis 3 - 38033 Cavalese,"Orari: Domenica - Giovedì 15.00-24.00
+          Venerdì - Sabato 15.00-02.00","Opening Time: Sunday-Tursday 3 p.m.-12 a.m.
+                        Friday - Saturday 3 p.m.- 2 a.m.",,,http://,, BAR PUB SOTTOZERO,,+39 (349)3351426,46.2863722024442,11.4645338058472,,,
+610f5523-a3d0-475f-afe7-b63d19a52c1e,Birreria / Pub,BIRRERIA E SPAGHETTERIA IL VICOLETTO,"Via Alberti, 8 - 38033 Cavalese","Birreria e spaghetteria
+orari: 17.00-03.-00
+chiuso il lunedì
+","Pub- Restaurant
+opening time: 5 p.m.-03 a.m.
+closed on Monday
+",,,http://,, BIRRERIA E SPAGHETTERIA IL VICOLETTO,,+39 (347)8314056,46.29212,11.46025,,,
+f0b775a7-fb08-4329-96c9-bf983b363503,Rifugio / Malga,MALGA VENEGIOTA,Val Venegia - 38054 San Martino di Castrozza,,,4e493961d164155c0e089157,,http://,, MALGA VENEGIOTA,,+39 (0462)576044,46.3133829169193,11.8148946762085,,,
+db8880ab-844f-4d6e-bf08-c028ef838fb1,Bar,ANNY BAR,Via Segantini - 38030 CASTELLO - MOLINA DI FIEMME,,,4e455bd514959d51c1540438,,http://,, ANNY BAR,,,46.279522,11.43413,,,
+37885a97-af94-4d5a-84bf-c2bdde5e5f25,Rifugio / Malga,MALGA VARENA,Passo Lavazè - 38030 Varena,,,,,http://,, MALGA VARENA,,+39 (335)5813973,46.3524818348526,11.4842534065247,,,
+8bacf531-e892-47b5-ad11-c2cfa8346e3b,Rifugio / Malga,ZISCHGALM,"Obereggen, 38 - 39050 obereggen","Rifugio - bar- ristorante
+cucina tipica 
+orari: 8.30-20.00",,,,http://www.zischgalm.it,, ZISCHGALM,info@zischgalm.it,+39 (0462)813600,46.349564086059,11.5481328964233,,,
+20b9ce0c-c183-4f68-b375-c4db49bcbba9,Bar,BAR VIENNA,Via San Tommaso 61 - 38030 Daiano,,,,,http://,, BAR VIENNA,,,46.3000571221295,11.4511227607727,,,
+c5fe34e3-18fe-4e72-a809-c5aee84de12c,Bar,EXTRA BAR,"Via Roma, 9 - 38030 Ziano di Fiemme","Bar
+orari: lun-ven 7.30-23.00
+sab-dom 8.00-23.00
+chiuso martedì (solo fuori stagione)","Bar
+opening time: monday-friday 7.30 a.m.-11 p.m.
+saturday-sunday 8 a.m.-11 p.m.
+",50fc0fe8e889fadcbe14230e,,http://,, EXTRA BAR,sibille.turchet@yahoo.it,+39 (0462)571919,46.2857292,11.5619307,,,
+b9e49c27-5107-4620-94b7-c74c23a64be9,Bar,MEETING BAR,Via Marconi 51 - 38037 Predazzo (TN),,,,,http://,, MEETING BAR,,+39 (328)2914483,46.3097516258924,11.6045236587524,,,
+d5161136-ec3b-4c40-b610-c7cb096701e5,Rifugio / Malga,MALGA BOCCHE,Loc. Bocche - 38054 San Martino di Castrozza,,,,,http://,+39 (335)5946308, MALGA BOCCHE,,+39 (340)5923104,46.3238752528079,11.7449855804443,,,
+8877db06-a12e-45a0-a7da-c9e6519b8806,Pizzeria,PIZZERIA RISTORANTE VERONZA,Viale Veronza 3 - 38033 Carano,"Ristorante/Pizzeria
+Orari: mar-dom 11.00-14.00, 17.00-23.00
+Chiuso:lunedì",,,,http://,, PIZZERIA RISTORANTE VERONZA,,+39 (0462)341734,46.2901533184388,11.4304804801941,,,
+a3fe90a2-bde3-4e64-b38f-cac60bbc44b0,Bar,BAR CROCE BIANCA,Via Nazionale 39 - 38030 Panchià,,,50fc0a88e4b053e00b5a504d,,http://,, BAR CROCE BIANCA,,,46.285434,11.540483,,,
+b8d8f1f4-5f75-437f-a193-d05fa77ebba6,Bar,CAFFE' PREDAZZO,Via Garibaldi 26 - 38037 Predazzo (TN),"Bar/Paninoteca
+Orari: 07.00-21.00","Coffee Bar/Sandwiches
+Opening Time: 7 a.m.-9 p.m.",4d37f2239516236aa8919151,,http://,, CAFFE' PREDAZZO,,+39 (0462)502462,46.3109818453476,11.6011548042297,,,
+2f3cf02a-c2f5-4d55-8fff-d46ba589b673,Rifugio / Malga,RIFUGIO LAGHI DI COLBRICON,Passo Rolle - 38054 San Martino di Castrozza,,,,,http://,, RIFUGIO LAGHI DI COLBRICON,,+39 (348)7952430,46.281834518719,11.7666792869568,,,
+6d81f6b2-0274-4956-963c-d4d6904e13e1,Bar,BAR CAFFE' MARILYN,Via Marconi 1 - 38037 Predazzo (TN),Orari: tutti i giorni 7.00-22.00,,50ec3510582ffe4ceec9dab3,,http://,, BAR CAFFE' MARILYN,,+39 (339)6231950,46.309314372558,11.6022920608521,,,
+b20be420-e2e9-4ac7-bd44-d5a076877306,Pizzeria,RISTORANTE PIZZERIA LA CANTINETTA,"Via Val del Ru, 11 - 38030 Varena","Ristorante- pizzera
+orari: 12.00-14.30 , 19.00-23.00
+chiuso lunedì","Restaurant-Pizzeria
+opening time: 12 p.m.-2.30 p.m. , 7-11 p.m.
+closed on Monday",50e42f5fe4b0f21693c54269,,http://,, RISTORANTE PIZZERIA LA CANTINETTA,info@lastregona-cantinetta.it,+39 (0462)342695,46.302856,11.45444,,,
+e79a8cf8-7483-4154-b194-d616633c0e83,Rifugio / Malga,BAR RISTORANTE MONTE AGNELLO,Loc. Pampeago - 38038 Tesero,"Bar- rifugio - cucina tipica, self-service
+orari: 8.00-16.30","Bar - mountain refuge - self-service - traditional cousine
+opening time: 8 a.m.- 4.30 p.m.
+",50fc3920c84cbb952eb378c9,,http://,, BAR RISTORANTE MONTE AGNELLO,pietrodelladio@alice.it,+39 (0462)815030 ,46.3436096179811,11.5401935577393,,,
+1696b80d-53e3-412d-b79f-d6c37920b4aa,Ristorante,RISTORANTE MIOLA,Loc. Miola 1 - 38037 Predazzo (TN),"Ristorante/Bar
+Orari: Ristorante 12.00-14.30, 19.00-21.30 Bar 9.00-24.00
+Chiuso:martedì",,,,http://www.ristorantemiola.com,, RISTORANTE MIOLA,ris.miola@virgilio.it,+39 (0462)501924,46.2978778459822,11.6067123413086,,,
+53f67f46-7587-4154-8c32-d6d434221fe6,Bar,BAR TEATRO,Via Roma 11 - 38033 Cavalese,"Orari:7.30-24.00
+Chiuso:lunedì",,4c2da428260bc9281d581ad3,,http://,, BAR TEATRO,girardipaolo3@tin.it,+39 (348)9548402,46.2896269434197,11.463965177536,,,
+4aaff1af-58d0-488e-87c9-d73e1ecc8793,Gelateria / Pasticceria Bar,TRE VALLI,"Via F.lli Bronzetti, 56 - 38033 Cavalese","Bar-gelateria
+Orari: tutti i giorni 7.00-1.0
+Chiuso:lunedì (sotto i mondiali mai)","Bar-ice cream
+opening time: every day 7 a.m-1 a.m.
+",50f57303e0e2d879e99fc429,,http://,, TRE VALLI,gelateria3valli@alice.it,+39 (0462)231625,46.290271937463,11.4636754989624,,,
+92e8eb0a-5a09-43a6-b102-d743b9353281,Gelateria / Pasticceria,LA PASTICCERIA DI TONINO,Via Fiamme Gialle 2 - 38037 Predazzo (TN),"Pasticceria
+Orari: 7.00-12.30 , 15.00-19.30","Backery
+Opening Time: 7 a.m.-12.30 p.m. , 3-7.30 p.m.",,,http://,, LA PASTICCERIA DI TONINO,,+39 (0462)502595,46.3039707064287,11.593816280365,,,
+1b21fa89-c4e2-404e-b6f2-d9a22535d1bc,Birreria / Pub,POLDO PUB,Via Mazzini 46 - 38037 Predazzo (TN),"Pub/Birreria
+Orari: 17.00-02.00","Pub
+Opening Time: 5 p.m.-2 a.m.",4d1fb5985c4ca1cd7c5d9b3d,,http://www.facebook.com/poldopub,+39 (347)7611808, POLDO PUB,matteo.antico@hotmail.it,+39 0462 502472,46.31661,11.59892,,,
+71af2620-918d-449e-93f4-d9f03d15d5ef,Rifugio / Malga,MALGA ARODOLO,Loc. Arodolo - 38030 Molina di Fiemme,"Da Molina di Fiemme direzione Passo Manghen, presso Ristorante Pineta, a sinistra su strada sterrata.","at the roundbout in Molina di Fiemme, direction Manghen Pass, at Restaurant Pineta turn left on unpaved road.",,,http://,+39 (339)7453017, MALGA ARODOLO,,+39 (0462)342267,46.2648667771252,11.4296436309814,,,
+20e2739a-5acd-44c5-8702-da27d1dd230d,Pizzeria,RISTORANTE AL MOLIN,Via G.Verdi 20/a - 38030 Ziano di Fiemme,"Ristorante/Pizzera
+orari: 9.00-24.00
+chiuso mercoledì
+","Restaurant-Pizzera
+opening time: 9 a.m.-12 a.m.
+closed on Wednesday
+",4e4d58f9fa769ce595bc539e,,http://,, RISTORANTE AL MOLIN,francoalmolin@gmail.com,+39 (0462)571442,46.285825,11.565681,,,
+2bd3f421-9a4c-4cf9-871f-dbc59c91be08,Rifugio / Malga,MALGA MONTE CORNO, - 38030 Capriana,"Aperto da maggio a metà settembre.
+Giorno di chiusura:lunedì",,4e91a0b030f81ec6ffeb459a,,http://,, MALGA MONTE CORNO,,+39 (338)1022342,46.2631172,11.3381855,,,
+41922b03-18fe-43ba-922d-dbda89389ef4,Pizzeria,PIZZERIA DOLOMITI,Via Dallio G.B. - 38030 Capriana,"Pizzeria
+Orari:18:00-21:30 sabato e domenica",,50fc5b4419a93840f04da855,,http://www.hdolomiti.com,, PIZZERIA DOLOMITI,info@hdolomiti.com,+39 (0462)816081,46.2627478,11.337486,,,
+dcabc8dc-5850-4c73-a5a9-dfd6810f2df1,Rifugio / Malga,MALGA SADOLE,Loc. Sadole - 38030 Ziano di Fiemme,,,,,http://,, MALGA SADOLE,,+39 (0462)813720,46.2602234640007,11.5980434417725,,,
+359ef189-34db-40f6-9bae-e28b7a588586,Ristorante,RISTORANTE AGRITUR MASO SORTE,Via Maso Sorte - 38030 Castello di Fiemme,"Ristorante
+Orari: 12.00-14.00 , 19.00-21.00
+Chiuso: Lunedì
+Cucina: Piatti Tipici","Restaurant
+Opening Time: 12-2 p.m. , 7-9 p.m.
+Close: Monday
+Typical Food
+",,,http://,, AGRITUR MASO SORTE,,+39 (0462)340522,46.2778896908959,11.444878578186,,,
+181dc880-4d5f-490b-8bbe-e2ea634012bf,Rifugio / Malga,MALGA CISLON, - 39040 Trodena,,,,,http://,+39 (333)3904772, MALGA CISLON,,+39 (347)2291105,46.3199927302501,11.3213896751404,,,
+fb1df3d1-1424-4cbd-950e-e5def75174ca,Bar,BAR BOLINI,"Via Roma, 19 - 38038 Tesero","Bar-pasticceria-pizza la taglio
+orari: 8.00-24.00
+chiuso martedì (solo fuori stagione)","Bar- Bakery- Pizza's shop
+opening time:  8 a.m.-00 a.m.
+closed on Tursday  (only in out of season)
+",,,http://,+39 (331)2534305, BAR BOLINI,zogovic@email.it,+39 (0462)810108,46.2895528056866,11.5090584754944,,,
+48a286f4-d13e-4029-996f-e6de89281153,Pizzeria,RISTORANTE PIZZERIA SOTTOVOCE,Via Nucleo Stazione 9 - 38030 CASTELLO DI FIEMME,"Ristorante, Pizzeria, Bar. Pizza per Celiaci su richiesta.
+Cucina: Tradizionale Trentina, Romana. Il Weekend Cene di Pesce Fresco su prenotazione.
+Orari: 8.30-23.00
+Chiuso: Giovedì","Pizzeria, Restaurant, Coffee Bar. Gluten-free Pizza on demand.
+Speciality: Traditional Local Dishes, Roman Cooking, during Weekends Fresh fish Dinners
+Opening Time: 8.30 a.m.-11 p.m.
+Close: Thursday",,,http://,, RISTORANTE PIZZERIA SOTTOVOCE,sottovoceinpiscina@yahoo.it,+39 (0462)235597,46.2872322439159,11.4211249351501,,,
+8cd591d6-9c52-4561-952a-e85dd8eb1ad7,Birreria / Pub,THE CLUB,"Via Mulini, 10/A - 38038 Tesero","Bar, club après-ski, musica e intrattenimento
+orari: 16.00-02.00
+in stagione sempre aperto","Bar, club après-ski, Music 
+opening time: 4 p.m.-02 a.m.
+every day in season
+",5081aefce4b06f332f764f14,,http://www.risto-pizzaroma.com,, THE CLUB,pizzaclub@virgilio.it,+39 (345)1109723 ,46.2903609015626,11.5076422691345,,,
+899fe0ca-89db-4c60-b593-e95f185e97ec,Bar,BAR AL PARCO - ZIANO DI FIEMME,"Via Nazionale, 35 - 38030 Ziano di Fiemme","Bar
+orari: 7.00-22.00
+mercoledì: 7.00-13.00","Bar
+opening time: 7 a.m.-10 p.m.
+On Wednesday: 7 a.m.-1 p.m.
+",50fc151dfe701afd99ad61c3,,http://,, BAR AL PARCO,,+39 (347)6086315,46.2881070998347,11.563925743103,,,
+0816d86a-80a0-4cb6-947c-eafab6126bb3,Rifugio / Malga,MALGA DAIANO,Passo Lavazè - 38030 Passo di Lavazè,,,,,http://,, MALGA DAIANO,,+39 (348)7120227,46.3558437177257,11.4958190917969,,,
+84af6f41-bcce-40e8-9037-ed1f7b3b82c8,Rifugio / Malga,RIFUGIO BAITA LA MOREA,Loc. La Morea - 38037 Bellamonte (TN),,,,,http://,, RIFUGIO BAITA LA MOREA,,+39 (348)5800209,46.3289428638825,11.7046022415161,,,
+cac1f604-7561-4e1f-9627-efee35c2a529,Rifugio / Malga,CAPANNA PASSO VALLES,Passo Valles - 32020 Falcade,,,,,http://www.passovalles.com,+39 (0437)599460, CAPANNA PASSO VALLES,info@passovalles.com,+39 (0437)599136,46.3386026229791,11.8013763427734,,,
+11198cd3-97a9-49bf-88b7-eff5de62393a,Rifugio / Malga,MALGA VALAZZA,Passo Valles - 32020 Falcade,,,,,http://,+39 (347)2609195, MALGA VALAZZA ,,+39 (0439)62674,46.3414024488875,11.7904329299927,,,
+9204295c-2a55-4a61-8d3d-f03ea09aa409,Rifugio / Malga,RISTORANTE BAITA EL ZIRMO,Loc. Castelir - 38037 Bellamonte (TN),,,,,http://www.elzirmo.it,+39 (335)487033, RISTORANTE BAITA EL ZIRMO,info@elzirmo.it,+39 (0462)576300,46.3127456057221,11.6890454292297,,,
+ae21eb3c-348a-42f5-9c63-f06958bdb888,Bar,BAR ROMA,"Via F.lli Bronzetti, 26 - 38033 Cavalese","bar
+orari: 7.00-21.00
+chiuso la domenica","Bar
+opening time: 7 a.m.-9 p.m.
+closed on Sunday
+",50f467e529a62edf09704fc8,,http://,, BAR ROMA,,+39 (0462)342434,46.2908650287307,11.4618623256683,,,
+f47c086e-44b3-4eee-b86c-f39774a6694a,Pizzeria,RISTORANTE PIZZERIA GI & GIò,"P.zza 12 Partigiani, 7 - 38033 Cavalese","Ristorante/Pizzeria
+orari: 11.00-14.30 , 18.00-23.00
+chiuso mercoledì
+","Restaurant-pizzeria
+opoenig time: 11 a.m.-2.30 p.m. , 6-11 p.m.
+closed on Wednesday
+",,,http://,, RISTORANTE PIZZERIA GI & GIò,guarrac@virgilio.it,+39 (0462)342688,46.292948210911,11.4563369750977,,,
+98366247-2c3b-4b7d-96fe-f5f459d9d55d,Pizzeria,LA SALERA,"Via Pizzegoda, 3 - 38033 Cavalese","Ristorante-pizzeria
+orari: 11.30-14.30 , 16.30-24.00
+chiuso: martedì","Restaurant-pizzeria
+opening time: 11.30 a.m.-2.30 p.m. , 4.30 p.m.-00 a.m.
+closed on Tuersday
+",4e480c397d8b91a065a45bbf,+39 (0462)239231 ,http://,, LA SALERA,lasalera@libero.it,+39 (0462)341001,46.2915470757489,11.4627313613892,,,
+0dac6f6a-dc50-4380-b081-f7a3a0d63f54,Ristorante,BAR RISTORANTE LÖZE,Via Lagorai 115 - 38037 Predazzo (TN),"Bar, Ristorante
+Specialità: Carne e Pesce
+Orari: 9.00-23.00","Coffee Bar, Restaurant
+Speciality: Meat and Fish
+Opening Time 9 a.m.-11 p.m.",,,http://,, BAR RISTORANTE LÖZE,,+39 (0462)502235,46.299908874801,11.5994381904602,,,
+79b25609-423a-443c-9110-f89dfa835a20,Bar,BAR PASTICCERIA SCARABELLIN,"Via C.Battisti, 12 - 38037 Predazzo","Bar-pasticceria
+orari: 7.30-20.00
+chiuso giovedì pomeriggio (solo fuori stagione)","Bar- Bakery
+opening time: 7.30 a.m.-8 p.m.
+closed on Thursday afternoon  (only in out of season)
+",50ec386f067d4553b5beb70c,,http://,, BAR PASTICCERIA SCARABELLIN,,+39 (0462)501322,46.3129234607562,11.6014552116394,,,
+38046b76-5fe4-4322-8e4e-fa0ebcc71384,Bar,CAFFE FILO',"P.zza Cesare Battisti,6 - 38038 Tesero","bar-gelateria
+orari: 8.00-23.00
+chiuso mercoledì pomeriggio","Bar-icecream
+opening time: 8 a.m.-11 p.m.
+closed on Wednesday afternoon
+",,,http://,, CAFFE' FILO',,+39 (0462)814644,46.2885667642942,11.5105390548706,,,
+eb017978-dc36-49da-9569-fa4d999d020e,Rifugio / Malga,MALGA ROLLE,Passo Rolle  - 38054 San Martino di Castrozza,,,4e52250ed1643fe91636e72a,,http://,, MALGA ROLLE,,+39 (348)0363019,46.2960839549565,11.7770648002625,,,
+7013dbcd-2663-4601-916b-fc0faa3f3553,Bar,BAR ANCORA,Via Roma 7 - 38037 Predazzo (TN),"Bar, Pasticceria, Paninoteca
+Orari: 07.00-00.00
+","Coffee Bar, Confectioner's, Sandwiches
+Opening Time: 7-12 a.m.",,,http://,, BAR ANCORA,,+39 (0462)501651,46.31133,11.60267,,,
+737208d0-1fca-4410-aa58-fe6b70b83366,Bar,LATEMAR STUBE,"Loc.Stalimen, 2  - 38037 Predazzo","Bar-paninoteca
+orari: 7.00-18.00","Bar - Sandwiches
+opening time: 7 a.m.-6 p.m.
+",4efecb2c29c201c6fc6351f9,,http://,, LATEMAR STUBE,,+39 (340)8951761,46.3283205509667,11.6018629074097,,,
+2cd66816-8d81-4674-911e-febb3f1cb618,Pizzeria,PIZZERIA LA BRICIOLA,Via Fiamme Gialle 54 - 38037 Predazzo (TN),"Pizzeria e Piatti Freddi
+Orari: 12.00-14.00 , 18.00-22.30","Pizzeria and Cold Dishes
+Opening Time: 12-2 p.m., 6-10.30 p.m.",4e398a2baeb72d0659698184,,http://,, PIZZERIA LA BRICIOLA,,+39 (0462)500050,46.3044598847961,11.5947604179382,,,
+7fac87c2-1de6-4433-a625-fecb6a05a662,Ristorante,OSTERIA DE L'ACQUAROL,Via nazionale 42 - 38030 Panchià,"Ristorante
+Orari: 11.00-14.30 , 16.30-22.00
+Chiuso: Lunedì","Restaurant
+Opening Time: 11 a.m.-2.30 p.m. , 4.30-10 p.m.
+Close: Monday",50c72c8ae4b0ba1651361e15,,http://www.osteriadelacquarol.it,+39 (349)5342065, OSTERIA DE L'ACQUAROL,info@osteriadellacquarol.it,+39 (0462)813082,46.2854528328355,11.5387344360352,,,
+a7e23774-bda5-49e8-bfa7-fef2072ec17b,Rifugio / Malga,BAITA ISI,Passo Oclini - 38030 Varena,,,,,http://,, BAITA ISI,,+39 (348)8108694,46.3430763503906,11.436939239502,,,
