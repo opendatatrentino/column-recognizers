@@ -38,10 +38,14 @@ import java.util.regex.Matcher;
  *
  */
 public class CRSpecificationReader extends SyntaxPatternLineReader {
-	final static String LINE_SYNTAX = "([0-9]+)\\s+([_A-Za-z0-9]+)\\s+(.*)";
-	final static int CONCEPT_ID_POSITION = 1;
-	final static int TYPE_POSITION = 2;
-	final static int MODEL_POSITION = 3;
+	final static String LINE_SYNTAX = "(\\w+)\\s+([0-9]+)\\s+([_A-Za-z0-9]+)\\s+(.*)";
+//	final static int CONCEPT_ID_POSITION = 1;
+//	final static int TYPE_POSITION = 2;
+//	final static int MODEL_POSITION = 3;
+	final static int RECOGNIZER_ID_POSITION = 1;
+	final static int CONCEPT_ID_POSITION = 2;
+	final static int TYPE_POSITION = 3;
+	final static int MODEL_POSITION = 4;
 	FusionColumnRecognizer fusionCR = null;
 	RowTable table = null;
 	RowTable sample = null;
@@ -68,12 +72,18 @@ public class CRSpecificationReader extends SyntaxPatternLineReader {
 	@Override
 	protected void processMatch(Matcher matcher) {
 		// TODO We should have some error handling here
+		String recognizerID = matcher.group(RECOGNIZER_ID_POSITION);
 		long conceptID = Long.parseLong(matcher.group(CONCEPT_ID_POSITION));
 		String type = matcher.group(TYPE_POSITION);
 		String model = matcher.group(MODEL_POSITION);
 		
 		ColumnRecognizer newRecognizer 
-			= ColumnRecognizerFactory.makeRecognizer(conceptID, type, model, table, sample);
+			= ColumnRecognizerFactory.makeRecognizer(recognizerID, 
+					conceptID, 
+					type, 
+					model, 
+					table, 
+					sample);
 		fusionCR.add(newRecognizer); 		
 	}
 

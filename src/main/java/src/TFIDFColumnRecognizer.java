@@ -16,16 +16,18 @@ public class TFIDFColumnRecognizer extends ColumnContentBasedCR {
 	/**
 	 * Constructs the TFIDFColumnRecognizer.
 	 * 
+	 * @param id					A unique name for the recognizer instance
 	 * @param conceptID				The knowledge base concept ID
 	 * @param prototypeVector		The vector representing the prototype column
 	 * @param inverseFrequencies	The inverse column frequencies
 	 * @param table					The table (or a not-too-small sample of rows)
 	 */
-	public TFIDFColumnRecognizer(long conceptID, 
+	public TFIDFColumnRecognizer(String id,
+			long conceptID, 
 			TFIDFVector prototypeVector, 
 			InverseColumnFrequency inverseFrequencies,
 			RowTable table) {
-		super(conceptID, table);
+		super(id, conceptID, table);
 		this.prototypeVector = prototypeVector;
 		this.inverseFrequencies = inverseFrequencies;
 	}

@@ -24,8 +24,15 @@ public class FusionColumnRecognizer extends ColumnRecognizer {
 	 */
 	List<ColumnRecognizer> componentRecognizers = new ArrayList<ColumnRecognizer>();
 	
-	public FusionColumnRecognizer(double itsThreshold) {
-		threshold = itsThreshold;
+	/**
+	 * Constructs the FusionColumnRecognizer.
+	 * 
+	 * @param id			A unique name for the recognizer instance
+	 * @param threshold		Its confidence threshold
+	 */
+	public FusionColumnRecognizer(String id, double threshold) {
+		super(id);
+		this.threshold = threshold;
 	}
 
 	/* (non-Javadoc)

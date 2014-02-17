@@ -31,14 +31,16 @@ public class RegExColumnRecognizer extends RowBasedCR {
 	/**
 	 * Constructs the reg ex recognizer. 
 	 * 
+	 * @param id			A unique name for the recognizer instance
 	 * @param itsConceptID	The semantic concept to test for
 	 * @param itsRegEx		The pattern used to detect the concept
 	 * @param itsData		The sample of rows
 	 */
-	public RegExColumnRecognizer(long conceptID, 
+	public RegExColumnRecognizer(String id,
+			long conceptID, 
 			String regEx,
 			RowTable table) {
-		super(conceptID, table);
+		super(id, conceptID, table);
 		pattern = Pattern.compile(regEx);
 	}
 	

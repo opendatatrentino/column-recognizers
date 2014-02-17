@@ -17,17 +17,17 @@ public class ColumnRecognizerPrototype {
 	 */
 	public static void main(String[] args) {
 		ColumnRecognizerPrototype app = new ColumnRecognizerPrototype();
-//		app.runRecognizers();
+		app.runRecognizers();
 //		app.testCSVProcessor();
 //		app.testWordFrequencies();
 //		app.readWordScores();
 //		app.testTFIDF();
-		app.testClassifierFeatures();
+//		app.testClassifierFeatures();
 	}
 
 	private void runRecognizers() {
 		final double CONFIDENCE_THRESHOLD = 0.1;
-		final String SPECIFICATION_PATH = "column-recognizers.txt";
+		final String SPECIFICATION_PATH = "column-recognizers-new-format.txt";
 		final String CSV_PATH = "Elenco_osterie_tipiche_civici.1386925759.csv";
 //		final String CSV_PATH = "Punti-di-ristoro-ViviFiemme.csv";
 		final char COLUMN_SEPARATOR = ';';
@@ -40,7 +40,8 @@ public class ColumnRecognizerPrototype {
 		RowTable sample = table.extractSample();
 		
 		// Create recognizers from specification file
-		FusionColumnRecognizer fusionCR = new FusionColumnRecognizer(CONFIDENCE_THRESHOLD);
+		FusionColumnRecognizer fusionCR 
+			= new FusionColumnRecognizer("fusion", CONFIDENCE_THRESHOLD);
 		File specificationFile = new File(SPECIFICATION_PATH);
 		ColumnRecognizerFactory.attachRecognizers(fusionCR, specificationFile, table, sample);
 		

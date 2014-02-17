@@ -18,11 +18,12 @@ public abstract class ContentBasedCR extends ColumnRecognizer {
 	/**
 	 * Creates the column recognizer.
 	 * 
+	 * @param id			A unique name for the recognizer instance
 	 * @param conceptID		The knowledge base concept ID
 	 * @param table			The data
 	 */
-	public ContentBasedCR(long conceptID, RowTable table) {
-		super();
+	public ContentBasedCR(String id, long conceptID, RowTable table) {
+		super(id);
 		this.conceptID = conceptID;
 		this.table = table;
 	}

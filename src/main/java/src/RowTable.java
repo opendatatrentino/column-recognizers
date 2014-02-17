@@ -409,4 +409,5 @@ public class RowTable {
 	public double getUniqueness() {
 		return ((double)getValueSet().size()) / getRowCount();
 	}
+	
 }

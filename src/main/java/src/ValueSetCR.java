@@ -20,12 +20,13 @@ public class ValueSetCR extends ColumnContentBasedCR {
 	/**
 	 * Creates the column recognizer.
 	 * 
-	 * @param conceptID	The knowledge base concept ID
-	 * @param valueSet	The set of values indicating the concept
-	 * @param data		The table
+	 * @param id			A unique name for the recognizer instance
+	 * @param conceptID		The knowledge base concept ID
+	 * @param valueSet		The set of values indicating the concept
+	 * @param data			The table
 	 */
-	public ValueSetCR(long conceptID, Set<String> valueSet, RowTable table) {
-		super(conceptID, table);
+	public ValueSetCR(String id, long conceptID, Set<String> valueSet, RowTable table) {
+		super(id, conceptID, table);
 		this.valueSet = valueSet;
 	}
 

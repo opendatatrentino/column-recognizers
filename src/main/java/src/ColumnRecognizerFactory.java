@@ -14,6 +14,7 @@ public class ColumnRecognizerFactory {
 	 * recognizer. The model string can contain the information needed to build
 	 * the object (a regular expression, for example) or it can point to a 
 	 * model file.
+	 * @param recognizerID 
 	 * 
 	 * @param conceptID	The knowledge base concept ID
 	 * @param type		The recognizer type (REGEX, VALUE_SET, ...)
@@ -22,7 +23,8 @@ public class ColumnRecognizerFactory {
 	 * @param sample	A small sample of the data
 	 * @return			The new column recognizer
 	 */
-	public static ColumnRecognizer makeRecognizer(long conceptID, 
+	public static ColumnRecognizer makeRecognizer(String recognizerID, 
+			long conceptID, 
 			String type, 
 			String model,
 			RowTable table,
@@ -31,17 +33,21 @@ public class ColumnRecognizerFactory {
 		InverseColumnFrequency inverseFrequencies = null;
 		
 		if (type.equals("REGEX")) {
-			recognizer = new RegExColumnRecognizer(conceptID, model, sample);
+			recognizer = new RegExColumnRecognizer(recognizerID, conceptID, model, sample);
 		} else if (type.equals("VALUE_SET")) {
 			File modelFile = new File(model);
-			recognizer = new ValueSetCR(conceptID, RowTable.loadValueSet(modelFile), table);
+			recognizer = new ValueSetCR(recognizerID, 
+					conceptID, 
+					RowTable.loadValueSet(modelFile), 
+					table);
 		} else if (type.equals("TF_IDF")) {
 			if (inverseFrequencies == null) {
 				File idfFile = new File(INVERSE_FREQUENCIES_PATH);
 				inverseFrequencies = InverseColumnFrequency.readFromFile(idfFile);
 			}
 			File modelFile = new File(model);
-			recognizer = new TFIDFColumnRecognizer(conceptID, 
+			recognizer = new TFIDFColumnRecognizer(recognizerID,
+					conceptID, 
 					TFIDFVector.readFromFile(modelFile),
 					inverseFrequencies,
 					table);

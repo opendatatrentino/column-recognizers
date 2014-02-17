@@ -14,11 +14,12 @@ public abstract class ColumnContentBasedCR extends ContentBasedCR {
 	/**
 	 * Creates the column recognizer.
 	 * 
+	 * @param id			A unique name for the recognizer instance
 	 * @param conceptID		The knowledge base concept ID
 	 * @param table			The table (or a not-too-small sample of rows)
 	 */
-	public ColumnContentBasedCR(long conceptID, RowTable table) {
-		super(conceptID, table);
+	public ColumnContentBasedCR(String id, long conceptID, RowTable table) {
+		super(id, conceptID, table);
 	}
 
 	/* (non-Javadoc)
