@@ -27,7 +27,7 @@ public class ColumnRecognizerPrototype {
 
 	private void runRecognizers() {
 		final double CONFIDENCE_THRESHOLD = 0.1;
-		final String SPECIFICATION_PATH = "column-recognizers-new-format.txt";
+		final String SPECIFICATION_PATH = "column-recognizers.txt";
 		final String CSV_PATH = "Elenco_osterie_tipiche_civici.1386925759.csv";
 //		final String CSV_PATH = "Punti-di-ristoro-ViviFiemme.csv";
 		final char COLUMN_SEPARATOR = ';';

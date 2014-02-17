@@ -1,32 +1,36 @@
-# This is a column recognizer specification file.
-#
 # It can include comment lines, blank lines, and specification lines.
 #
 # Comment lines start with the hash symbol.
 #
 # Specification lines consist of 
-# 	conceptID	type	model_string
-# according to one of the following patterns:
+# 	<recognizer_name> <conceptID> <type> <model_string>
 #
-# <conceptID> REGEX <regex>
-# <conceptID> VALUE_SET <file_path>
-# <conceptID> TF_IDF <file_path>
+# where <type> can be any of:
+# 	REGEX, VALUE_SET, TF_IDF, SVN
+#
+# The model string differs depending on the type of recognizer:
+#
+# Type			Model string
+# REGEX 		regular expression
+# VALUE_SET 	model file path
+# TF_IDF 		model file path
+# SVN			model file path; component recognizer name, ...
 #
 # Each specification line produces a column recognizer. 
 #
 
 # Restaurant
-2001 REGEX		((trattoria)|(ristorante)|(ost[ae]ria)|(pizzeria)) [a-z]+
+it_restaurant_regex		2001	REGEX			((trattoria)|(ristorante)|(ost[ae]ria)|(pizzeria)) [a-z]+
 
 # Street address
 # The regex assumes that the column separator is in [;,]
-3001 REGEX		((via)|(viale)|(piazza)|(piazzetta)) [ a-z]+\s*[;,]?[0-9]+
+it_street_address_regex	3001	REGEX			((via)|(viale)|(piazza)|(piazzetta)) [ a-z]+\s*[;,]?[0-9]+
 
 # Town (comune)
-4001 VALUE_SET	comune.txt
+comune_set				4001	VALUE_SET		comune.txt
 
 # Frazione
-5001 VALUE_SET	frazione.txt
+frazione_set			5001	VALUE_SET		frazione.txt
 
 # Restaurant
-2001 TF_IDF		italian_restaurant_tfidf.txt
+it_restaurant_tfidf		2001 	TF_IDF			it_restaurant_tfidf.txt
