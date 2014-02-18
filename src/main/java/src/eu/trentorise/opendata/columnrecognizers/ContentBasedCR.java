@@ -1,3 +1,4 @@
+package eu.trentorise.opendata.columnrecognizers;
 /**
  * The abstract superclass for all content-based column recognizers.
  * 

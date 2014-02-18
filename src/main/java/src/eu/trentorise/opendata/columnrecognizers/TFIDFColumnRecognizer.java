@@ -1,3 +1,4 @@
+package eu.trentorise.opendata.columnrecognizers;
 /**
  * @author Simon
  *

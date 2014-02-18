@@ -1,3 +1,4 @@
+package eu.trentorise.opendata.columnrecognizers;
 
 /**
  * The class represents a range of table column using a one-based index.

@@ -1,3 +1,4 @@
+package eu.trentorise.opendata.columnrecognizers;
 import java.util.List;
 
 

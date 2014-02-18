@@ -1,3 +1,4 @@
+package eu.trentorise.opendata.columnrecognizers;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
