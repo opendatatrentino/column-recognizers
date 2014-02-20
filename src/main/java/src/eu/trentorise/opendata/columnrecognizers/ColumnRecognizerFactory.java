@@ -52,29 +52,30 @@ public class ColumnRecognizerFactory {
 					TFIDFVector.readFromFile(modelFile),
 					inverseFrequencies,
 					table);
-		}
-		
+		} else if (type.equals("SUM_THRESHOLD")) {
+			double threshold = Double.parseDouble(model);
+			recognizer = new SumThresholdFusionCR(recognizerID, threshold);
+		}		
 		// TODO signal error for unknown type
 		
 		return recognizer;
-		
 	}
 	
 	/**
 	 * Constructs ColumnRecognizers from a specification file and installs them
-	 * in the FusionColumnRecognizer. 
+	 * in the CompositeColumnRecognizer. 
 	 * 
-	 * @param fusionCR			The fusion CR that will hold the recognizers
+	 * @param compositeCR		The composite CR that will hold the recognizers
 	 * @param specificationFile	The file that specifies the recognizers
 	 * @param table				The entire data table (or largest possible sample)
 	 * @param sample			A small sample of the data
 	 */
-	public static void attachRecognizers(FusionColumnRecognizer fusionCR, 
+	public static void attachRecognizers(CompositeColumnRecognizer compositeCR, 
 			File specificationFile,
 			RowTable table,
 			RowTable sample) {
 		CRSpecificationReader reader 
-			= new CRSpecificationReader(specificationFile, fusionCR, table, sample);
+			= new CRSpecificationReader(specificationFile, compositeCR, table, sample);
 		reader.read();
 	}	
 

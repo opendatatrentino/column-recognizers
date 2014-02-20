@@ -3,7 +3,6 @@ missing include:
 
 - unit tests
 - good error handling
-- package structure (currently using the default package)
 - a documented way of training models
 
 

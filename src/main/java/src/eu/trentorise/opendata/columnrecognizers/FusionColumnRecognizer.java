@@ -1,137 +1,102 @@
 package eu.trentorise.opendata.columnrecognizers;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
+import java.util.ListIterator;
 
 /**
- * The FusionColumnRecognizer combines the result of multiple 
- * ColumnRecognizers.
+ * A FusionColumnRecognizer fuses the output of recognizers preceding it in
+ * the recognizer chain. 
+ * 
+ * It is an abstract parent for fusion recognizers that:
+ * - Have a single concept_ID attribute
+ * - Produce candidates (<column number>, concept_ID, <score>)
+ * - Consume (replace) the fused input candidates
+ * 
+ * Subclasses need to implement the particular fusion algorithm to be used,
+ * such as sum-and-threshold or SVM classifier.
  * 
  * @author Simon
  *
  */
-public class FusionColumnRecognizer extends ColumnRecognizer {
+public abstract class FusionColumnRecognizer extends ColumnRecognizer {
 	/**
-	 * The confidence threshold
-	 */	
-	double threshold = 0.7;
-	
-	/**
-	 * The component recognizers
+	 * The knowledge base concept ID
 	 */
-	List<ColumnRecognizer> componentRecognizers = new ArrayList<ColumnRecognizer>();
-	
+	private long conceptID = -1;
+
 	/**
 	 * Constructs the FusionColumnRecognizer.
 	 * 
-	 * @param id			A unique name for the recognizer instance
-	 * @param threshold		Its confidence threshold
+	 * @param id
+	 * @param conceptID
 	 */
-	public FusionColumnRecognizer(String id, double threshold) {
+	public FusionColumnRecognizer(String id, long conceptID) {
 		super(id);
-		this.threshold = threshold;
+		this.conceptID = conceptID;
 	}
 
-	/* (non-Javadoc)
-	 * @see ColumnRecognizer#computeScoredCandidates()
+	/**
+	 * Gets the knowledge base concept ID.
+	 * 
+	 * @return	The concept ID
 	 */
-	@Override
-	public List<ColumnConceptCandidate> computeScoredCandidates() {
-		Map<ColumnConcept, Double> candidateMap = sumAllCandidates();
-		List<ColumnConceptCandidate> candidates = buildCandidateListFromMap(candidateMap);
-		applyThreshold(candidates, threshold);
-		
-		return candidates;
+	public long getConceptID () {
+		return conceptID;
 	}
 	
 	/**
-	 * Computes the candidates and scores from the component recognizers and 
-	 * adds up the scores.
+	 * Returns true if there is another candidate to process.
 	 * 
-	 * @return		The map from column-concepts to scores
+	 * @param it	Iterator over the candidate list
+	 * @return		True if there is another candidate
 	 */
-	private Map<ColumnConcept, Double> sumAllCandidates() {
-		Map<ColumnConcept, Double> candidateMap = new HashMap<ColumnConcept, Double>();
-		Iterator<ColumnRecognizer> it = componentRecognizers.iterator();
-		while (it.hasNext()) {
-			List<ColumnConceptCandidate> newCandidates = it.next().computeScoredCandidates();
-			sumCandidates(candidateMap, newCandidates);
+	protected boolean hasNextCandidate(ListIterator<ColumnConceptCandidate> it) {
+		boolean foundNext = nextCandidate(it) != null;
+		if (foundNext) {
+			it.previous();
 		}
-		return candidateMap;
+		return foundNext;
 	}
-
+	
 	/**
-	 * Transfers column-concept candidates from map to list
+	 * Returns the next candidate to process.
 	 * 
-	 * @param candidateMap	The map of candidates and scores
-	 * @return 				The list of scored candidates
+	 * @param it	Iterator over the candidate list
+	 * @return		The next candidate
 	 */
-	private List<ColumnConceptCandidate> buildCandidateListFromMap(
-			Map<ColumnConcept, Double> candidateMap) {
-		List<ColumnConceptCandidate> candidates = new ArrayList<ColumnConceptCandidate>();
-		Set<ColumnConcept> columnConcepts = candidateMap.keySet();
-		Iterator<ColumnConcept> itColumnConcept = columnConcepts.iterator();
-		while (itColumnConcept.hasNext()) {
-			ColumnConcept columnConcept = itColumnConcept.next();
-			ColumnConceptCandidate candidate 
-				= new ColumnConceptCandidate(columnConcept.columnNumber, columnConcept.conceptID);
-			candidate.setScore(candidateMap.get(columnConcept));
-			candidates.add(candidate);
+	protected ColumnConceptCandidate nextCandidate(ListIterator<ColumnConceptCandidate> it) {
+		boolean foundNext = false;
+		ColumnConceptCandidate nextCandidate = null;
+		while (foundNext && it.hasNext()) {
+			nextCandidate = it.next();
+			foundNext = (nextCandidate.getConceptID() == conceptID);
 		}
-		return candidates;
+		return foundNext ? nextCandidate : null;
 	}
-
+	
 	/**
-	 * Removes candidates that fall below the minimal score.
+	 * Updates the candidate list after processing a candidate.
+	 * By default, it removes the last candidate from the list if it should be
+	 * consumed.
 	 * 
-	 * @param candidates	The list of scored column-concept candidates
-	 * @param minimalScore	The threshold
+	 * @param it				The iterator to the candidate list
+	 * @param lastCandidate		The last element returned by the iterator
 	 */
-	private void applyThreshold(List<ColumnConceptCandidate> candidates,
-			double minimalScore) {
-		Iterator <ColumnConceptCandidate> it = candidates.iterator();
-		while (it.hasNext()) {
-			if (it.next().getScore() < threshold) {
-				it.remove();
-			}
-		}
-		
-	}
-
-	/**
-	 * Combines candidates by summing their scores.
-	 * 
-	 * @param candidateMap	The map from column-concepts to scores
-	 * @param newCandidates	A list of scored candidates to add
-	 */
-	private void sumCandidates(
-			Map<ColumnConcept, Double> candidateMap,
-			List<ColumnConceptCandidate> newCandidates) {
-		Iterator<ColumnConceptCandidate> it = newCandidates.iterator();
-		while (it.hasNext()) {
-			ColumnConceptCandidate candidate = it.next();
-			ColumnConcept columnConcept = candidate.getColumnConcept();
-			if (candidateMap.containsKey(columnConcept)) {
-				double oldScore = candidateMap.get(columnConcept);
-				double newScore = oldScore + candidate.getScore();
-				candidateMap.put(columnConcept, newScore);
-			} else {
-				candidateMap.put(columnConcept, candidate.getScore());
-			}
+	protected void updateCandidates(ListIterator<ColumnConceptCandidate> it, 
+			ColumnConceptCandidate lastCandidate) {
+		if (consumeCandidate(lastCandidate)) {
+			it.remove();
 		}
 	}
 
 	/**
-	 * Installs a component recognizer.
+	 * Returns true if the candidate should be consumed (replaced by the 
+	 * output of the fusion). 
 	 * 
-	 * @param componentRecognizer	The component recognizer
+	 * @param candidate	The candidate
+	 * @return			True if the candidate should be removed
 	 */
-	public void add(ColumnRecognizer componentRecognizer) {
-		componentRecognizers.add(componentRecognizer);
+	protected boolean consumeCandidate(ColumnConceptCandidate candidate) {
+		return candidate.getConceptID() == conceptID;
 	}
 
 }

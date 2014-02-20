@@ -29,12 +29,12 @@ public class ColumnConceptCandidate {
 	/**
 	 * Creates the column-concept candidate.
 	 * 
-	 * @param itsColumnNumber	The index (1, ..) of the column
-	 * @param itsConceptID		The suggested UK concept ID
+	 * @param columnNumber	The index (1, ..) of the column
+	 * @param conceptID		The suggested UK concept ID
 	 */
-	ColumnConceptCandidate(int itsColumnNumber, long itsConceptID) {
-		columnNumber = itsColumnNumber;
-		conceptID = itsConceptID;
+	ColumnConceptCandidate(int columnNumber, long conceptID) {
+		this.columnNumber = columnNumber;
+		this.conceptID = conceptID;
 	}
 
 	/**
@@ -68,12 +68,20 @@ public class ColumnConceptCandidate {
 	}
 
 	/**
-	 * Get the (column number, concept ID) pair
+	 * Gets the (column number, concept ID) pair
 	 * 
 	 * @return	The column-concept pair
 	 */
 	public ColumnConcept getColumnConcept() {
 		return new ColumnConcept(columnNumber, conceptID);
+	}
+
+	/**
+	 * Gets the knowledge base concept ID
+	 * @return	The concept ID
+	 */
+	public long getConceptID() {
+		return conceptID;
 	}
 	
 	

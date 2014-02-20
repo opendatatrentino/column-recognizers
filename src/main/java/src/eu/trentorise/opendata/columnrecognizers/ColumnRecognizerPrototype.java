@@ -1,5 +1,6 @@
 package eu.trentorise.opendata.columnrecognizers;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -27,7 +28,7 @@ public class ColumnRecognizerPrototype {
 	}
 
 	private void runRecognizers() {
-		final double CONFIDENCE_THRESHOLD = 0.1;
+//		final double CONFIDENCE_THRESHOLD = 0.1;
 		final String SPECIFICATION_PATH = "column-recognizers.txt";
 		final String CSV_PATH = "Elenco_osterie_tipiche_civici.1386925759.csv";
 //		final String CSV_PATH = "Punti-di-ristoro-ViviFiemme.csv";
@@ -41,12 +42,12 @@ public class ColumnRecognizerPrototype {
 		RowTable sample = table.extractSample();
 		
 		// Create recognizers from specification file
-		FusionColumnRecognizer fusionCR 
-			= new FusionColumnRecognizer("fusion", CONFIDENCE_THRESHOLD);
+		CompositeColumnRecognizer compositeCR = new CompositeColumnRecognizer("composite");
 		File specificationFile = new File(SPECIFICATION_PATH);
-		ColumnRecognizerFactory.attachRecognizers(fusionCR, specificationFile, table, sample);
+		ColumnRecognizerFactory.attachRecognizers(compositeCR, specificationFile, table, sample);
 		
-		List<ColumnConceptCandidate> scoredCandidates = fusionCR.computeScoredCandidates();
+		List<ColumnConceptCandidate> scoredCandidates = new ArrayList<ColumnConceptCandidate>();
+		compositeCR.computeScoredCandidates(scoredCandidates);
 		
 		// Print scored candidates
 		Iterator<ColumnConceptCandidate> it = scoredCandidates.iterator();

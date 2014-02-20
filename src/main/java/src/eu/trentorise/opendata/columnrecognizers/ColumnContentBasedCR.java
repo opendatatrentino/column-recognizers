@@ -1,5 +1,4 @@
 package eu.trentorise.opendata.columnrecognizers;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,9 +26,8 @@ public abstract class ColumnContentBasedCR extends ContentBasedCR {
 	 * @see ColumnRecognizer#computeScoredCandidates()
 	 */
 	@Override
-	public List<ColumnConceptCandidate> computeScoredCandidates() {
+	public void computeScoredCandidates(List<ColumnConceptCandidate> candidates) {
 		int columnCount = getTable().getColumnCount();
-		ArrayList<ColumnConceptCandidate> candidates = new ArrayList<ColumnConceptCandidate>();
 		for (int columnNumber = 1; columnNumber <= columnCount; columnNumber++) {
 			RowTable column = getTable().extractColumn(columnNumber);
 			double score = computeColumnScore(column);
@@ -40,7 +38,6 @@ public abstract class ColumnContentBasedCR extends ContentBasedCR {
 				candidates.add(newCandidate);
 			}
 		}
-		return candidates;
 	}
 	
 	/**

@@ -40,29 +40,26 @@ import java.util.regex.Matcher;
  */
 public class CRSpecificationReader extends SyntaxPatternLineReader {
 	final static String LINE_SYNTAX = "(\\w+)\\s+([0-9]+)\\s+([_A-Za-z0-9]+)\\s+(.*)";
-//	final static int CONCEPT_ID_POSITION = 1;
-//	final static int TYPE_POSITION = 2;
-//	final static int MODEL_POSITION = 3;
 	final static int RECOGNIZER_ID_POSITION = 1;
 	final static int CONCEPT_ID_POSITION = 2;
 	final static int TYPE_POSITION = 3;
 	final static int MODEL_POSITION = 4;
-	FusionColumnRecognizer fusionCR = null;
+	CompositeColumnRecognizer compositeCR = null;
 	RowTable table = null;
 	RowTable sample = null;
 	
 	/**
 	 * Constructs the reader
 	 * 
-	 * @param file		The specification file
-	 * @param fusionCR	The fusion recognizer to which the CRs will be attached
-	 * @param table		The data table (or a large sample)
-	 * @param sample	A smaller sample of rows from the table
+	 * @param file			The specification file
+	 * @param compositeCR	The composite recognizer to which the CRs will be attached
+	 * @param table			The data table (or a large sample)
+	 * @param sample		A smaller sample of rows from the table
 	 */
-	public CRSpecificationReader(File file, FusionColumnRecognizer fusionCR,
+	public CRSpecificationReader(File file, CompositeColumnRecognizer compositeCR,
 			RowTable table, RowTable sample) {
 		super(file, LINE_SYNTAX);
-		this.fusionCR = fusionCR;
+		this.compositeCR = compositeCR;
 		this.table = table;
 		this.sample = sample;
 	}
@@ -85,7 +82,7 @@ public class CRSpecificationReader extends SyntaxPatternLineReader {
 					model, 
 					table, 
 					sample);
-		fusionCR.add(newRecognizer); 		
+		compositeCR.add(newRecognizer); 		
 	}
 
 }

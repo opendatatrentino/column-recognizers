@@ -1,5 +1,4 @@
 package eu.trentorise.opendata.columnrecognizers;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -26,10 +25,10 @@ public abstract class RowBasedCR extends ContentBasedCR {
 	 * @see ColumnRecognizer#computeScoredCandidates()
 	 */
 	@Override
-	public List<ColumnConceptCandidate> computeScoredCandidates() {
+	public void computeScoredCandidates(List<ColumnConceptCandidate> candidates) {
 		int[] columnMatches = new int[getTable().getColumnCount()];
 		countColumnMatches(columnMatches);
-		return computeCandidates(columnMatches);
+		computeCandidates(columnMatches, candidates);
 	}
 	/**
 	 * For each column, counts the number of rows in which the regular 
@@ -64,12 +63,11 @@ public abstract class RowBasedCR extends ContentBasedCR {
 	 * Computes the column-concept candidates from the column match counts.
 	 * 
 	 * @param columnMatches	The column match counts
-	 * @return				The scored column-concept candidates
+	 * @param candidates	The scored column-concept candidates
 	 */
-	private List<ColumnConceptCandidate> computeCandidates(int[] columnMatches) {
+	private void computeCandidates(int[] columnMatches,
+			List<ColumnConceptCandidate> candidates) {
 		int rowCount = getTable().getRowCount();
-		ArrayList<ColumnConceptCandidate> candidates 
-			= new ArrayList<ColumnConceptCandidate>();
 		int columnCount = columnMatches.length;
 		
 		for (int columnNumber = 1; columnNumber <= columnCount; columnNumber++) {
@@ -80,7 +78,6 @@ public abstract class RowBasedCR extends ContentBasedCR {
 				candidates.add(candidate);
 			}
 		}
-		return candidates;
 	}
 
 	/**

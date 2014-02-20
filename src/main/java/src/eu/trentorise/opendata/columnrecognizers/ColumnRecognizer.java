@@ -25,13 +25,15 @@ public abstract class ColumnRecognizer {
 	}
 
 	/**
-	 * Returns the list of scored candidates.
+	 * Computes the list of scored candidates and updates the candidate list.
 	 * 
-	 * @return	The scored candidates
+	 * @param candidates	The scored column-concept candidates
 	 */
-	public abstract List<ColumnConceptCandidate> computeScoredCandidates();
+	public abstract void computeScoredCandidates(List<ColumnConceptCandidate> candidates);
 
 	/**
+	 * Gets the name (identifier) of this recognizer.
+	 * 
 	 * @return 	The unique name identifying the recognizer instance
 	 */
 	public String getId() {

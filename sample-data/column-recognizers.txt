@@ -34,3 +34,7 @@ frazione_set			5001	VALUE_SET		frazione.txt
 
 # Restaurant
 it_restaurant_tfidf		2001 	TF_IDF			it_restaurant_tfidf.txt
+
+# Combine the evidence by summing and thresholding
+sum_threshold			0		SUM_THRESHOLD	0.1
+
