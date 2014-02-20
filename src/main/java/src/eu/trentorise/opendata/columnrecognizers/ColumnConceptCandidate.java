@@ -68,7 +68,7 @@ public class ColumnConceptCandidate {
 	}
 
 	/**
-	 * Gets the (column number, concept ID) pair
+	 * Gets the (column number, concept ID) pair.
 	 * 
 	 * @return	The column-concept pair
 	 */
@@ -77,12 +77,21 @@ public class ColumnConceptCandidate {
 	}
 
 	/**
-	 * Gets the knowledge base concept ID
+	 * Gets the knowledge base concept ID.
+	 * 
 	 * @return	The concept ID
 	 */
 	public long getConceptID() {
 		return conceptID;
 	}
 	
+	/**
+	 * Gets the one-based column number.
+	 * 
+	 * @return	The column number (1, ..)
+	 */
+	public int getColumnNumber () {
+		return columnNumber;
+	}
 	
 }

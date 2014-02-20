@@ -55,7 +55,9 @@ public class ColumnRecognizerFactory {
 		} else if (type.equals("SUM_THRESHOLD")) {
 			double threshold = Double.parseDouble(model);
 			recognizer = new SumThresholdFusionCR(recognizerID, threshold);
-		}		
+		} else if (type.equals("ONE_BEST")) {
+			recognizer = new OneBestFusionCR(recognizerID);
+		}
 		// TODO signal error for unknown type
 		
 		return recognizer;

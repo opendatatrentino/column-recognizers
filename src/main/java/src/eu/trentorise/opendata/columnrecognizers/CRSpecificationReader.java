@@ -2,6 +2,8 @@ package eu.trentorise.opendata.columnrecognizers;
 import java.io.File;
 import java.util.regex.Matcher;
 
+// TODO The description below is out of date.
+
 /**
  * 
  * The CRSpecificationReader reads column recognizer specification files.
@@ -39,7 +41,7 @@ import java.util.regex.Matcher;
  *
  */
 public class CRSpecificationReader extends SyntaxPatternLineReader {
-	final static String LINE_SYNTAX = "(\\w+)\\s+([0-9]+)\\s+([_A-Za-z0-9]+)\\s+(.*)";
+	final static String LINE_SYNTAX = "(\\w+)\\s+([0-9]+)\\s+(\\w+)\\s*(.*)";
 	final static int RECOGNIZER_ID_POSITION = 1;
 	final static int CONCEPT_ID_POSITION = 2;
 	final static int TYPE_POSITION = 3;
