@@ -15,13 +15,14 @@ import java.util.Set;
 
 
 /**
- * The contents of a table represented as an array of rows.
+ * The contents of a table represented as a list of rows.
+ * The class is convenient for reading data from CSV files.
  * 
  * @author Simon
  *
  */
 
-public class RowTable {
+public class RowTable implements Table {
 	/**
 	 * Default column separator
 	 */
@@ -69,12 +70,11 @@ public class RowTable {
 		}
 	}
 	
-	/**
-	 * Extract a subset of rows for analysis.
-	 * 
-	 * @return A subset of the table rows
+	/* (non-Javadoc)
+	 * @see eu.trentorise.opendata.columnrecognizers.Table#extractRowSample()
 	 */
-	public RowTable extractSample() {
+	@Override
+	public RowTable extractRowSample() {
 		final int SAMPLE_SIZE = 10;
 
 		RowTable sample = new RowTable(getColumnSeparator());
@@ -105,31 +105,29 @@ public class RowTable {
 	}
 
 	/**
-	 * Returns the number of rows in the table.
-	 * 
-	 * @return The number of rows
-	 */
-	public int getRowCount() {
-		return rows.size();
-	}
-
-	/**
-	 * Returns the number of columns in the table.
-	 * 
-	 * @return The number of columns
-	 */
-	public int getColumnCount() {
-		String sampleRow = rows.get(0);
-		return CSVProcessor.computeColumnCount(sampleRow, columnSeparator);
-	}
-	
-	/**
 	 * Returns an iterator to the table rows
 	 * 
 	 * @return The row iterator
 	 */
 	public Iterator<String> getRowIterator() {
 		return rows.iterator();
+	}
+
+	/* (non-Javadoc)
+	 * @see eu.trentorise.opendata.columnrecognizers.Table#getRowCount()
+	 */
+	@Override
+	public int getRowCount() {
+		return rows.size();
+	}
+
+	/* (non-Javadoc)
+	 * @see eu.trentorise.opendata.columnrecognizers.Table#getColumnCount()
+	 */
+	@Override
+	public int getColumnCount() {
+		String sampleRow = rows.get(0);
+		return CSVProcessor.computeColumnCount(sampleRow, columnSeparator);
 	}
 
 	/**
@@ -181,126 +179,91 @@ public class RowTable {
 	 * @param columnNumber	The one-based index of the column to extract
 	 * @return				The column
 	 */
-	public RowTable extractColumn(int columnNumber) {
-		RowTable column = new RowTable(getColumnSeparator());
+	public Column extractColumn(int columnNumber) {
+		Column column = new Column();
 		Iterator<String> it = rows.iterator();
 		
 		while (it.hasNext()) {
 			String row = it.next();
-			String[] cells = CSVProcessor.splitRecord(row, columnSeparator);
-			String cell = columnNumber <= cells.length ? cells[columnNumber - 1] : "";
-			column.appendRow(cell);
+			String[] fields = CSVProcessor.splitRecord(row, columnSeparator);
+			String field = columnNumber <= fields.length ? fields[columnNumber - 1] : "";
+			column.appendField(field);
 		}
 		
 		return column;
 	}
-	
-	/**
-	 * Gets the set of values that exist in a single column.
-	 * 
-	 * @return	The value set
-	 */
-	public Set<String> getValueSet() {
-		assert(getColumnCount() == 1);
-		Set<String> valueSet = new HashSet<String>();
-		
-		Iterator<String> it = rows.iterator();
-		while (it.hasNext()) {
-			valueSet.add(it.next());
-		}
-		
-		return valueSet;
-	}
-	
-	/**
-	 * Gets the set of values in a column.
-	 * The values are normalized.
-	 * 
-	 * @return	The normalized value sets
-	 */
-	private Set<String> getNormalizedValueSet() {
-		assert(getColumnCount() == 1);
-		Set<String> valueSet = new HashSet<String>();
-		
-		Iterator<String> it = rows.iterator();
-		while (it.hasNext()) {
-			valueSet.add(CRStringUtils.normalize(it.next()));
-		}
-		
-		return valueSet;
-	}
-	
-	/**
-	 * Extracts a list of the words occurring in the table, preserving their
-	 * order.
-	 * 
-	 * @return	The word list
-	 */
-	public List<String> extractWords() {
-		List<String> words = new ArrayList<String>();
-		Iterator<String> it = rows.iterator();
-		while (it.hasNext()) {
-			String row = it.next();
-			String[] rowWords = row.split("\\W+");
-			for (int i = 0; i < rowWords.length; i++) {
-				String word = CRStringUtils.normalize(rowWords[i]);
-				if (!word.isEmpty()) {
-					words.add(word);
-				}
-			}
-		}
-		return words;
-	}
-	
-	/**
-	 * Gets the set of terms in the table
-	 * 
-	 * @return	The set of terms
-	 */
-	public Set<String> extractWordSet() {
-		// Suppress the shortest words
-		final int MINIMAL_WORD_LENGTH = 3;
-
-		Set<String> words = new HashSet<String>();
-		Iterator<String> it = rows.iterator();
-		while (it.hasNext()) {
-			String row = it.next();
-			String[] rowWords = row.split("\\W+");
-			for (int i = 0; i < rowWords.length; i++) {
-				String word = CRStringUtils.normalize(rowWords[i]);
-				if (word.length() >= MINIMAL_WORD_LENGTH) {
-					words.add(word);
-				}
-			}
-		}
-		return words;
-	}
-	
-	/**
-	 * Computes the frequencies of words in the table.
-	 * 
-	 * @return	The word frequencies
-	 */
-	public Map<String, Integer> computeWordFrequencies () {
-		// Suppress the shortest words
-		final int MINIMAL_WORD_LENGTH = 3;
-		
-		Map<String, Integer> frequencies = new HashMap<String, Integer>();
-		List<String> words = extractWords();
-		Iterator<String> it = words.iterator();
-		while (it.hasNext()) {
-			String word = it.next();
-			if (word.length() >= MINIMAL_WORD_LENGTH) {
-				if (frequencies.containsKey(word)) {
-					frequencies.put(word, frequencies.get(word) + 1);
-				} else {
-					frequencies.put(word, 1);
-				}
-			}
-		}
-		return frequencies;
-	}
-
+//		
+//	/**
+//	 * Extracts a list of the words occurring in the table, preserving their
+//	 * order.
+//	 * 
+//	 * @return	The word list
+//	 */
+//	public List<String> extractWords() {
+//		List<String> words = new ArrayList<String>();
+//		Iterator<String> it = rows.iterator();
+//		while (it.hasNext()) {
+//			String row = it.next();
+//			String[] rowWords = row.split("\\W+");
+//			for (int i = 0; i < rowWords.length; i++) {
+//				String word = CRStringUtils.normalize(rowWords[i]);
+//				if (!word.isEmpty()) {
+//					words.add(word);
+//				}
+//			}
+//		}
+//		return words;
+//	}
+//	
+//	/**
+//	 * Gets the set of terms in the table
+//	 * 
+//	 * @return	The set of terms
+//	 */
+//	public Set<String> extractWordSet() {
+//		// Suppress the shortest words
+//		final int MINIMAL_WORD_LENGTH = 3;
+//
+//		Set<String> words = new HashSet<String>();
+//		Iterator<String> it = rows.iterator();
+//		while (it.hasNext()) {
+//			String row = it.next();
+//			String[] rowWords = row.split("\\W+");
+//			for (int i = 0; i < rowWords.length; i++) {
+//				String word = CRStringUtils.normalize(rowWords[i]);
+//				if (word.length() >= MINIMAL_WORD_LENGTH) {
+//					words.add(word);
+//				}
+//			}
+//		}
+//		return words;
+//	}
+//	
+//	/**
+//	 * Computes the frequencies of words in the table.
+//	 * 
+//	 * @return	The word frequencies
+//	 */
+//	public Map<String, Integer> computeWordFrequencies () {
+//		// Suppress the shortest words
+//		final int MINIMAL_WORD_LENGTH = 3;
+//		
+//		Map<String, Integer> frequencies = new HashMap<String, Integer>();
+//		List<String> words = extractWords();
+//		Iterator<String> it = words.iterator();
+//		while (it.hasNext()) {
+//			String word = it.next();
+//			if (word.length() >= MINIMAL_WORD_LENGTH) {
+//				if (frequencies.containsKey(word)) {
+//					frequencies.put(word, frequencies.get(word) + 1);
+//				} else {
+//					frequencies.put(word, 1);
+//				}
+//			}
+//		}
+//		return frequencies;
+//	}
+//
 	
 	/**
 	 * Loads rows from a CSV file and appends them to the table.
@@ -333,16 +296,6 @@ public class RowTable {
 	public void writeToFile(File file) {
 		writeStringsToFile(rows.iterator(), file);
 	}
-	
-	/**
-	 * Outputs the normalized value set to a file.
-	 * 
-	 * @param file	The output file
-	 */
-	public void writeNormalizedValueSetToFile(File file) {
-		Set<String> values = getNormalizedValueSet();		
-		writeStringsToFile(values.iterator(), file);
-	}
 
 	/**
 	 * Writes strings, provided by an iterator, to a file.
@@ -353,7 +306,7 @@ public class RowTable {
 	 * @param it		The iterator
 	 * @param file		The output file
 	 */
-	private void writeStringsToFile(Iterator<String> it,
+	static public void writeStringsToFile(Iterator<String> it,
 			File file) {
 	    Writer writer = null;
 		try {
@@ -382,7 +335,7 @@ public class RowTable {
 	 */
 	public static Set<String> loadValueSet(File file) {
 		RowTable table = loadFromCSV(file, DEFAULT_COLUMN_SEPARATOR);
-		return table.getValueSet();
+		return table.extractColumn(1).getValueSet();
 	}
 
 	/**
@@ -392,23 +345,13 @@ public class RowTable {
 	 * 
 	 * @return	An array of the columns
 	 */
-	public RowTable[] extractColumns() {
+	public Column[] extractColumns() {
 		int columnCount = getColumnCount();
-		RowTable[] columns = new RowTable[columnCount];
+		Column[] columns = new Column[columnCount];
 		for (int i = 0; i < columnCount; i++) {
 			columns[i] = extractColumn(i + 1);
 		}
 		return columns;
-	}
-
-	/**
-	 * Return the uniqueness, a value 0 < u <= 1 measuring the fraction of
-	 * unique values in a column.
-	 * 
-	 * @return		The uniqueness value
-	 */
-	public double getUniqueness() {
-		return ((double)getValueSet().size()) / getRowCount();
 	}
 	
 }

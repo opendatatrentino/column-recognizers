@@ -79,8 +79,8 @@ public class InverseColumnFrequency {
 			char columnSeparator = args[i + 1].charAt(0);
 			File csvFile = new File(pathName);
 			RowTable table = RowTable.loadFromCSV(csvFile, columnSeparator);
-			RowTable[] columns = table.extractColumns();
-			for (RowTable column: columns) {
+			Column[] columns = table.extractColumns();
+			for (Column column: columns) {
 				InverseColumnFrequency.addColumn(column, frequencies);
 				columnCount++;
 			}
@@ -97,7 +97,7 @@ public class InverseColumnFrequency {
 	 * @param column		The column
 	 * @param frequencies	The number of columns each word occurs in
 	 */
-	private static void addColumn(RowTable column, Map<String, Integer> frequencies) {
+	private static void addColumn(Column column, Map<String, Integer> frequencies) {
 		Set<String> words = column.extractWordSet();
 		for (String word: words) {
 			incrementCount(word, frequencies);

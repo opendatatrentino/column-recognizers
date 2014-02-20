@@ -29,7 +29,7 @@ public class TFIDFVector {
 	 * @param column				The column
 	 * @param inverseFrequencies	The inverse column frequencies
 	 */
-	public TFIDFVector(RowTable column, InverseColumnFrequency inverseFrequencies) {
+	public TFIDFVector(Column column, InverseColumnFrequency inverseFrequencies) {
 		super();
 		Map<String, Integer> termFrequencies = column.computeWordFrequencies();
 		vector = new HashMap<String, Double>();

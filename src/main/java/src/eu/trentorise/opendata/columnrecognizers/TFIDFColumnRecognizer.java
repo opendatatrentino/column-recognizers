@@ -37,7 +37,7 @@ public class TFIDFColumnRecognizer extends ColumnContentBasedCR {
 	 * @see ColumnContentBasedCR#computeColumnScore(RowTable)
 	 */
 	@Override
-	protected double computeColumnScore(RowTable column) {
+	protected double computeColumnScore(Column column) {
 		TFIDFVector observationVector = new TFIDFVector(column, inverseFrequencies);
 		return observationVector.cosineSimilarity(prototypeVector);
 	}

@@ -35,13 +35,13 @@ public class ValueSetCR extends ColumnContentBasedCR {
 	 * Compute the score for the column. The score is the fraction of cells 
 	 * that match a member of the value set.
 	 * 
-	 * @param column	A single-column table with the column data
+	 * @param column	The column
 	 * @return			The column score
 	 */
-	protected double computeColumnScore(RowTable column) {
+	protected double computeColumnScore(Column column) {
 		int matchCount = 0;
-		int rowCount = column.getRowCount();
-		Iterator<String> it = column.getRowIterator();
+		int rowCount = column.size();
+		Iterator<String> it = column.getFieldIterator();
 		while (it.hasNext()) {
 			if (valueSet.contains(CRStringUtils.normalize(it.next()))) {
 				matchCount++;

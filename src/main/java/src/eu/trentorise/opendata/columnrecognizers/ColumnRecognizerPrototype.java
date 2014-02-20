@@ -39,7 +39,7 @@ public class ColumnRecognizerPrototype {
 		File csvFile = new File(CSV_PATH); 
 		RowTable table = RowTable.loadFromCSV(csvFile, COLUMN_SEPARATOR);
 		table.removeHeaders(NUMBER_OF_HEADER_ROWS);
-		RowTable sample = table.extractSample();
+		RowTable sample = table.extractRowSample();
 		
 		// Create recognizers from specification file
 		CompositeColumnRecognizer compositeCR = new CompositeColumnRecognizer("composite");
@@ -59,12 +59,12 @@ public class ColumnRecognizerPrototype {
 	public void updateDataFiles(RowTable table) {
 		// Print towns to file
 		final int TOWN_COLUMN = 2;
-		RowTable townColumn = table.extractColumn(TOWN_COLUMN);
+		Column townColumn = table.extractColumn(TOWN_COLUMN);
 		townColumn.writeNormalizedValueSetToFile(new File("comune.txt"));
 		
 		// Print frazione
 		final int FRAZIONE_COLUMN = 5;
-		RowTable frazioneColumn = table.extractColumn(FRAZIONE_COLUMN);
+		Column frazioneColumn = table.extractColumn(FRAZIONE_COLUMN);
 		frazioneColumn.writeNormalizedValueSetToFile(new File("frazione.txt"));
 	}
 	
@@ -92,8 +92,8 @@ public class ColumnRecognizerPrototype {
 
 		
 		// Test column separation
-		RowTable column = table.extractColumn(4);
-		it = column.getRowIterator();
+		Column column = table.extractColumn(4);
+		it = column.getFieldIterator();
 //		while (it.hasNext()) {
 		for (int i = 0; i < 4; i++) {
 			System.out.println(it.next());
@@ -105,8 +105,8 @@ public class ColumnRecognizerPrototype {
 		final String CSV_PATH = "Punti-di-ristoro-ViviFiemme.csv";
 		RowTable table = RowTable.loadFromCSV(new File(CSV_PATH), ',');
 		
-		RowTable column = table.extractColumn(6);
-		column.removeHeaders(NUMBER_OF_HEADER_ROWS);
+		table.removeHeaders(NUMBER_OF_HEADER_ROWS);
+		Column column = table.extractColumn(6);
 		List<String> words = column.extractWords();
 		
 		System.out.println(words.toString());
@@ -135,10 +135,10 @@ public class ColumnRecognizerPrototype {
 		
 //		System.out.println(table.getRowIterator().next());
 		table.removeHeaders(NUMBER_OF_HEADER_ROWS);
-		RowTable restaurantColumn = table.extractColumn(RESTAURANT_NAME_COLUMN);
-		RowTable typeColumn = table.extractColumn(TYPE_COLUMN);
-		RowTable idColumn = table.extractColumn(ID_COLUMN);
-		RowTable addressColumn = table.extractColumn(ADDRESS_COLUMN);
+		Column restaurantColumn = table.extractColumn(RESTAURANT_NAME_COLUMN);
+		Column typeColumn = table.extractColumn(TYPE_COLUMN);
+		Column idColumn = table.extractColumn(ID_COLUMN);
+		Column addressColumn = table.extractColumn(ADDRESS_COLUMN);
 		
 		InverseColumnFrequency inverseFrequencies 
 			= InverseColumnFrequency.readFromFile(new File(INVERSE_FREQUENCIES_PATH));
@@ -185,9 +185,9 @@ public class ColumnRecognizerPrototype {
 		
 		RowTable table = RowTable.loadFromCSV(new File(CSV_PATH), ';');
 		table.removeHeaders(NUMBER_OF_HEADER_ROWS);
-		RowTable restaurantColumn = table.extractColumn(RESTAURANT_NAME_COLUMN);
-		RowTable typeColumn = table.extractColumn(TYPE_COLUMN);
-		RowTable idColumn = table.extractColumn(ID_COLUMN);
+		Column restaurantColumn = table.extractColumn(RESTAURANT_NAME_COLUMN);
+		Column typeColumn = table.extractColumn(TYPE_COLUMN);
+		Column idColumn = table.extractColumn(ID_COLUMN);
 
 		TFIDFVector restaurantVector = new TFIDFVector(restaurantColumn, inverseFrequencies);
 		TFIDFVector typeVector = new TFIDFVector(typeColumn, inverseFrequencies);
@@ -236,9 +236,9 @@ public class ColumnRecognizerPrototype {
 		
 		RowTable table = RowTable.loadFromCSV(new File(CSV_PATH), ',');
 		table.removeHeaders(NUMBER_OF_HEADER_ROWS);
-		RowTable restaurantColumn = table.extractColumn(RESTAURANT_NAME_COLUMN);
-		RowTable typeColumn = table.extractColumn(TYPE_COLUMN);
-		RowTable idColumn = table.extractColumn(ID_COLUMN);
+		Column restaurantColumn = table.extractColumn(RESTAURANT_NAME_COLUMN);
+		Column typeColumn = table.extractColumn(TYPE_COLUMN);
+		Column idColumn = table.extractColumn(ID_COLUMN);
 		
 		TFIDFVector restaurantVector = new TFIDFVector(restaurantColumn, inverseFrequencies);
 		TFIDFVector typeVector = new TFIDFVector(typeColumn, inverseFrequencies);

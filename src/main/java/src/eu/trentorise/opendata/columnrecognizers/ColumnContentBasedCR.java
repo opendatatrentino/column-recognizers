@@ -29,7 +29,7 @@ public abstract class ColumnContentBasedCR extends ContentBasedCR {
 	public void computeScoredCandidates(List<ColumnConceptCandidate> candidates) {
 		int columnCount = getTable().getColumnCount();
 		for (int columnNumber = 1; columnNumber <= columnCount; columnNumber++) {
-			RowTable column = getTable().extractColumn(columnNumber);
+			Column column = getTable().extractColumn(columnNumber);
 			double score = computeColumnScore(column);
 			if (score > 0) {
 				ColumnConceptCandidate newCandidate 
@@ -47,6 +47,6 @@ public abstract class ColumnContentBasedCR extends ContentBasedCR {
 	 * @param column	The column data
 	 * @return			The score
 	 */
-	protected abstract double computeColumnScore(RowTable column);
+	protected abstract double computeColumnScore(Column column);
 
 }
