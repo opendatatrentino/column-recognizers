@@ -170,12 +170,10 @@ public class RowTable implements Table {
 		return columnNumber;
 	}
 	
-	/**
-	 * Extracts a single-column table corresponding to a column number.
-	 * 
-	 * @param columnNumber	The one-based index of the column to extract
-	 * @return				The column
+	/* (non-Javadoc)
+	 * @see eu.trentorise.opendata.columnrecognizers.Table#extractColumn(int)
 	 */
+	@Override
 	public Column extractColumn(int columnNumber) {
 		Column column = new Column();
 		Iterator<String> it = rows.iterator();
@@ -189,7 +187,7 @@ public class RowTable implements Table {
 		
 		return column;
 	}
-	
+
 	/**
 	 * Loads rows from a CSV file and appends them to the table.
 	 * 
@@ -199,7 +197,7 @@ public class RowTable implements Table {
 		CSVProcessor csv = new CSVProcessor(csvFile, this);
 		csv.read();
 	}
-	
+
 	/**
 	 * Loads a new row table from a CSV file.
 	 * 
@@ -270,11 +268,11 @@ public class RowTable implements Table {
 	 * 
 	 * @return	An array of the columns
 	 */
-	public Column[] extractColumns() {
+	public List<Column> extractColumns() {
 		int columnCount = getColumnCount();
-		Column[] columns = new Column[columnCount];
+		List<Column> columns = new ArrayList<Column>();
 		for (int i = 0; i < columnCount; i++) {
-			columns[i] = extractColumn(i + 1);
+			columns.add(extractColumn(i + 1));
 		}
 		return columns;
 	}

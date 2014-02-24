@@ -28,7 +28,7 @@ public class ColumnRecognizerFactory {
 			long conceptID, 
 			String type, 
 			String model,
-			RowTable table,
+			Table table,
 			RowTable sample) {
 		ColumnRecognizer recognizer = null;
 		InverseColumnFrequency inverseFrequencies = null;
@@ -74,7 +74,7 @@ public class ColumnRecognizerFactory {
 	 */
 	public static void attachRecognizers(CompositeColumnRecognizer compositeCR, 
 			File specificationFile,
-			RowTable table,
+			Table table,
 			RowTable sample) {
 		CRSpecificationReader reader 
 			= new CRSpecificationReader(specificationFile, compositeCR, table, sample);

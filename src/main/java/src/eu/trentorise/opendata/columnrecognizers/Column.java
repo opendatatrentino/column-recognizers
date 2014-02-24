@@ -19,8 +19,24 @@ public class Column {
 	/**
 	 * The fields in the column
 	 */
-	private List<String> fields = new ArrayList<String>();
+	private List<String> fields = null;
 	
+	/**
+	 * Constructs the column.
+	 */
+	public Column() {
+		fields = new ArrayList<String>();
+	}
+	
+	/**
+	 * Constructs the column.
+	 * 
+	 * @param fields	The column data
+	 */
+	public Column(List<String> fields) {
+		this.fields = fields;
+	}
+
 	/**
 	 * Gets the set of values that exist in a single column.
 	 * 
@@ -169,6 +185,25 @@ public class Column {
 	 */
 	public int size() {
 		return fields.size();
+	}
+
+	/**
+	 * Returns the field at the given zero-based row number.
+	 * 
+	 * @param index	The row number
+	 * @return		The field contents
+	 */
+	public String getFieldAt(int index) {
+		return fields.get(index);
+	}
+
+	/**
+	 * Retrieve the contents of the column.
+	 * 
+	 * @return	The column data
+	 */
+	public List<String> getContents() {
+		return fields;
 	}
 
 

@@ -1,3 +1,5 @@
+# This is a column recognizer specification file.
+#
 # It can include comment lines, blank lines, and specification lines.
 #
 # Comment lines start with the hash symbol.
@@ -23,8 +25,8 @@
 it_restaurant_regex		2001	REGEX			((trattoria)|(ristorante)|(ost[ae]ria)|(pizzeria)) [a-z]+
 
 # Street address
-# The regex assumes that the column separator is in [;,]
-it_street_address_regex	3001	REGEX			((via)|(viale)|(piazza)|(piazzetta)) [ a-z]+\s*[;,]?[0-9]+
+# The regex assumes that the column separator is in [;,] or the null character
+it_street_address_regex	3001	REGEX			((via)|(viale)|(piazza)|(piazzetta)) [ a-z]+\s*[;,\x00]?[0-9]+
 
 # Town (comune)
 comune_set				4001	VALUE_SET		comune.txt

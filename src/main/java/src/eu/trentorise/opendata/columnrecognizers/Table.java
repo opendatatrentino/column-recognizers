@@ -20,10 +20,18 @@ public interface Table {
 	public int getRowCount();
 
 	/**
-	 * Extract a subset of rows for analysis.
+	 * Extracts a subset of rows for analysis.
 	 * 
 	 * @return A subset of the table rows
 	 */
 	public RowTable extractRowSample();
+
+	/**
+	 * Extracts the column indexed by the column number.
+	 * 
+	 * @param columnNumber	The one-based index of the column to extract
+	 * @return				The column
+	 */
+	public Column extractColumn(int columnNumber);
 
 }

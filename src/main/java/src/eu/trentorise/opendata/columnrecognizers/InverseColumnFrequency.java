@@ -1,6 +1,7 @@
 package eu.trentorise.opendata.columnrecognizers;
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -79,7 +80,7 @@ public class InverseColumnFrequency {
 			char columnSeparator = args[i + 1].charAt(0);
 			File csvFile = new File(pathName);
 			RowTable table = RowTable.loadFromCSV(csvFile, columnSeparator);
-			Column[] columns = table.extractColumns();
+			List<Column> columns = table.extractColumns();
 			for (Column column: columns) {
 				InverseColumnFrequency.addColumn(column, frequencies);
 				columnCount++;

@@ -54,11 +54,11 @@ public class RegExColumnRecognizer extends RowBasedCR {
 	public Set<Integer> applyRegEx(String row) {
 		Set<Integer> columnSet = new HashSet<Integer>();
 		Matcher matcher = pattern.matcher(row);
-		List<Integer> columnBoundaries = getTable().findColumnBoundaries(row);
+		List<Integer> columnBoundaries = getRowTable().findColumnBoundaries(row);
 		
 		while (matcher.find()) {
-			int firstColumn = getTable().getColumnFromCharIndex(columnBoundaries, matcher.start());
-			int lastColumn = getTable().getColumnFromCharIndex(columnBoundaries, matcher.end());
+			int firstColumn = getRowTable().getColumnFromCharIndex(columnBoundaries, matcher.start());
+			int lastColumn = getRowTable().getColumnFromCharIndex(columnBoundaries, matcher.end());
 			for (int columnNumber = firstColumn; columnNumber <= lastColumn; columnNumber++) {
 				columnSet.add(columnNumber);
 			}

@@ -11,6 +11,11 @@ import java.util.Set;
  */
 public abstract class RowBasedCR extends ContentBasedCR {
 	/**
+	 * Reference to the table as RowTable
+	 */
+	private RowTable rowTable = null;
+	
+	/**
 	 * Creates the column recognizer.
 	 * 
 	 * @param id			A unique name for the recognizer instance
@@ -19,6 +24,16 @@ public abstract class RowBasedCR extends ContentBasedCR {
 	 */
 	public RowBasedCR(String id, long conceptID, RowTable table) {
 		super(id, conceptID, table);
+		rowTable = table;
+	}
+	
+	/**
+	 * Returns a reference to the table as a RowTable
+	 * 
+	 * @return	The RowTable
+	 */
+	RowTable getRowTable() {
+		return rowTable;
 	}
 
 	/* (non-Javadoc)
@@ -37,7 +52,7 @@ public abstract class RowBasedCR extends ContentBasedCR {
 	 * @param columnMatches
 	 */
 	private void countColumnMatches(int[] columnMatches) {
-		Iterator<String> it = getTable().getRowIterator();
+		Iterator<String> it = getRowTable().getRowIterator();
 		while (it.hasNext()) {
 			String row = it.next();
 			row = normalize(row);

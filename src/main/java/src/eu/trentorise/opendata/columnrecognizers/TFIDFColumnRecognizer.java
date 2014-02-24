@@ -27,7 +27,8 @@ public class TFIDFColumnRecognizer extends ColumnContentBasedCR {
 			long conceptID, 
 			TFIDFVector prototypeVector, 
 			InverseColumnFrequency inverseFrequencies,
-			RowTable table) {
+//			RowTable table) {
+			Table table) {
 		super(id, conceptID, table);
 		this.prototypeVector = prototypeVector;
 		this.inverseFrequencies = inverseFrequencies;

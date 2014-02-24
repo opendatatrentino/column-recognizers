@@ -1,4 +1,6 @@
 package eu.trentorise.opendata.columnrecognizers;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -40,4 +42,25 @@ public abstract class ColumnRecognizer {
 		return id;
 	}
 	
+	/**
+	 * Static API method for computing column-concept candidates for a table.
+	 * 
+	 * @param columnHeaders	The column headers
+	 * @param columnData	The column contents
+	 * @return				The column-concept candidates
+	 */
+	public static List<ColumnConceptCandidate> computeScoredCandidates(
+		    List<String> columnHeaders,
+		    List<List<String>> columnData) {
+		final String SPECIFICATION_PATH = "column-recognizers.txt";
+		ColumnTable columnTable = ColumnTable.makeColumnTableFromStringLists(columnHeaders, columnData);
+		RowTable rowSample = columnTable.extractRowSample();
+		List<ColumnConceptCandidate> candidates = new ArrayList<ColumnConceptCandidate>();
+		CompositeColumnRecognizer compositeCR = new CompositeColumnRecognizer("composite");
+		File specificationFile = new File(SPECIFICATION_PATH);
+		ColumnRecognizerFactory.attachRecognizers(compositeCR, specificationFile, columnTable, rowSample);
+		compositeCR.computeScoredCandidates(candidates);
+		
+		return candidates;
+	}
 }

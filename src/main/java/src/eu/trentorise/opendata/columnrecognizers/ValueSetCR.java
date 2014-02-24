@@ -26,7 +26,7 @@ public class ValueSetCR extends ColumnContentBasedCR {
 	 * @param valueSet		The set of values indicating the concept
 	 * @param data			The table
 	 */
-	public ValueSetCR(String id, long conceptID, Set<String> valueSet, RowTable table) {
+	public ValueSetCR(String id, long conceptID, Set<String> valueSet, Table table) {
 		super(id, conceptID, table);
 		this.valueSet = valueSet;
 	}

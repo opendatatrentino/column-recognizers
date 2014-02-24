@@ -47,7 +47,7 @@ public class CRSpecificationReader extends SyntaxPatternLineReader {
 	final static int TYPE_POSITION = 3;
 	final static int MODEL_POSITION = 4;
 	CompositeColumnRecognizer compositeCR = null;
-	RowTable table = null;
+	Table table = null;
 	RowTable sample = null;
 	
 	/**
@@ -59,7 +59,7 @@ public class CRSpecificationReader extends SyntaxPatternLineReader {
 	 * @param sample		A smaller sample of rows from the table
 	 */
 	public CRSpecificationReader(File file, CompositeColumnRecognizer compositeCR,
-			RowTable table, RowTable sample) {
+			Table table, RowTable sample) {
 		super(file, LINE_SYNTAX);
 		this.compositeCR = compositeCR;
 		this.table = table;

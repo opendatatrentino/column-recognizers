@@ -14,10 +14,12 @@ public abstract class ContentBasedCR extends ColumnRecognizer {
 	/**
 	 * The data table
 	 */
-	private RowTable table = null;
+//	private RowTable table = null;
+	private Table table = null;
 
 	/**
 	 * Creates the column recognizer.
+	 * Deprecated -- pass a Table instead.
 	 * 
 	 * @param id			A unique name for the recognizer instance
 	 * @param conceptID		The knowledge base concept ID
@@ -29,6 +31,19 @@ public abstract class ContentBasedCR extends ColumnRecognizer {
 		this.table = table;
 	}
 	
+	/**
+	 * Creates the column recognizer.
+	 * 
+	 * @param id
+	 * @param conceptID
+	 * @param table
+	 */
+	public ContentBasedCR(String id, long conceptID, Table table) {
+		super(id);
+		this.conceptID = conceptID;
+		this.table = table;
+	}
+
 	/**
 	 * Gets the knowledge base concept ID.
 	 * 
@@ -43,7 +58,7 @@ public abstract class ContentBasedCR extends ColumnRecognizer {
 	 * 
 	 * @return	The data
 	 */
-	protected RowTable getTable() {
+	protected Table getTable() {
 		return table;
 	}
 
