@@ -9,7 +9,7 @@ empty# kernel parameter -u
 6 # number of training documents 
 5 # number of support vectors plus 1 
 0.9378617 # threshold b, each following line is a SV (starting with alpha*y)
--1.0815861290879583 1:0.666336 2:0.054945 # Vivifiemme Restaurant type
-1.0815861290879583 1:0.28578499 2:1 # Osterie Restaurant name
--1.0815861290879583 1:0.63373899 2:0.145833 # Osterie Restaurant type
-1.0815861290879583 1:1 2:0.99450499 # Vivifiemme Restaurant name
+-1.0815861290879583 1:0.054945 2:0.666336 # Vivifiemme Restaurant type
+1.0815861290879583 1:1 2:0.28578499 # Osterie Restaurant name
+-1.0815861290879583 1:0.145833 2:0.63373899 # Osterie Restaurant type
+1.0815861290879583 1:0.99450499 2:1 # Vivifiemme Restaurant name

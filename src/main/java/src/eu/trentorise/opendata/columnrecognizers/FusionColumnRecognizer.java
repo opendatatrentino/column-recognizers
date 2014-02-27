@@ -12,7 +12,7 @@ import java.util.ListIterator;
  * - Consume (replace) the fused input candidates
  * 
  * Subclasses need to implement the particular fusion algorithm to be used,
- * such as sum-and-threshold or SVM classifier.
+ * for example SVM classifier.
  * 
  * @author Simon
  *

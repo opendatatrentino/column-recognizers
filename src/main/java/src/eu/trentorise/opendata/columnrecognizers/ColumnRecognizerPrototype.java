@@ -1,6 +1,7 @@
 package eu.trentorise.opendata.columnrecognizers;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -26,6 +27,7 @@ public class ColumnRecognizerPrototype {
 //		app.readWordScores();
 //		app.testTFIDF();
 //		app.testClassifierFeatures();
+//		app.testFusionClassifier();
 	}
 
 	private void runRecognizers() {
@@ -242,14 +244,14 @@ public class ColumnRecognizerPrototype {
 		
 		System.out.println(LONG_DIVIDER);
 		System.out.println(String.format(Locale.US, "-1 1:%f 2:%f # Osterie Restaurant type", 
-				typeSimilarity, 
-				typeUniqueness));
+				typeUniqueness,
+				typeSimilarity));
 		System.out.println(String.format(Locale.US, "1 1:%f 2:%f # Osterie Restaurant name", 
-				restaurantSimilarity, 
-				restaurantUniqueness));
+				restaurantUniqueness, 
+				restaurantSimilarity));
 		System.out.println(String.format(Locale.US, "1 1:%f 2:%f # Osterie ID", 
-				idSimilarity, 
-				idUniqueness));
+				idUniqueness, 
+				idSimilarity));
 	}
 
 	private TFIDFVector computeViviFiemmeRestaurantFeatures(InverseColumnFrequency inverseFrequencies) {
@@ -294,15 +296,67 @@ public class ColumnRecognizerPrototype {
 		
 		System.out.println(LONG_DIVIDER);
 		System.out.println(String.format(Locale.US, "-1 1:%f 2:%f # Vivifiemme Restaurant type", 
-				typeSimilarity, 
-				typeUniqueness));
+				typeUniqueness, 
+				typeSimilarity));
 		System.out.println(String.format(Locale.US, "1 1:%f 2:%f # Vivifiemme Restaurant name", 
-				restaurantSimilarity, 
-				restaurantUniqueness));
+				restaurantUniqueness, 
+				restaurantSimilarity));
 		System.out.println(String.format(Locale.US, "1 1:%f 2:%f # Vivifiemme ID", 
-				idSimilarity, 
-				idUniqueness));
+				idUniqueness, 
+				idSimilarity));
 
 		return restaurantVector;
+	}
+	
+	private void testFusionClassifier() {
+		final String MODEL_FILE_PATH = "svm-light-model";
+		final String INPUT_RECOGNIZER_ID = "it_restaurant_tf_idf";
+		final long RESTAURANT_CONCEPT_ID = 2001;
+		List<List<Double>> columnFeatures = new ArrayList<List<Double>>();
+		List<String> inputRecognizers = new ArrayList<String>();
+		List<Map<String, Double>> supportingCandidates = new ArrayList<Map<String, Double>>();
+		List<Map<String, Double>> competingCandidates = new ArrayList<Map<String, Double>>();
+		
+		// Supporting candidates
+		Map<String, Double> supportingCandidatesTipo = new HashMap<String, Double>();
+		supportingCandidatesTipo.put(INPUT_RECOGNIZER_ID, 0.633739);
+		supportingCandidates.add(supportingCandidatesTipo);
+
+		Map<String, Double> supportingCandidatesInsegna = new HashMap<String, Double>();
+		supportingCandidatesInsegna.put(INPUT_RECOGNIZER_ID, 0.285785);
+		supportingCandidates.add(supportingCandidatesInsegna);
+		
+		// Competing candidates
+		Map<String, Double> competingCandidatesTipo = new HashMap<String, Double>();
+		competingCandidatesTipo.put(INPUT_RECOGNIZER_ID, 0.);
+		competingCandidates.add(competingCandidatesTipo);
+		Map<String, Double> competingCandidatesInsegna = new HashMap<String, Double>();
+		competingCandidatesInsegna.put(INPUT_RECOGNIZER_ID, 0.);
+		competingCandidates.add(competingCandidatesInsegna);
+
+		// Two columns: insegna and tipo from osterie_tipiche
+		// A single column feature: uniqueness
+		List<Double> featuresTipo = new ArrayList<Double>();
+		featuresTipo.add(0.145833);
+		columnFeatures.add(featuresTipo);
+		
+		List<Double> featuresInsegna = new ArrayList<Double>();
+		featuresInsegna.add(1.0);
+		columnFeatures.add(featuresInsegna);
+		
+		// A single input recognizer
+		inputRecognizers.add(INPUT_RECOGNIZER_ID);
+
+		// Create the classifier
+		FusionClassifier classifier 
+			= new FusionClassifier(new File(MODEL_FILE_PATH), 
+					columnFeatures, 
+					RESTAURANT_CONCEPT_ID, 
+					inputRecognizers);
+		List<Double> predictions 
+			= classifier.classifyColumns(supportingCandidates, competingCandidates);
+		
+		// Print predictions
+		System.out.println(predictions.toString());
 	}
 }
