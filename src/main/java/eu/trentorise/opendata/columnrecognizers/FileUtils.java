@@ -46,7 +46,51 @@ public class FileUtils {
 	public static File getSVMExecutablesFolder() {
 		return new File(getRoot(), SVM_EXECUTABLES_FOLDER_NAME);
 	}
+
+	/**
+	 * Gets the file containing an SVM classifier model for a fusion 
+	 * recognizer. 
+	 * 
+	 * @param recognizerID		The name of the recognizer
+	 * @return					The model file
+	 */
+	public static File getSVMModelFile(String recognizerID) {
+		return new File(getSVMModelFolder(recognizerID), "svm-model-" + recognizerID);
+	}
 	
+	/**
+	 * Returns the directory with the model and training files for an SVM 
+	 * classifier column recognizer.
+	 * 
+	 * @param recognizerID		The name of the recognizer
+	 * @return					The directory
+	 */
+	private static File getSVMModelFolder(String recognizerID) {
+		File svmModelFolder = new File(getDataFolder(), "svm-" + recognizerID);
+		sureDirectory(svmModelFolder);
+		return svmModelFolder;
+	}
+
+	/**
+	 * Ensures the existence of the specified directory.
+	 * 
+	 * @param directory		The directory
+	 */
+	private static void sureDirectory(File directory) {
+		if (directory.exists()) {
+			if (!directory.isDirectory()) {
+				throw new RuntimeException(
+						"Cannot create directory (file with the same name already exists): "
+						+ directory.getPath());
+			}
+		} else {
+			boolean success = directory.mkdir();
+			if (!success) {
+				throw new RuntimeException("Failed to create directory: " + directory.getPath());
+			}
+		}
+	}
+
 	/**
 	 * Gets the top-level column recognizers folder
 	 * 

@@ -151,6 +151,7 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 		return Math.min(Math.max(prediction, 0.0), 1.0);
 	}
 
+	
 	/**
 	 * Trains the classifier on the contents of tables + label files 
 	 * + classifier output.
@@ -165,18 +166,16 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 	 * columns in the corresponding table (1 for positive examples, -1 for 
 	 * negative ones).
 	 * 
-	 * By convention, specification and label files are grouped in directories
-	 * like this:
+	 * By convention, files are grouped in directories like this:
 	 * 
-	 *   svm-training-restaurant
+	 *   svm-<cr_name>
 	 *     recognizers.txt
-	 *     labels-osterie.txt
-	 *     (... more label files...)
+	 *     svm-labels-<cr_name>-<table_name>.txt
+	 *     svm-examples-<cr_name>.txt
+	 *     svm-model-<cr_name>
 	 *     
-	 * Training examples are generated and put into the file 
-	 * svm-training-examples.txt in the same directory. The output SVM model is
-	 * named svm-model. In order to use it, copy it to the parent directory and
-	 * rename it (to svm-model-restaurant for example). 
+	 * The training examples file contains labeled examples for all the tables. 
+	 * The output SVM model is named svm-model-<cr_name>. 
 	 * 
 	 * @param args	The arguments
 	 */

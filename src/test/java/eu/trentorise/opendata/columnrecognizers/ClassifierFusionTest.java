@@ -16,7 +16,8 @@ import org.junit.Test;
  *
  */
 public class ClassifierFusionTest {
-	private static final String MODEL_FILE_NAME = "svm-model-minimal";
+	private static final String MINIMAL_FUSION_CR_NAME = "minimal_fusion";
+	private static final String TWO_FEATURES_OSTERIE_CR_NAME = "two_features_osterie";
 	private static final String INPUT_RECOGNIZER_ID = "it_restaurant_tf_idf";
 	private static final long RESTAURANT_CONCEPT_ID = 2001;
 	private static final double TIPO_SIMILARITY_SCORE = 0.633739;
@@ -70,7 +71,7 @@ public class ClassifierFusionTest {
 
 		// Create the classifier
 		FusionClassifier classifier 
-			= new FusionClassifier(new File(FileUtils.getDataFolder(), MODEL_FILE_NAME), 
+			= new FusionClassifier(FileUtils.getSVMModelFile(MINIMAL_FUSION_CR_NAME), 
 					columnFeatures, 
 					RESTAURANT_CONCEPT_ID, 
 					inputRecognizers);
@@ -117,7 +118,8 @@ public class ClassifierFusionTest {
 		// Create recognizer
 		List<String> inputRecognizers = new ArrayList<String>();
 		inputRecognizers.add(INPUT_RECOGNIZER_ID);
-		File modelFile = new File(FileUtils.getDataFolder(), MODEL_FILE_NAME);
+//		File modelFile = new File(FileUtils.getDataFolder(), MODEL_FILE_NAME);
+		File modelFile = FileUtils.getSVMModelFile(TWO_FEATURES_OSTERIE_CR_NAME);
 		ClassifierFusionCR fusionCR 
 			= new ClassifierFusionCR(FUSION_CR_ID, 
 					RESTAURANT_CONCEPT_ID, 

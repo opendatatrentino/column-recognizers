@@ -9,7 +9,7 @@
 
 	<groupId>eu.trentorise.opendata</groupId>
 	<artifactId>column-recognizers</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>ODT Column Recognizers</name>
@@ -159,7 +159,7 @@
 
 	</build>
 
-	<scm> <url>git@github.com:opendatatrentino/column-recognizers.git</url> <connection>scm:git:git@github.com:opendatatrentino/Jackan.git</connection> 
+	<scm> <url>git@github.com:opendatatrentino/column-recognizers.git</url> <connection>scm:git:git@github.com:opendatatrentino/column-recognizers.git</connection> 
 		<developerConnection>scm:git:git@github.com:opendatatrentino/column-recognizers.git</developerConnection> 
 		</scm>
 	<description>DISI ODR Java Client</description>

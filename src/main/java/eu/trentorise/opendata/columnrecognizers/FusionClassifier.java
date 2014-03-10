@@ -17,19 +17,16 @@ public class FusionClassifier {
 	/**
 	 * Where to put the file of examples to classify
 	 */
-//	public final static String EXAMPLE_FILE_PATH = "svm-examples.txt";
 	public final static String EXAMPLE_FILE_NAME = "svm-examples.txt";
 	
 	/**
 	 * Where to put the predictions produced by the classifier
 	 */
-//	public final static String PREDICTIONS_FILE_PATH = "svm-predictions.txt";
 	public final static String PREDICTIONS_FILE_NAME = "svm-predictions.txt";
 	
 	/**
 	 * Path to the classifier executable
 	 */
-//	public final static String CLASSIFICATION_EXE_PATH = "../svm-light/svm_classify.exe";
 	public final static String CLASSIFIER_EXE_NAME = "svm_classify.exe";
 	
 	/**
@@ -97,7 +94,6 @@ public class FusionClassifier {
 	 */
 	public static void writeExamples(List<List<Double>> featureVectors) {
 		File exampleFile = new File(FileUtils.getDataFolder(), EXAMPLE_FILE_NAME);
-//		SVMLightWriter writer = new SVMLightWriter(new File(EXAMPLE_FILE_PATH), featureVectors);
 		SVMLightWriter writer = new SVMLightWriter(exampleFile, featureVectors);
 		writer.write();
 	}
@@ -112,8 +108,6 @@ public class FusionClassifier {
 	public static void writeExamples(List<List<Double>> featureVectors,
 			List<Double> labels) {
 		File exampleFile = new File(FileUtils.getDataFolder(), EXAMPLE_FILE_NAME);
-//		SVMLightWriter writer 
-//		= new SVMLightWriter(new File(EXAMPLE_FILE_PATH), featureVectors, labels);
 		SVMLightWriter writer 
 			= new SVMLightWriter(exampleFile, featureVectors, labels);
 		writer.write();
@@ -183,19 +177,16 @@ public class FusionClassifier {
 		File classifierExe = new File(FileUtils.getSVMExecutablesFolder(), CLASSIFIER_EXE_NAME);
 		File exampleFile = new File(FileUtils.getDataFolder(), EXAMPLE_FILE_NAME);
 		File predictionsFile = new File(FileUtils.getDataFolder(), PREDICTIONS_FILE_NAME);
-//		String[] commandArray = {
-//				CLASSIFICATION_EXE_PATH,
-//				EXAMPLE_FILE_PATH,
-//				modelFile.getAbsolutePath(),
-//				PREDICTIONS_FILE_PATH
-//		};
 		String[] commandArray = {
 				classifierExe.getAbsolutePath(),
 				exampleFile.getAbsolutePath(),
 				modelFile.getAbsolutePath(),
 				predictionsFile.getAbsolutePath()
 		};
-		ProcessLauncher.run(commandArray);
+		int exitValue = ProcessLauncher.run(commandArray);
+		if (exitValue != 0) {
+			throw new RuntimeException("Failure running SVM-Light classifier");
+		}
 	}
 
 	/**
@@ -206,7 +197,6 @@ public class FusionClassifier {
 	private List<Double> readPredictions() {
 	// TODO use static read method
 		File predictionsFile = new File(FileUtils.getDataFolder(), PREDICTIONS_FILE_NAME);
-//		VectorReader reader = new VectorReader(new File(PREDICTIONS_FILE_PATH));
 		VectorReader reader = new VectorReader(predictionsFile);
 		reader.read();
 		return reader.getVector();

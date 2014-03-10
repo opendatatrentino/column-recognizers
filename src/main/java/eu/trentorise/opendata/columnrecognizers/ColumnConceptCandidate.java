@@ -37,7 +37,7 @@ public class ColumnConceptCandidate {
 	 * @param columnNumber	The index (1, ..) of the column
 	 * @param conceptID		The suggested UK concept ID
 	 */
-	ColumnConceptCandidate(int columnNumber, long conceptID) {
+	public ColumnConceptCandidate(int columnNumber, long conceptID) {
 		this.columnNumber = columnNumber;
 		this.conceptID = conceptID;
 	}

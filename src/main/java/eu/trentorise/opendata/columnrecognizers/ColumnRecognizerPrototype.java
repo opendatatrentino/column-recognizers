@@ -21,13 +21,13 @@ public class ColumnRecognizerPrototype {
 	 */
 	public static void main(String[] args) {
 		ColumnRecognizerPrototype app = new ColumnRecognizerPrototype();
-//		app.runRecognizers();
+		app.runRecognizers();
 //		app.testCSVProcessor();
 //		app.testWordFrequencies();
 //		app.readWordScores();
 //		app.testTFIDF();
 //		app.testClassifierFeatures();
-		app.testFusionClassifier();
+//		app.testFusionClassifier();
 	}
 
 	private void runRecognizers() {
@@ -307,7 +307,9 @@ public class ColumnRecognizerPrototype {
 
 		return restaurantVector;
 	}
-	
+/*
+ * Superseded by unit test
+ * 
 	private void testFusionClassifier() {
 		final String MODEL_FILE_PATH = "svm-model-minimal";
 		final String INPUT_RECOGNIZER_ID = "it_restaurant_tf_idf";
@@ -359,4 +361,5 @@ public class ColumnRecognizerPrototype {
 		// Print predictions
 		System.out.println(predictions.toString());
 	}
+*/
 }
