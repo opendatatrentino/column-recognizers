@@ -27,6 +27,11 @@ public class ColumnConceptCandidate {
 	private double score = 0;
 	
 	/**
+	 * The originating recognizer instance
+	 */
+	private String originator = null;
+	
+	/**
 	 * Creates the column-concept candidate.
 	 * 
 	 * @param columnNumber	The index (1, ..) of the column
@@ -35,6 +40,37 @@ public class ColumnConceptCandidate {
 	ColumnConceptCandidate(int columnNumber, long conceptID) {
 		this.columnNumber = columnNumber;
 		this.conceptID = conceptID;
+	}
+
+	/**
+	 * Creates the column-concept candidate and sets its score.
+	 * 
+	 * @param columnNumber	The index (1, ..) of the column
+	 * @param conceptID		The suggested UK concept ID
+	 * @param score			The candidate score
+	 */
+	public ColumnConceptCandidate(int columnNumber, long conceptID, double score) {
+		super();
+		this.columnNumber = columnNumber;
+		this.conceptID = conceptID;
+		this.score = score;
+	}
+
+	/**
+	 * Creates the column-concept candidate and sets its score.
+	 * 
+	 * @param columnNumber	The index (1, ..) of the column
+	 * @param conceptID		The suggested UK concept ID
+	 * @param score			The candidate score
+	 * @param originator	The ID of the recognizer that created the candidate
+	 */
+	public ColumnConceptCandidate(int columnNumber, long conceptID,
+			double score, String originator) {
+		super();
+		this.columnNumber = columnNumber;
+		this.conceptID = conceptID;
+		this.score = score;
+		this.originator = originator;
 	}
 
 	/**
@@ -55,6 +91,15 @@ public class ColumnConceptCandidate {
 		score = itsScore;
 	}
 
+	/**
+	 * Returns the ID of the originating recognizer instance.
+	 * 
+	 * @return	The recognizer ID
+	 */
+	String getOriginator() {
+		return originator;
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

@@ -39,16 +39,16 @@ public abstract class ColumnContentBasedCR extends ContentBasedCR {
 	 */
 	@Override
 	public void computeScoredCandidates(List<ColumnConceptCandidate> candidates) {
-		int columnCount = getTable().getColumnCount();
-		for (int columnNumber = 1; columnNumber <= columnCount; columnNumber++) {
-			Column column = getTable().extractColumn(columnNumber);
+		List<Column> columns = getTable().extractColumns();
+		int columnNumber = 1;
+		for (Column column : columns) {
 			double score = computeColumnScore(column);
 			if (score > 0) {
 				ColumnConceptCandidate newCandidate 
-					= new ColumnConceptCandidate(columnNumber, getConceptID());
-				newCandidate.setScore(score);
+					= new ColumnConceptCandidate(columnNumber, getConceptID(), score, getId());
 				candidates.add(newCandidate);
 			}
+			columnNumber++;
 		}
 	}
 	

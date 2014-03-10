@@ -21,13 +21,13 @@ public class ColumnRecognizerPrototype {
 	 */
 	public static void main(String[] args) {
 		ColumnRecognizerPrototype app = new ColumnRecognizerPrototype();
-		app.runRecognizers();
+//		app.runRecognizers();
 //		app.testCSVProcessor();
 //		app.testWordFrequencies();
 //		app.readWordScores();
 //		app.testTFIDF();
 //		app.testClassifierFeatures();
-//		app.testFusionClassifier();
+		app.testFusionClassifier();
 	}
 
 	private void runRecognizers() {
@@ -249,7 +249,7 @@ public class ColumnRecognizerPrototype {
 		System.out.println(String.format(Locale.US, "1 1:%f 2:%f # Osterie Restaurant name", 
 				restaurantUniqueness, 
 				restaurantSimilarity));
-		System.out.println(String.format(Locale.US, "1 1:%f 2:%f # Osterie ID", 
+		System.out.println(String.format(Locale.US, "-1 1:%f 2:%f # Osterie ID", 
 				idUniqueness, 
 				idSimilarity));
 	}
@@ -301,7 +301,7 @@ public class ColumnRecognizerPrototype {
 		System.out.println(String.format(Locale.US, "1 1:%f 2:%f # Vivifiemme Restaurant name", 
 				restaurantUniqueness, 
 				restaurantSimilarity));
-		System.out.println(String.format(Locale.US, "1 1:%f 2:%f # Vivifiemme ID", 
+		System.out.println(String.format(Locale.US, "-1 1:%f 2:%f # Vivifiemme ID", 
 				idUniqueness, 
 				idSimilarity));
 
@@ -309,7 +309,7 @@ public class ColumnRecognizerPrototype {
 	}
 	
 	private void testFusionClassifier() {
-		final String MODEL_FILE_PATH = "svm-light-model";
+		final String MODEL_FILE_PATH = "svm-model-minimal";
 		final String INPUT_RECOGNIZER_ID = "it_restaurant_tf_idf";
 		final long RESTAURANT_CONCEPT_ID = 2001;
 		List<List<Double>> columnFeatures = new ArrayList<List<Double>>();

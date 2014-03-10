@@ -87,9 +87,9 @@ public abstract class RowBasedCR extends ContentBasedCR {
 		
 		for (int columnNumber = 1; columnNumber <= columnCount; columnNumber++) {
 			if (columnMatches[columnNumber - 1] > 0) {
+				double score = ((double)columnMatches[columnNumber - 1]) / rowCount;
 				ColumnConceptCandidate candidate 
-					= new ColumnConceptCandidate(columnNumber, getConceptID());
-				candidate.setScore(((double)columnMatches[columnNumber - 1]) / rowCount);
+					= new ColumnConceptCandidate(columnNumber, getConceptID(), score, getId());
 				candidates.add(candidate);
 			}
 		}

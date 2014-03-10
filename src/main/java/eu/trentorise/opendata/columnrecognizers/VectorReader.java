@@ -40,4 +40,16 @@ public class VectorReader extends LineReader {
 		return vector;
 	}
 
+	/**
+	 * Reads a vector from a file and returns it.
+	 * 
+	 * @param file	The input file
+	 * @return		The vector
+	 */
+	public static List<Double> read(File file) {
+		VectorReader reader = new VectorReader(file);
+		reader.read();
+		return reader.getVector();
+	}
+
 }

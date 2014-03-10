@@ -22,6 +22,11 @@ public class Column {
 	private List<String> fields = null;
 	
 	/**
+	 * The column features are cached for efficiency
+	 */
+	private List<Double> cachedFeatures = null;
+	
+	/**
 	 * Constructs the column.
 	 */
 	public Column() {
@@ -198,12 +203,30 @@ public class Column {
 	}
 
 	/**
-	 * Retrieve the contents of the column.
+	 * Retrieves the contents of the column.
 	 * 
 	 * @return	The column data
 	 */
 	public List<String> getContents() {
 		return fields;
+	}
+
+	/**
+	 * Gets the vector of column features.
+	 * Column features are numbers in [0, 1] that describe some aspect of the
+	 * column and that can be used as input to classifiers. 
+	 * An example of a column feature is uniqueness (the ratio of unique
+	 * values to total number of rows), which helps discriminate 'name' fields
+	 * from 'type of' fields.
+	 * 
+	 * @return	The column features
+	 */
+	public List<Double> getFeatures() {
+		if (cachedFeatures == null) {
+			cachedFeatures = new ArrayList<Double>();
+			cachedFeatures.add(getUniqueness());
+		}
+		return cachedFeatures;
 	}
 
 

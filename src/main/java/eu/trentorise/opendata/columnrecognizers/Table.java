@@ -1,5 +1,7 @@
 package eu.trentorise.opendata.columnrecognizers;
 
+import java.util.List;
+
 /**
  * @author Simon
  *
@@ -27,11 +29,25 @@ public interface Table {
 	public RowTable extractRowSample();
 
 	/**
+	 * Extracts all the columns of the table.
+	 * 
+	 * @return	The columns
+	 */
+	public List<Column> extractColumns();
+	
+	/**
 	 * Extracts the column indexed by the column number.
 	 * 
 	 * @param columnNumber	The one-based index of the column to extract
 	 * @return				The column
 	 */
 	public Column extractColumn(int columnNumber);
+
+	/**
+	 * Gets the column feature vectors.
+	 * 
+	 * @return	The column features
+	 */
+	public List<List<Double>> getColumnFeatures();
 
 }

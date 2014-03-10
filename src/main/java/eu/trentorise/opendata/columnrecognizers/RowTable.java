@@ -36,6 +36,11 @@ public class RowTable implements Table {
 	private char columnSeparator = ';';
 	
 	/**
+	 * Columns that have been extracted are cached for efficiency
+	 */
+	private List<Column> cachedColumns = null;
+	
+	/**
 	 * Constructs the table. 
 	 * 
 	 * @param columnSeparator		The column separator character
@@ -65,12 +70,19 @@ public class RowTable implements Table {
 			it.next();
 			it.remove();
 		}
+		clearCaches();
 	}
 	
+	/**
+	 * Clear caches after modifying the table
+	 */
+	private void clearCaches() {
+		cachedColumns = null;
+	}
+
 	/* (non-Javadoc)
 	 * @see eu.trentorise.opendata.columnrecognizers.Table#extractRowSample()
 	 */
-	@Override
 	public RowTable extractRowSample() {
 		final int SAMPLE_SIZE = 10;
 
@@ -91,6 +103,7 @@ public class RowTable implements Table {
 	 */
 	public void appendRow(String row) {
 		rows.add(row);
+		clearCaches();
 	}
 
 	/* (non-Javadoc)
@@ -113,7 +126,6 @@ public class RowTable implements Table {
 	/* (non-Javadoc)
 	 * @see eu.trentorise.opendata.columnrecognizers.Table#getRowCount()
 	 */
-	@Override
 	public int getRowCount() {
 		return rows.size();
 	}
@@ -121,7 +133,6 @@ public class RowTable implements Table {
 	/* (non-Javadoc)
 	 * @see eu.trentorise.opendata.columnrecognizers.Table#getColumnCount()
 	 */
-	@Override
 	public int getColumnCount() {
 		String sampleRow = rows.get(0);
 		return CSVProcessor.computeColumnCount(sampleRow, columnSeparator);
@@ -173,7 +184,6 @@ public class RowTable implements Table {
 	/* (non-Javadoc)
 	 * @see eu.trentorise.opendata.columnrecognizers.Table#extractColumn(int)
 	 */
-	@Override
 	public Column extractColumn(int columnNumber) {
 		Column column = new Column();
 		Iterator<String> it = rows.iterator();
@@ -269,12 +279,25 @@ public class RowTable implements Table {
 	 * @return	An array of the columns
 	 */
 	public List<Column> extractColumns() {
-		int columnCount = getColumnCount();
-		List<Column> columns = new ArrayList<Column>();
-		for (int i = 0; i < columnCount; i++) {
-			columns.add(extractColumn(i + 1));
+		if (cachedColumns == null) {
+			int columnCount = getColumnCount();
+			cachedColumns = new ArrayList<Column>();
+			for (int i = 0; i < columnCount; i++) {
+				cachedColumns.add(extractColumn(i + 1));
+			}
 		}
-		return columns;
+		return cachedColumns;
+	}
+
+	public List<List<Double>> getColumnFeatures() {
+		List<List<Double>> columnFeatures = new ArrayList<List<Double>>(); 
+		List<Column> columns = extractColumns();
+		Iterator<Column> it = columns.iterator();
+		while (it.hasNext()) {
+			Column column = it.next();
+			columnFeatures.add(column.getFeatures());
+		}
+		return columnFeatures;
 	}
 	
 }

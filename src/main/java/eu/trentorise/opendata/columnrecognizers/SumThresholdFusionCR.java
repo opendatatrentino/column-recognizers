@@ -80,8 +80,10 @@ public class SumThresholdFusionCR extends ColumnRecognizer {
 		while (itColumnConcept.hasNext()) {
 			ColumnConcept columnConcept = itColumnConcept.next();
 			ColumnConceptCandidate candidate 
-				= new ColumnConceptCandidate(columnConcept.columnNumber, columnConcept.conceptID);
-			candidate.setScore(candidateMap.get(columnConcept));
+				= new ColumnConceptCandidate(columnConcept.columnNumber, 
+						columnConcept.conceptID, 
+						candidateMap.get(columnConcept),
+						getId());
 			candidates.add(candidate);
 		}
 	}

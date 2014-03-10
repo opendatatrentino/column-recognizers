@@ -75,7 +75,6 @@ public class ColumnTable implements Table {
 	/* (non-Javadoc)
 	 * @see eu.trentorise.opendata.columnrecognizers.Table#getColumnCount()
 	 */
-	@Override
 	public int getColumnCount() {
 		return columns == null ? 0 : columns.size();
 	}
@@ -83,7 +82,6 @@ public class ColumnTable implements Table {
 	/* (non-Javadoc)
 	 * @see eu.trentorise.opendata.columnrecognizers.Table#getRowCount()
 	 */
-	@Override
 	public int getRowCount() {
 		return getColumnCount() == 0 ? 0 : extractColumn(1).size();
 	}
@@ -91,7 +89,6 @@ public class ColumnTable implements Table {
 	/* (non-Javadoc)
 	 * @see eu.trentorise.opendata.columnrecognizers.Table#extractColumn(int)
 	 */
-	@Override
 	public Column extractColumn(int columnNumber) {
 		return columns.get(columnNumber - 1);
 	}
@@ -99,7 +96,6 @@ public class ColumnTable implements Table {
 	/* (non-Javadoc)
 	 * @see eu.trentorise.opendata.columnrecognizers.Table#extractRowSample()
 	 */
-	@Override
 	public RowTable extractRowSample() {
 		final char NULL_CHAR = '\0';
 		final int INITIAL_ROW_SIZE = 100;
@@ -120,6 +116,26 @@ public class ColumnTable implements Table {
 			rowSample.appendRow(sb.toString());
 		}
 		return rowSample;
+	}
+
+	/* (non-Javadoc)
+	 * @see eu.trentorise.opendata.columnrecognizers.Table#getColumnFeatures()
+	 */
+	public List<List<Double>> getColumnFeatures() {
+		List<List<Double>> columnFeatures = new ArrayList<List<Double>>(); 
+		Iterator<Column> it = columns.iterator();
+		while (it.hasNext()) {
+			Column column = it.next();
+			columnFeatures.add(column.getFeatures());
+		}
+		return columnFeatures;
+	}
+
+	/* (non-Javadoc)
+	 * @see eu.trentorise.opendata.columnrecognizers.Table#extractColumns()
+	 */
+	public List<Column> extractColumns() {
+		return columns;
 	}
 
 }
