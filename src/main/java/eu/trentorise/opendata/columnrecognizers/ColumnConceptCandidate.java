@@ -106,10 +106,11 @@ public class ColumnConceptCandidate {
 	@Override
 	public String toString() {
 		return String.format(Locale.US, 
-				"Column = %d; Concept = %d;  Score = %f", 
+				"Column = %d; Concept = %d;  Score = %f (from %s)", 
 				columnNumber, 
 				conceptID, 
-				score);
+				score,
+				originator);
 	}
 
 	/**

@@ -27,6 +27,11 @@ public class FileUtils {
 	private final static String SVM_EXECUTABLES_FOLDER_NAME = "svm-light";
 	
 	/**
+	 * The name of the executable that does training of the SVM classifier
+	 */
+	private final static String SVM_LEARNER_NAME = "svm_learn";
+	
+	/**
 	 * The top-level column recognizers folder
 	 */
 	private static File columnRecognizersRoot = null;
@@ -45,6 +50,26 @@ public class FileUtils {
 	 */
 	public static File getSVMExecutablesFolder() {
 		return new File(getRoot(), SVM_EXECUTABLES_FOLDER_NAME);
+	}
+
+	/**
+	 * Gets the executable that does training of the SVM classifier
+	 * 
+	 * @return	The executable file
+	 */
+	public static File getSVMLearner() {
+		return new File(getSVMExecutablesFolder(), SVM_LEARNER_NAME);
+	}
+	
+	/**
+	 * Gets the column recognizer specification file used in training the given
+	 * fusion recognizer.
+	 * 
+	 * @param recognizerID		The name of the classifier fusion recognizer
+	 * @return					The CR specification file
+	 */
+	public static File getSVMTrainingCRSpecificationFile(String recognizerID) {
+		return new File(getSVMModelFolder(recognizerID), "recognizers-" + recognizerID + ".txt");
 	}
 
 	/**
@@ -69,6 +94,17 @@ public class FileUtils {
 		File svmModelFolder = new File(getDataFolder(), "svm-" + recognizerID);
 		sureDirectory(svmModelFolder);
 		return svmModelFolder;
+	}
+
+	/**
+	 * Returns the file containing labeled training examples for a given SVM
+	 * classifier column recognizer.
+	 * 
+	 * @param recognizerID
+	 * @return
+	 */
+	public static File getSVMTrainingFile(String recognizerID) {
+		return new File(getSVMModelFolder(recognizerID), "svm-examples-" + recognizerID);
 	}
 
 	/**

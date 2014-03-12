@@ -87,6 +87,24 @@ public class FusionClassifier {
 	}
 
 	/**
+	 * Produce a model file from examples by running SVM-Light.
+	 * 
+	 * @param exampleFile		The training examples
+	 * @param modelFile			The output file
+	 */
+	public static void train(File exampleFile, File modelFile) {
+		String[] commandArray = {
+				FileUtils.getSVMLearner().getAbsolutePath(),
+				exampleFile.getAbsolutePath(),
+				modelFile.getAbsolutePath()
+		};
+		int exitValue = ProcessLauncher.run(commandArray);
+		if (exitValue != 0) {
+			throw new RuntimeException("Failure running SVM-Light learner");
+		}
+	}
+
+	/**
 	 * Writes out the unlabeled examples (the columns) in the format readable 
 	 * by SVM-Light. The labels are set to a default value.
 	 * 
@@ -102,12 +120,13 @@ public class FusionClassifier {
 	 * Writes out the examples (the columns) and the labels in the format 
 	 * readable by SVM-Light.
 	 * 
+	 * @param exampleFile			The output file
 	 * @param featureVectors		A feature vector for each column
 	 * @param labels				A label for each column
 	 */
-	public static void writeExamples(List<List<Double>> featureVectors,
+	public static void writeExamples(File exampleFile,
+			List<List<Double>> featureVectors,
 			List<Double> labels) {
-		File exampleFile = new File(FileUtils.getDataFolder(), EXAMPLE_FILE_NAME);
 		SVMLightWriter writer 
 			= new SVMLightWriter(exampleFile, featureVectors, labels);
 		writer.write();

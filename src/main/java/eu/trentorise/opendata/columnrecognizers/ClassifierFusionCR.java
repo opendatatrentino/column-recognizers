@@ -158,8 +158,8 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 	 * 
 	 * Argument format:
 	 * 
-	 * 	<cr-specification-file.txt> <table.csv> <column-separator-char> 
-	 *  <label-file.txt> ...
+	 * 	<fusion-recognizer-id> <cr-specification-file.txt> <table.csv> 
+	 *  <column-separator-char> <label-file.txt> ...
 	 * 
 	 * The specification file specifies the input recognizers as well as the 
 	 * fusion recognizer. Each label file provides labels for each of the 
@@ -180,28 +180,29 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 	 * @param args	The arguments
 	 */
 	public static void main(String[] args) {
-		final int SPECIFICATION_PATH_POSITION = 1;
+		final int FUSION_RECOGNIZER_ID_POSITION = 0;
 		
 		checkParameters(args);
 		
-		File specificationFile = new File(args[SPECIFICATION_PATH_POSITION]);
+		String fusionRecognizerID = args[FUSION_RECOGNIZER_ID_POSITION];
 		List<File> tableFiles = new ArrayList<File>();
 		List<Character> columnSeparators = new ArrayList<Character>();
 		List<File> labelFiles = new ArrayList<File>();
 		getTrainingFilesFromArgs(args, tableFiles, columnSeparators, labelFiles);
 		
-		train(specificationFile, tableFiles, columnSeparators, labelFiles);
+		train(fusionRecognizerID, tableFiles, columnSeparators, labelFiles);
 	}
 
 	/**
 	 * Performs classifier training on multiple table files (or only one).
 	 * 
-	 * @param specificationFile		Specifies input and fusion recognizers
+	 * @param fusionRecognizerID	The name of the fusion recognizer
 	 * @param tableFiles			The CSV tables
 	 * @param columnSeparators		Column separators for CSV tables
 	 * @param labelFiles			Training labels for each table
 	 */
-	private static void train(File specificationFile, 
+	private static void train(
+			String fusionRecognizerID,
 			List<File> tableFiles,
 			List<Character> columnSeparators,
 			List<File> labelFiles) {
@@ -210,9 +211,11 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 		Iterator<File> itTables = tableFiles.iterator();
 		Iterator<Character> itColumnSeparators = columnSeparators.iterator();
 		Iterator<File> itLabels = labelFiles.iterator();
+		File specificationFile = FileUtils.getSVMTrainingCRSpecificationFile(fusionRecognizerID);
 		
 		while (itTables.hasNext()) {
-			produceTrainingExamples(specificationFile,
+			produceTrainingExamples(fusionRecognizerID, 
+					specificationFile,
 					itTables.next(), 
 					itColumnSeparators.next(),
 					itLabels.next(), 
@@ -220,11 +223,10 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 					allLabels);
 		}
 
-		FusionClassifier.writeExamples(allExamples, allLabels);
-		// TODO specify example file
-		
-//	TODO run learner
-
+		File exampleFile = FileUtils.getSVMTrainingFile(fusionRecognizerID);
+		File modelFile = FileUtils.getSVMModelFile(fusionRecognizerID);
+		FusionClassifier.writeExamples(exampleFile, allExamples, allLabels);
+		FusionClassifier.train(exampleFile, modelFile);
 	}
 
 	/**
@@ -233,13 +235,16 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 	 * allExamples. The labels (floating point numbers from {-1, 1}) are added
 	 * to allLabels.
 	 * 
-	 * @param specificationFile	Specifying the input CRs and the fusion CRs
-	 * @param tableFile			The training table file
-	 * @param labelFile			Training labels, one of {-1, 1} for each column
-	 * @param allExamples		The example list
-	 * @param allLabels			The list of training labels
+	 * @param fusionRecognizerID	The name of the fusion recognizer
+	 * @param specificationFile		Specifying the input CRs and the fusion CRs
+	 * @param tableFile				The training table file
+	 * @param labelFile				Training labels, one of {-1, 1} for each column
+	 * @param allExamples			The example list
+	 * @param allLabels				The list of training labels
 	 */
-	private static void produceTrainingExamples(File specificationFile,
+	private static void produceTrainingExamples(
+			String fusionRecognizerID,
+			File specificationFile,
 			File tableFile, 
 			char columnSeparator,
 			File labelFile,
@@ -255,7 +260,7 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 				table, 
 				table.extractRowSample());
 		
-		ClassifierFusionCR fusionCR = (ClassifierFusionCR)compositeCR.detach("fusion");
+		ClassifierFusionCR fusionCR = (ClassifierFusionCR)compositeCR.detach(fusionRecognizerID);
 		
 		List<ColumnConceptCandidate> candidates = new ArrayList<ColumnConceptCandidate>();
 		compositeCR.computeScoredCandidates(candidates);
@@ -343,7 +348,7 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 		final int FILE_ARGUMENT_GROUP_SIZE = 3;
 		final int MINIMAL_ARG_COUNT = 1 + FILE_ARGUMENT_GROUP_SIZE;
 		
-		int argCount = args.length - 1;
+		int argCount = args.length;
 		if (argCount < MINIMAL_ARG_COUNT) {
 			throw new RuntimeException("Not enough parameters");			
 		}
@@ -366,7 +371,7 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 			List<File> tableFiles,
 			List<Character> columnSeparators, 
 			List<File> labelFiles) {
-		final int TRAINING_FILES_START_POSITION = 2;
+		final int TRAINING_FILES_START_POSITION = 1;
 		
 		int argIndex = TRAINING_FILES_START_POSITION;
 		while (argIndex < args.length) {

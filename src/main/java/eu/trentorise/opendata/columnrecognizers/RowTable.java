@@ -299,5 +299,9 @@ public class RowTable implements Table {
 		}
 		return columnFeatures;
 	}
+
+	public List<String> getHeaders() {
+		throw new RuntimeException("getHeaders not yet implemented for RowTable");
+	}
 	
 }

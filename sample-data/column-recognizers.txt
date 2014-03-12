@@ -37,9 +37,12 @@ frazione_set			5001	VALUE_SET		frazione.txt
 # Restaurant
 it_restaurant_tfidf		2001 	TF_IDF			it_restaurant_tfidf.txt
 
+# Get concept IDs from column headers
+header					0		HEADER
+
 # Combine the evidence by summing and thresholding
 sum_threshold			0		SUM_THRESHOLD	0.1
 
 # Retain the one best candidate for each column
-one_best				0		ONE_BEST		
+#one_best				0		ONE_BEST		
 

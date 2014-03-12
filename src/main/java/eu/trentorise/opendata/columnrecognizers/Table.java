@@ -7,6 +7,13 @@ import java.util.List;
  *
  */
 public interface Table {
+	/** 
+	 * Returns the headers of the table.
+	 * 
+	 * @return	The headers
+	 */
+	public List<String> getHeaders();
+	
 	/**
 	 * Returns the number of columns in the table.
 	 * 

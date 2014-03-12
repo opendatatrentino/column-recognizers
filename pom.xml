@@ -9,7 +9,7 @@
 
 	<groupId>eu.trentorise.opendata</groupId>
 	<artifactId>column-recognizers</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>ODT Column Recognizers</name>
@@ -27,10 +27,36 @@
 			<name>project</name>
 			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
 		</repository> 
+        <repository>
+            <id>sweb-internal</id>
+            <layout>default</layout>
+            <name>Archiva Managed Internal Repository</name>
+            <url>https://sweb.science.unitn.it/archiva/repository/internal</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>sweb-snapshots</id>
+            <name>Archiva Managed Snapshot Repository</name>
+            <url>https://sweb.science.unitn.it/archiva/repository/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+        </repository>
 
 	</repositories>
 
 	<properties>
+        <sweb.nlp.version>2.5.0-SNAPSHOT</sweb.nlp.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
@@ -176,6 +202,11 @@
 
 
 	<dependencies>
+        <dependency>
+            <groupId>it.unitn.disi.sweb</groupId>
+            <artifactId>sweb-nlp</artifactId>
+            <version>${sweb.nlp.version}</version>
+        </dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -187,7 +218,12 @@
 			<artifactId>maven-compiler-plugin</artifactId>
 			<version>2.1</version>
 		</dependency>
-            <!-- 		 <dependency>
+        <dependency>
+               <groupId>it.unitn.disi.sweb</groupId>
+               <artifactId>sweb-webapi-nlp-client</artifactId>
+               <version>3.0.0-SNAPSHOT</version>
+       </dependency>
+           <!-- 		 <dependency>
 			<groupId>eu.trentorise.opendata</groupId>
 			<artifactId>api</artifactId>
 			<version>1.0-SNAPSHOT</version>

@@ -68,7 +68,7 @@ public class ColumnTable implements Table {
 	 * 
 	 * @return	The headers
 	 */
-	List<String> getHeaders() {
+	public List<String> getHeaders() {
 		return headers;
 	}
 	

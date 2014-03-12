@@ -1,14 +1,55 @@
 package eu.trentorise.opendata.columnrecognizers;
+import it.unitn.disi.sweb.core.common.utils.ContextLoader;
+import it.unitn.disi.sweb.core.kb.IKnowledgeBaseService;
+import it.unitn.disi.sweb.core.kb.model.KnowledgeBase;
+import it.unitn.disi.sweb.core.kb.model.vocabularies.Vocabulary;
+import it.unitn.disi.sweb.core.nlp.INLPPipeline;
+import it.unitn.disi.sweb.core.nlp.components.chunkers.Chunker;
+import it.unitn.disi.sweb.core.nlp.components.chunkers.IChunker;
+import it.unitn.disi.sweb.core.nlp.model.NLMeaning;
+import it.unitn.disi.sweb.core.nlp.model.NLText;
+import it.unitn.disi.sweb.core.nlp.parameters.NLPParameters;
+import it.unitn.disi.sweb.core.nlp.pipelines.ODHPipeline;
+
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import it.unitn.disi.sweb.webapi.client.IProtocolClient;
+import it.unitn.disi.sweb.webapi.client.ProtocolFactory;
+import it.unitn.disi.sweb.webapi.client.nlp.PipelineClient;
+import it.unitn.disi.sweb.webapi.model.ComponentDescription;
+import it.unitn.disi.sweb.webapi.model.PipelineDescription;
+import it.unitn.disi.sweb.webapi.model.NLPInput;
+//import it.unitn.disi.sweb.webapi.model.*;
+
+
+
+@Component
+@Scope("singleton")
 public class ColumnRecognizerPrototype {
+    @Autowired
+    @Qualifier("ODHPipeline")
+    private INLPPipeline<NLPParameters> headerPipeline;
+    
+    @Autowired
+    @Qualifier("Chunker")
+    private IChunker<NLPParameters> chunker;
+
+//    @Autowired
+//    @Qualifier("ColumnRecognizerPrototype")
+//    private static ColumnRecognizerPrototype app;
+	
 	private final static String DIVIDER = "________________________________________________________________";
 	private final static String LONG_DIVIDER = DIVIDER + DIVIDER + DIVIDER;
 	private final static String INVERSE_FREQUENCIES_PATH = "inverse-frequencies.txt";
@@ -28,6 +69,11 @@ public class ColumnRecognizerPrototype {
 //		app.testTFIDF();
 //		app.testClassifierFeatures();
 //		app.testFusionClassifier();
+//        ContextLoader cl = new ContextLoader();
+//        IChunker<NLPParameters> chunker = cl.getApplicationContext().getBean(Chunker.class);
+//        ColumnRecognizerPrototype app = cl.getApplicationContext().getBean(ColumnRecognizerPrototype.class);
+//		app.testNLPPipeline();
+//		app.testWebAPI();
 	}
 
 	private void runRecognizers() {
@@ -40,6 +86,9 @@ public class ColumnRecognizerPrototype {
 		// Load CSV file
 		File csvFile = new File(CSV_PATH); 
 		RowTable rowTable = RowTable.loadFromCSV(csvFile, COLUMN_SEPARATOR);
+		String headerRow = rowTable.getRowIterator().next();
+		List<String> headers = new ArrayList<String>(Arrays.asList(
+					CSVProcessor.splitRecord(headerRow, COLUMN_SEPARATOR)));
 		rowTable.removeHeaders(NUMBER_OF_HEADER_ROWS);
 				
 //		ColumnTable columnTable = new ColumnTable(null, rowTable);		
@@ -47,7 +96,7 @@ public class ColumnRecognizerPrototype {
 		
 		List<List<String>> columnData = getColumnsAsLists(rowTable);
 		List<ColumnConceptCandidate> scoredCandidates 
-			= ColumnRecognizer.computeScoredCandidates(null, columnData);
+			= ColumnRecognizer.computeScoredCandidates(headers, columnData);
 		
 		// Print scored candidates
 		Iterator<ColumnConceptCandidate> it = scoredCandidates.iterator();
@@ -306,6 +355,80 @@ public class ColumnRecognizerPrototype {
 				idSimilarity));
 
 		return restaurantVector;
+	}
+	
+	private void testNLPPipeline() {
+		
+		ContextLoader cl = new ContextLoader();
+		boolean contains = cl.getApplicationContext().containsBean("ODHPipeline");
+		Object object = cl.getApplicationContext().getBean("ODHPipeline");
+//		ODHPipeline<NLPParameters> headerPipeline = (ODHPipeline<NLPParameters>)cl.getApplicationContext().getBean("ODHPipeline");
+//		ODHPipeline<NLPParameters> headerPipeline = cl.getApplicationContext().getBean(ODHPipeline.class);
+		INLPPipeline<NLPParameters> headerPipeline = cl.getApplicationContext().getBean("ODHPipeline", INLPPipeline.class);
+		NLPParameters parameters = cl.getApplicationContext().getBean(NLPParameters.class);
+		IKnowledgeBaseService kbService = cl.getApplicationContext().getBean(IKnowledgeBaseService.class);
+		KnowledgeBase kb = kbService.readKnowledgeBase("uk");
+		
+		List<Vocabulary> vocabularies = kb.getVocabularies();
+//		int vocabularyCount = vocabularies.size();
+		
+		final String CSV_PATH = "Elenco_osterie_tipiche_civici.1386925759.csv";
+		final char COLUMN_SEPARATOR = ';';
+
+		RowTable table = RowTable.loadFromCSV(new File(CSV_PATH), COLUMN_SEPARATOR);
+		String headerRow = table.getRowIterator().next();
+//		List<String> headers = new ArrayList<String>(Arrays.asList(
+//					CSVProcessor.splitRecord(headerRow, COLUMN_SEPARATOR)));
+		List<String> headers = new ArrayList<String>();
+		headers.add("dog");
+		
+		System.out.println(headers);
+		
+		List<ColumnConceptCandidate> candidates = new ArrayList<ColumnConceptCandidate>();
+		int columnNumber = 1;
+		Iterator<String> itHeader = headers.iterator();
+		while (itHeader.hasNext()) {
+			String header = itHeader.next();
+			NLText nlText = headerPipeline.runPipeline(header, kb, parameters);
+			Set<NLMeaning> meanings = NLPUtils.extractMeanings(nlText);
+			candidates.addAll(NLPUtils.meaningsToCandidates(columnNumber, "", meanings));
+			columnNumber++;
+		}
+
+		System.out.println(candidates.toString());
+	}
+	
+	private void testWebAPI() {
+
+
+        IProtocolClient api = ProtocolFactory.getHttpClient(Locale.ENGLISH,
+"ui.disi.unitn.it", 8092);
+//        IProtocolClient api = ProtocolFactory.getHttpClient(Locale.ENGLISH,
+//"opendata.disi.unitn.it", 8080);
+		        PipelineClient pipelineClient = new PipelineClient(api);
+
+		        List<String> text = new ArrayList<String>();
+		        text.add("indirizzo");
+		        text.add("comune");
+		        text.add("descIt");
+
+		        // Run a pipeline
+		        //Map<String, String> params = new HashMap<String, String>();
+
+		        NLPInput input = new NLPInput();
+		        input.setText(text);
+		        //input.setNlpParameters(params);
+
+		        NLText[] result = pipelineClient.run("KeywordTextPipeline", input, 1l);
+				List<ColumnConceptCandidate> candidates = new ArrayList<ColumnConceptCandidate>();
+				int columnNumber = 1;
+		        for (NLText nlText : result) {
+		            System.out.println(nlText.toString());
+					Set<NLMeaning> meanings = NLPUtils.extractMeanings(nlText);
+					candidates.addAll(NLPUtils.meaningsToCandidates(columnNumber, "", meanings));
+					columnNumber++;
+		        }		
+				System.out.println(candidates.toString());
 	}
 /*
  * Superseded by unit test
