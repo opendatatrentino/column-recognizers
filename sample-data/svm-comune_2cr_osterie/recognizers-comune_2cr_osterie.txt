@@ -1,0 +1,8 @@
+# Town (comune)
+comune_set				4001	VALUE_SET		comune.txt
+
+# Frazione
+frazione_set			5001	VALUE_SET		frazione.txt
+
+# Fusion
+comune_2cr_osterie		4001	SVM				svm-comune_2cr_osterie/svm-model-comune_2cr_osterie; comune_set, frazione_set

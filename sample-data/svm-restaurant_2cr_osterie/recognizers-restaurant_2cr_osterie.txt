@@ -1,0 +1,15 @@
+# This is a column recognizer specification file used to train the SVM fusion 
+# recognizer for restaurant names.
+#
+# It specifies the component recognizers as well as the fusion recognizer 
+# itself. 
+# 
+
+# Restaurant
+it_restaurant_regex		2001	REGEX			((trattoria)|(ristorante)|(hosteria)|(ost[ae]ria)|(pizzeria)) [a-z]+
+
+# Restaurant
+it_restaurant_tfidf		2001 	TF_IDF			it_restaurant_tfidf.txt
+
+# Fusion recognizer
+restaurant_2cr_osterie		2001	SVM			svm-restaurant_2cr_osterie/svm-model-restaurant_2cr_osterie; it_restaurant_tfidf, it_restaurant_regex

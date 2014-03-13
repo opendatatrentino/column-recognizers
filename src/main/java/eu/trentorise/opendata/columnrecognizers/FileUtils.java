@@ -37,19 +37,56 @@ public class FileUtils {
 	private static File columnRecognizersRoot = null;
 	
 	/**
+	 * The data folder
+	 */
+	private static File dataFolder = null;
+	
+	/**
+	 * The folder with the SVM-Light executables
+	 */
+	private static File svmExecutablesFolder = null;
+
+	/**
+	 * Sets the folder with the SVM-Light executables. Use this if you want
+	 * to put the folder in a location different from the default.
+	 * 
+	 * @param svmExecutablesFolder The folder with the SVM-Light executables
+	 */
+	public static void setSVMExecutablesFolder(File svmExecutablesFolder) {
+		FileUtils.svmExecutablesFolder = svmExecutablesFolder;
+	}
+
+	/**
+	 * Sets the folder containing column recognizer data, configuration, and
+	 * model files. Use this if you want to put the folder in a location 
+	 * different from the default. 
+	 * 
+	 * @param dataFolder	the data folder
+	 */
+	public static void setDataFolder(File dataFolder) {
+		FileUtils.dataFolder = dataFolder;
+	}
+
+	/**
 	 * Gets the folder that holds ML models and other data
 	 * 
 	 * @return	The folder
 	 */
 	public static File getDataFolder() {
-		return new File(getRoot(), DATA_FOLDER_NAME);
+		if (dataFolder == null) {
+			dataFolder = new File(getRoot(), DATA_FOLDER_NAME);
+		}
+		return dataFolder;
 	}
 	
 	/**
 	 * Gets the folder with the SVM-Light executables
 	 */
 	public static File getSVMExecutablesFolder() {
-		return new File(getRoot(), SVM_EXECUTABLES_FOLDER_NAME);
+		if (svmExecutablesFolder == null) {
+			svmExecutablesFolder = new File(getRoot(), SVM_EXECUTABLES_FOLDER_NAME);
+		}
+		return svmExecutablesFolder;
 	}
 
 	/**

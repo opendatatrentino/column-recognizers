@@ -4,4 +4,4 @@
 it_restaurant_tfidf		2001 	TF_IDF			it_restaurant_tfidf.txt
 
 # Minimal fusion using just restaurant similarity and the uniqueness column feature
-two_features_osterie	2001	SVM				svm-two_features_osterie/svm-model-two_features_osterie; it_restaurant_tfidf
+restaurant_1cr_osterie		2001	SVM			svm-restaurant_1cr_osterie/svm-model-restaurant_1cr_osterie; it_restaurant_tfidf

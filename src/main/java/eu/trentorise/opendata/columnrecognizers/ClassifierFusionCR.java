@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * The ClassifierFusionCR uses the SVM classifier to fuse the inputs of other
@@ -29,7 +30,7 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 	/**
 	 * The IDs of the recognizers that provide the candidates to be fused
 	 */
-	List<String> inputRecognizers = null;
+	Set<String> inputRecognizers = null;
 	
 	/**
 	 * Constructs the ClassifierFusionCR.
@@ -44,7 +45,7 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 			long conceptID, 
 			Table table,
 			File modelFile, 
-			List<String> inputRecognizers) {
+			Set<String> inputRecognizers) {
 		super(id, conceptID);
 		columnCount = table.getColumnCount();
 		List<List<Double>> columnFeatures = table.getColumnFeatures(); 
@@ -60,31 +61,20 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 		List<Map<String, Double>> supportingCandidates = makeNewCandidateMapList();
 		List<Map<String, Double>> competingCandidates = makeNewCandidateMapList();
 		
-		// TODO use candidatesToMapLists
-		ListIterator<ColumnConceptCandidate> itCandidate = candidates.listIterator();
-		while (itCandidate.hasNext()) {
-			ColumnConceptCandidate candidate = itCandidate.next();
-			boolean isSupporting = getConceptID() == candidate.getConceptID();
-			int columnNumber = candidate.getColumnNumber();
-			String originator = candidate.getOriginator();
-			double score = candidate.getScore();
-			
-			if (isSupporting) {
-				supportingCandidates.get(columnNumber - 1).put(originator, score);
-			} else {
-				Map<String, Double> map = competingCandidates.get(columnNumber - 1);
-				double currentScore = map.get(originator);
-				if (candidate.getScore() > currentScore) {
-					map.put(originator, candidate.getScore());
-				}
-			}
-			
-			updateCandidates(itCandidate, candidate);
-		}
+		candidatesToMapLists(candidates, supportingCandidates, competingCandidates);
 		
 		List<Double> predictions 
 			= classifier.classifyColumns(supportingCandidates, competingCandidates);
 		createCandidatesFromPredictions(predictions, candidates);
+	}
+	
+	/**
+	 * Consumes a supporting candidate only if comes from one of the input recognizers.
+	 */
+	@Override
+	protected boolean consumeCandidate(ColumnConceptCandidate candidate) {
+		return super.consumeCandidate(candidate) 
+				&& inputRecognizers.contains(candidate.getOriginator());
 	}
 
 	/**
@@ -155,27 +145,33 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 	/**
 	 * Trains the classifier on the contents of tables + label files 
 	 * + classifier output.
-	 * 
+	 * <p>
 	 * Argument format:
-	 * 
-	 * 	<fusion-recognizer-id> <cr-specification-file.txt> <table.csv> 
-	 *  <column-separator-char> <label-file.txt> ...
-	 * 
+	 * <p>
+	 * 	<fusion-recognizer-id> <table.csv> <column-separator-char> 
+	 *  <label-file.txt> ...
+	 * <p>
 	 * The specification file specifies the input recognizers as well as the 
 	 * fusion recognizer. Each label file provides labels for each of the 
 	 * columns in the corresponding table (1 for positive examples, -1 for 
 	 * negative ones).
-	 * 
-	 * By convention, files are grouped in directories like this:
-	 * 
+	 * <p>
+	 * Files are grouped in directories like this:
+	 * <p>
 	 *   svm-<cr_name>
-	 *     recognizers.txt
+	 *     recognizers-<cr_name>.txt
 	 *     svm-labels-<cr_name>-<table_name>.txt
 	 *     svm-examples-<cr_name>.txt
 	 *     svm-model-<cr_name>
-	 *     
-	 * The training examples file contains labeled examples for all the tables. 
-	 * The output SVM model is named svm-model-<cr_name>. 
+	 * <p>
+	 * The recognizer specification file and the label file(s) must be 
+	 * supplied by the user. The name and location of the recognizer 
+	 * specification file must conform to the convention above. 
+	 * See the restaurant_2cr_osterie folder for an example.
+	 * <p>
+	 * The training examples file is generated as part of the training process
+	 * and contains labeled examples for all the tables. The output SVM model 
+	 * is named svm-model-<cr_name>. 
 	 * 
 	 * @param args	The arguments
 	 */
@@ -222,11 +218,51 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 					allExamples, 
 					allLabels);
 		}
+		
+		// An experiment: See if results change if we create multiple copies of positive examples
+		// This works, but is not necessary: we can use the cost factor (-j) option instead when
+		// training.
+//		multiplyPositives(allExamples, allLabels);
+
 
 		File exampleFile = FileUtils.getSVMTrainingFile(fusionRecognizerID);
 		File modelFile = FileUtils.getSVMModelFile(fusionRecognizerID);
 		FusionClassifier.writeExamples(exampleFile, allExamples, allLabels);
 		FusionClassifier.train(exampleFile, modelFile);
+	}
+
+	/**
+	 * Adds copies of positive examples in order to give them more weight.
+	 * 
+	 * @param allExamples			The example list
+	 * @param allLabels				The list of training labels
+	 */
+	private static void multiplyPositives(List<List<Double>> allExamples,
+			List<Double> allLabels) {
+		final double POSITIVE_LABEL = 1;
+		final int NUMBER_OF_COPIES = 4;
+		
+		List<List<Double>> extraExamples = new ArrayList<List<Double>>();
+		List<Double> extraLabels = new ArrayList<Double>();
+		
+		Iterator<List<Double>> itExample = allExamples.iterator();
+		Iterator<Double> itLabel = allLabels.iterator();
+		
+		while (itLabel.hasNext()) {
+			Double label = itLabel.next();
+			List<Double> example = itExample.next();
+			
+			if (label == POSITIVE_LABEL) {
+				for (int i = 0; i < NUMBER_OF_COPIES; i++) {
+					extraExamples.add(example);
+					extraLabels.add(label);
+				}
+			}
+		}
+		
+		allExamples.addAll(extraExamples);
+		allLabels.addAll(extraLabels);
+		
 	}
 
 	/**
@@ -250,10 +286,13 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 			File labelFile,
 			List<List<Double>> allExamples, 
 			List<Double> allLabels) {
+		final int NUMBER_OF_HEADER_ROWS = 1;
+
 		assert(allExamples != null);
 		assert(allLabels != null);
 		
 		RowTable table = RowTable.loadFromCSV(tableFile, columnSeparator);
+		table.removeHeaders(NUMBER_OF_HEADER_ROWS);
 		CompositeColumnRecognizer compositeCR = new CompositeColumnRecognizer("composite");
 		ColumnRecognizerFactory.attachRecognizers(compositeCR, 
 				specificationFile, 
@@ -320,18 +359,25 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 		ListIterator<ColumnConceptCandidate> itCandidate = candidates.listIterator();
 		while (itCandidate.hasNext()) {
 			ColumnConceptCandidate candidate = itCandidate.next();
-			boolean isSupporting = getConceptID() == candidate.getConceptID();
-			int columnNumber = candidate.getColumnNumber();
 			String originator = candidate.getOriginator();
-			double score = candidate.getScore();
-			
-			if (isSupporting) {
-				supportingCandidates.get(columnNumber - 1).put(originator, score);
-			} else {
-				Map<String, Double> map = competingCandidates.get(columnNumber - 1);
-				double currentScore = map.get(originator);
-				if (candidate.getScore() > currentScore) {
-					map.put(originator, candidate.getScore());
+			if (inputRecognizers.contains(originator)) {
+				boolean isSupporting = getConceptID() == candidate.getConceptID();
+				int columnNumber = candidate.getColumnNumber();
+				double score = candidate.getScore();
+				
+				if (isSupporting) {
+					supportingCandidates.get(columnNumber - 1).put(originator, score);
+				} else {
+					Map<String, Double> map = competingCandidates.get(columnNumber - 1);
+//					if (map.containsKey(originator)) {
+					double currentScore = map.get(originator);
+					if (candidate.getScore() > currentScore) {
+						map.put(originator, candidate.getScore());
+					}
+//					} 
+	//				else {
+	//					map.put(originator, candidate.getScore());
+	//				}
 				}
 			}
 			

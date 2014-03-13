@@ -1,7 +1,8 @@
 package eu.trentorise.opendata.columnrecognizers;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * ColumnRecognizerFactory builds ColumnRecognizer objects.
@@ -61,15 +62,17 @@ public class ColumnRecognizerFactory {
 			recognizer = new OneBestFusionCR(recognizerID);
 		} else if (type.equals("SVM")) {
 			// TODO check for syntax error
-			String[] fields = model.split(";");
+			String[] fields = model.split("\\s*;\\s*");
 			String modelPath = fields[0];
-			String[] inputRecognizerIDs = fields[1].split(",");
+			String[] inputRecognizerIDs = fields[1].split("\\s*,\\s*");
+			Set<String> inputRecognizers = new HashSet<String>();
+			inputRecognizers.addAll(Arrays.asList(inputRecognizerIDs));
 			recognizer = new ClassifierFusionCR(
 					recognizerID, 
 					conceptID, 
 					table, 
 					new File(modelPath), 
-					Arrays.asList(inputRecognizerIDs));
+					inputRecognizers);
 		} else if (type.equals("HEADER")) {
 			recognizer = new HeaderBasedCR(recognizerID, table);
 		}

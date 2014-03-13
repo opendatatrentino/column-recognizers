@@ -9,8 +9,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +47,7 @@ public class ClassifierFusionTest {
 	public void testFusionClassifier() {
 		
 		List<List<Double>> columnFeatures = new ArrayList<List<Double>>();
-		List<String> inputRecognizers = new ArrayList<String>();
+		Set<String> inputRecognizers = new HashSet<String>();
 		List<Map<String, Double>> supportingCandidates = new ArrayList<Map<String, Double>>();
 		List<Map<String, Double>> competingCandidates = new ArrayList<Map<String, Double>>();
 		
@@ -126,9 +128,8 @@ public class ClassifierFusionTest {
 		rowTable.removeHeaders(NUMBER_OF_HEADER_ROWS);
 		
 		// Create recognizer
-		List<String> inputRecognizers = new ArrayList<String>();
+		Set<String> inputRecognizers = new HashSet<String>();
 		inputRecognizers.add(INPUT_RECOGNIZER_ID);
-//		File modelFile = new File(FileUtils.getDataFolder(), MODEL_FILE_NAME);
 		File modelFile = FileUtils.getSVMModelFile(TWO_FEATURES_OSTERIE_CR_NAME);
 		ClassifierFusionCR fusionCR 
 			= new ClassifierFusionCR(FUSION_CR_ID, 

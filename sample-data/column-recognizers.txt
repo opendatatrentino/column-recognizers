@@ -8,7 +8,7 @@
 # 	<recognizer_name> <conceptID> <type> <model_string>
 #
 # where <type> can be any of:
-# 	REGEX, VALUE_SET, TF_IDF, SVN
+# 	REGEX, VALUE_SET, TF_IDF, SVM, HEADER, SUM_THRESHOLD, ONE_BEST
 #
 # The model string differs depending on the type of recognizer:
 #
@@ -16,13 +16,16 @@
 # REGEX 		regular expression
 # VALUE_SET 	model file path
 # TF_IDF 		model file path
-# SVN			model file path; component recognizer name, ...
+# SVM			model file path; component recognizer name, ...
+# SUM_THRESHOLD	threshold value
+# HEADER		none
+# ONE_BEST		none
 #
 # Each specification line produces a column recognizer. 
 #
 
 # Restaurant
-it_restaurant_regex		2001	REGEX			((trattoria)|(ristorante)|(ost[ae]ria)|(pizzeria)) [a-z]+
+it_restaurant_regex		2001	REGEX			((trattoria)|(ristorante)|(hosteria)|(ost[ae]ria)|(pizzeria)) [a-z]+
 
 # Street address
 # The regex assumes that the column separator is in [;,] or the null character
@@ -37,12 +40,19 @@ frazione_set			5001	VALUE_SET		frazione.txt
 # Restaurant
 it_restaurant_tfidf		2001 	TF_IDF			it_restaurant_tfidf.txt
 
+# Restaurant
+#two_features_osterie	2001	SVM				svm-two_features_osterie/svm-model-two_features_osterie; it_restaurant_tfidf
+restaurant_2cr_osterie	2001	SVM				svm-restaurant_2cr_osterie/svm-model-restaurant_2cr_osterie; it_restaurant_tfidf, it_restaurant_regex
+
+# Comune
+comune_2cr_osterie		4001	SVM				svm-comune_2cr_osterie/svm-model-comune_2cr_osterie; comune_set, frazione_set
+
 # Get concept IDs from column headers
 header					0		HEADER
 
 # Combine the evidence by summing and thresholding
-sum_threshold			0		SUM_THRESHOLD	0.1
+#sum_threshold			0		SUM_THRESHOLD	0.1
 
 # Retain the one best candidate for each column
-#one_best				0		ONE_BEST		
+one_best				0		ONE_BEST		
 

@@ -63,4 +63,25 @@ public abstract class ColumnRecognizer {
 		
 		return candidates;
 	}
+
+	/**
+	 * Sets the folder with the SVM-Light executables. Use this if you want
+	 * to put the folder in a location different from the default.
+	 * 
+	 * @param svmExecutablesFolder The folder with the SVM-Light executables
+	 */
+	public static void setSVMExecutablesFolder(File svmExecutablesFolder) {
+		FileUtils.setSVMExecutablesFolder(svmExecutablesFolder);
+	}
+
+	/**
+	 * Sets the folder containing column recognizer data, configuration, and
+	 * model files. Use this if you want to put the folder in a location 
+	 * different from the default. 
+	 * 
+	 * @param dataFolder	The data folder
+	 */
+	public static void setDataFolder(File dataFolder) {
+		FileUtils.setDataFolder(dataFolder);
+	}
 }

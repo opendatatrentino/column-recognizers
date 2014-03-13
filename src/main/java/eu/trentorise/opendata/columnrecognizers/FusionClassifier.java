@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * The FusionClassifier provides an interface to the SVM classifier used for 
@@ -47,7 +48,7 @@ public class FusionClassifier {
 	/**
 	 * The recognizers the output of which we will fuse
 	 */
-	List<String> inputRecognizers = null;
+	Set<String> inputRecognizers = null;
 	
 	/**
 	 * Constructs the classifier.
@@ -60,7 +61,7 @@ public class FusionClassifier {
 	public FusionClassifier(File modelFile, 
 			List<List<Double>> columnFeatures,
 			long conceptID,
-			List<String> inputRecognizers) {
+			Set<String> inputRecognizers) {
 		super();
 		this.modelFile = modelFile;
 		this.columnFeatures = columnFeatures;
@@ -93,8 +94,29 @@ public class FusionClassifier {
 	 * @param modelFile			The output file
 	 */
 	public static void train(File exampleFile, File modelFile) {
+		/* 
+		 * Learning options for SVM-Light
+		 * 
+	        -j float    - Cost: cost-factor, by which training errors on
+	        positive examples outweight errors on negative
+	        examples (default 1) (see [Morik et al., 1999])
+	        
+	     *
+	     * We weight positive example heavily because we
+	     * 	- typically have few of them
+	     *  - prefer false positives to false negatives
+	     *  
+	     * In one experiment (identifying the restaurant name column in the 
+	     * Osterie table), a cost factor of 5 was just enough to generate a 
+	     * score close to one for the restaurant name column.
+        */
+		final String COST_FACTOR_OPTION = "-j";
+		final String COST_FACTOR = "10";
+        
 		String[] commandArray = {
 				FileUtils.getSVMLearner().getAbsolutePath(),
+				COST_FACTOR_OPTION,
+				COST_FACTOR,
 				exampleFile.getAbsolutePath(),
 				modelFile.getAbsolutePath()
 		};

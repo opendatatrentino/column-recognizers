@@ -101,15 +101,17 @@ public class NLPUtils {
 	 * @return			The NLTexts
 	 */
 	public static List<NLText> processTexts(List<String> texts) {
-        IProtocolClient api = ProtocolFactory.getHttpClient(Locale.ENGLISH, "ui.disi.unitn.it", 8092);
-//        IProtocolClient api = ProtocolFactory.getHttpClient(Locale.ENGLISH,
-//"opendata.disi.unitn.it", 8080);
+//        IProtocolClient api = ProtocolFactory.getHttpClient(Locale.ENGLISH, "ui.disi.unitn.it", 8092);
+        IProtocolClient api = ProtocolFactory.getHttpClient(Locale.ENGLISH,
+"opendata.disi.unitn.it", 8080);
 		PipelineClient pipelineClient = new PipelineClient(api);
         NLPInput input = new NLPInput();
         input.setText(texts);
         //input.setNlpParameters(params);
 
-        NLText[] result = pipelineClient.run("KeywordTextPipeline", input, 1l);
+//      NLText[] result = pipelineClient.run("KeywordTextPipeline", input, 1l);
+        NLText[] result = pipelineClient.run("ODHPipeline", input, 1l);
+         
 		return Arrays.asList(result);
 	}
 
