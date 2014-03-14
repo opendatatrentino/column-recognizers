@@ -1,5 +1,9 @@
 package eu.trentorise.opendata.columnrecognizers;
+import it.unitn.disi.sweb.core.kb.model.types.attributes.DataType;
+
 import java.util.List;
+
+import eu.trentorise.opendata.nlprise.DataTypeGuess.Datatype;
 
 
 /**
@@ -12,16 +16,26 @@ import java.util.List;
  */
 public abstract class ColumnContentBasedCR extends ContentBasedCR {
 	/**
-	 * Creates the column recognizer. 
-	 * Deprecated - use the constructor that takes a Table instead.
-	 * 
-	 * @param id			A unique name for the recognizer instance
-	 * @param conceptID		The knowledge base concept ID
-	 * @param table			The table (or a not-too-small sample of rows)
+	 * True if the recognizer only works on columns of a specific type
 	 */
-	public ColumnContentBasedCR(String id, long conceptID, RowTable table) {
-		super(id, conceptID, table);
-	}
+	private boolean doRequireType = false;
+	
+	/**
+	 * The data type that the recognizer works on
+	 */
+	private Datatype requiredType = null;
+	
+//	/**
+//	 * Creates the column recognizer. 
+//	 * Deprecated - use the constructor that takes a Table instead.
+//	 * 
+//	 * @param id			A unique name for the recognizer instance
+//	 * @param conceptID		The knowledge base concept ID
+//	 * @param table			The table (or a not-too-small sample of rows)
+//	 */
+//	public ColumnContentBasedCR(String id, long conceptID, RowTable table) {
+//		super(id, conceptID, table);
+//	}
 
 	/**
 	 * Creates the column recognizer. 
@@ -30,8 +44,29 @@ public abstract class ColumnContentBasedCR extends ContentBasedCR {
 	 * @param conceptID		The knowledge base concept ID
 	 * @param table			The table 
 	 */
-	public ColumnContentBasedCR(String id, long conceptID, Table table) {
+	public ColumnContentBasedCR(
+			String id, 
+			long conceptID, 
+			Table table) {
 		super(id, conceptID, table);
+	}
+	
+	/**
+	 * Constructs the recognizer with a required type.
+	 * 
+	 * @param id			A unique name for the recognizer instance
+	 * @param conceptID		The knowledge base concept ID
+	 * @param requiredType	The type that the recognizer operates on
+	 * @param table			The table 
+	 */
+	public ColumnContentBasedCR(
+			String id, 
+			long conceptID, 
+			Datatype requiredType,
+			Table table) {
+		super(id, conceptID, table);
+		doRequireType = true;
+		this.requiredType = requiredType;
 	}
 
 	/* (non-Javadoc)
@@ -42,16 +77,36 @@ public abstract class ColumnContentBasedCR extends ContentBasedCR {
 		List<Column> columns = getTable().extractColumns();
 		int columnNumber = 1;
 		for (Column column : columns) {
+			if (doesRequireType() && getRequiredType() == column.getType()) {
 			double score = computeColumnScore(column);
-			if (score > 0) {
-				ColumnConceptCandidate newCandidate 
-					= new ColumnConceptCandidate(columnNumber, getConceptID(), score, getId());
-				candidates.add(newCandidate);
+				if (score > 0) {
+					ColumnConceptCandidate newCandidate 
+						= new ColumnConceptCandidate(columnNumber, getConceptID(), score, getId());
+					candidates.add(newCandidate);
+				}
 			}
 			columnNumber++;
 		}
 	}
 	
+	/**
+	 * Returns the required type.
+	 * 
+	 * @return		The required type
+	 */
+	public Object getRequiredType() {
+		return requiredType;
+	}
+
+	/**
+	 * Returns true if the recognizer only operates on a given type.
+	 * 
+	 * @return 		True if it has a required type
+	 */
+	public boolean doesRequireType() {
+		return doRequireType;
+	}
+
 	/**
 	 * Implementations of this abstract method computes a score given the data
 	 * for a column.

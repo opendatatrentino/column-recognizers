@@ -2,6 +2,8 @@ package eu.trentorise.opendata.columnrecognizers;
 import java.util.Iterator;
 import java.util.Set;
 
+import eu.trentorise.opendata.nlprise.DataTypeGuess.Datatype;
+
 
 /**
  * The ValueSetCR scores column-concept candidates by the extent to which the
@@ -27,7 +29,7 @@ public class ValueSetCR extends ColumnContentBasedCR {
 	 * @param data			The table
 	 */
 	public ValueSetCR(String id, long conceptID, Set<String> valueSet, Table table) {
-		super(id, conceptID, table);
+		super(id, conceptID, Datatype.STRING, table);
 		this.valueSet = valueSet;
 	}
 

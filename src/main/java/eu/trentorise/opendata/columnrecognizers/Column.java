@@ -2,12 +2,15 @@ package eu.trentorise.opendata.columnrecognizers;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import eu.trentorise.opendata.nlprise.DataTypeGuess.Datatype;
 
 /**
  * The Column class represents a table column.
@@ -17,6 +20,11 @@ import java.util.Set;
  */
 public class Column {
 	/**
+	 * The number of possible column data types
+	 */
+	private static final int NUMBER_OF_DATATYPES = Datatype.values().length;
+	
+	/**
 	 * The fields in the column
 	 */
 	private List<String> fields = null;
@@ -25,6 +33,11 @@ public class Column {
 	 * The column features are cached for efficiency
 	 */
 	private List<Double> cachedFeatures = null;
+	
+	/**
+	 * The datatype of the column
+	 */
+	private Datatype columnType = null;
 	
 	/**
 	 * Constructs the column.
@@ -225,8 +238,46 @@ public class Column {
 		if (cachedFeatures == null) {
 			cachedFeatures = new ArrayList<Double>();
 			cachedFeatures.add(getUniqueness());
+			cachedFeatures.addAll(computeTypeFeatures());
 		}
 		return cachedFeatures;
+	}
+
+	/**
+	 * Calculates the column features indicating type. The number of features
+	 * equals the number of types. All features are zero except the one 
+	 * corresponding to the column type; this has the value one.
+	 * 
+	 * @return		The feature list
+	 */
+	private List<Double> computeTypeFeatures() {
+		List<Double> typeFeatures = new ArrayList<Double>();
+		Datatype columnType = getType();
+		for (Datatype type : Datatype.values()) {
+			typeFeatures.add(columnType == type ? 1. : 0.);
+		}
+		return typeFeatures;
+	}
+
+	/**
+	 * Gets the number of possible column data types.
+	 * 
+	 * @return		The number of types
+	 */
+	public int getNumberOfDatatypes() {
+		return NUMBER_OF_DATATYPES;
+	}
+
+	/**
+	 * Get the datatype of this column
+	 * 
+	 * @return
+	 */
+	public Datatype getType() {
+		if (columnType == null) {
+			columnType = TypeDetector.guessType(this);
+		}
+		return columnType;
 	}
 
 

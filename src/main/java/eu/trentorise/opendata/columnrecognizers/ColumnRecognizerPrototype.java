@@ -26,6 +26,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import eu.trentorise.opendata.nlprise.DataTypeGuess;
+import eu.trentorise.opendata.nlprise.DataTypeGuess.Datatype;
+import eu.trentorise.opendata.nlprise.typecheckers.EmptyTypeChecker;
+import eu.trentorise.opendata.nlprise.typecheckers.JsonTypeChecker;
+import eu.trentorise.opendata.nlprise.typecheckers.ListTypeChecker;
+import eu.trentorise.opendata.nlprise.typecheckers.XmlTypeChecker;
+
 import it.unitn.disi.sweb.webapi.client.IProtocolClient;
 import it.unitn.disi.sweb.webapi.client.ProtocolFactory;
 import it.unitn.disi.sweb.webapi.client.nlp.PipelineClient;
@@ -75,6 +82,7 @@ public class ColumnRecognizerPrototype {
 //        ColumnRecognizerPrototype app = cl.getApplicationContext().getBean(ColumnRecognizerPrototype.class);
 //		app.testNLPPipeline();
 //		app.testWebAPI();
+//		app.testTypeDectection();
 	}
 
 	private void runRecognizers() {
@@ -431,6 +439,34 @@ public class ColumnRecognizerPrototype {
 		        }		
 				System.out.println(candidates.toString());
 	}
+	
+	private void testTypeDectection() {
+		String dateString = "14/03/14";
+		String intString = "12";
+		String floatString = "3.14";
+		String stringString = "hello world";
+		String xmlString = "<hello>world</hello>";
+//		Datatype type = DataTypeGuess.guessType(dateString);
+		Datatype intType = DataTypeGuess.guessType(intString);
+		Datatype floatType = DataTypeGuess.guessType(floatString);
+//		Datatype dateType = DataTypeGuess.guessType(dateString);	
+		boolean isXML = XmlTypeChecker.check(stringString);
+		boolean isJson = JsonTypeChecker.check(stringString);
+		boolean isEmpty = EmptyTypeChecker.check(stringString);
+		boolean isList = ListTypeChecker.check(stringString);
+		System.out.println("Type of " + intString + " is " + intType);
+		System.out.println("Type of " + floatString + " is " + floatType);
+		System.out.println("Is XML: " + isXML);
+		System.out.println("Is JSON: " + isJson);
+		System.out.println("Is empty: " + isEmpty);
+		System.out.println("Is list: " + isList);
+		
+//		Datatype stringType = DataTypeGuess.guessType(stringString);
+//		Datatype xmlType = DataTypeGuess.guessType(xmlString);
+//		System.out.println("Type of " + stringString + " is " + stringType);
+//		System.out.println("Type of " + xmlString + " is " + xmlType);
+	}
+
 /*
  * Superseded by unit test
  * 
