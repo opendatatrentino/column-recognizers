@@ -1,4 +1,7 @@
 package eu.trentorise.opendata.columnrecognizers;
+
+import eu.trentorise.opendata.nlprise.DataTypeGuess.Datatype;
+
 /**
  * @author Simon
  *
@@ -27,11 +30,15 @@ public class TFIDFColumnRecognizer extends ColumnContentBasedCR {
 			long conceptID, 
 			TFIDFVector prototypeVector, 
 			InverseColumnFrequency inverseFrequencies,
-//			RowTable table) {
 			Table table) {
 		super(id, conceptID, table);
 		this.prototypeVector = prototypeVector;
 		this.inverseFrequencies = inverseFrequencies;
+	}
+
+	@Override
+	protected boolean isApplicableType(Datatype type) {
+		return type == Datatype.STRING || type == Datatype.NL_STRING;
 	}
 
 	/* (non-Javadoc)

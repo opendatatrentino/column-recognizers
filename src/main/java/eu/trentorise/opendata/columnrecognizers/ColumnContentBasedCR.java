@@ -16,28 +16,6 @@ import eu.trentorise.opendata.nlprise.DataTypeGuess.Datatype;
  */
 public abstract class ColumnContentBasedCR extends ContentBasedCR {
 	/**
-	 * True if the recognizer only works on columns of a specific type
-	 */
-	private boolean doRequireType = false;
-	
-	/**
-	 * The data type that the recognizer works on
-	 */
-	private Datatype requiredType = null;
-	
-//	/**
-//	 * Creates the column recognizer. 
-//	 * Deprecated - use the constructor that takes a Table instead.
-//	 * 
-//	 * @param id			A unique name for the recognizer instance
-//	 * @param conceptID		The knowledge base concept ID
-//	 * @param table			The table (or a not-too-small sample of rows)
-//	 */
-//	public ColumnContentBasedCR(String id, long conceptID, RowTable table) {
-//		super(id, conceptID, table);
-//	}
-
-	/**
 	 * Creates the column recognizer. 
 	 * 
 	 * @param id			A unique name for the recognizer instance
@@ -51,24 +29,6 @@ public abstract class ColumnContentBasedCR extends ContentBasedCR {
 		super(id, conceptID, table);
 	}
 	
-	/**
-	 * Constructs the recognizer with a required type.
-	 * 
-	 * @param id			A unique name for the recognizer instance
-	 * @param conceptID		The knowledge base concept ID
-	 * @param requiredType	The type that the recognizer operates on
-	 * @param table			The table 
-	 */
-	public ColumnContentBasedCR(
-			String id, 
-			long conceptID, 
-			Datatype requiredType,
-			Table table) {
-		super(id, conceptID, table);
-		doRequireType = true;
-		this.requiredType = requiredType;
-	}
-
 	/* (non-Javadoc)
 	 * @see ColumnRecognizer#computeScoredCandidates()
 	 */
@@ -77,7 +37,7 @@ public abstract class ColumnContentBasedCR extends ContentBasedCR {
 		List<Column> columns = getTable().extractColumns();
 		int columnNumber = 1;
 		for (Column column : columns) {
-			if (doesRequireType() && getRequiredType() == column.getType()) {
+			if (isApplicableType(column.getType())) {
 			double score = computeColumnScore(column);
 				if (score > 0) {
 					ColumnConceptCandidate newCandidate 
@@ -90,21 +50,14 @@ public abstract class ColumnContentBasedCR extends ContentBasedCR {
 	}
 	
 	/**
-	 * Returns the required type.
+	 * Returns true if the recognizer can operate on this column data type. 
+	 * True by default. Override if your recognizer doesn't apply to all types.
 	 * 
-	 * @return		The required type
+	 * @param type		The column data type
+	 * @return			True if the type applies
 	 */
-	public Object getRequiredType() {
-		return requiredType;
-	}
-
-	/**
-	 * Returns true if the recognizer only operates on a given type.
-	 * 
-	 * @return 		True if it has a required type
-	 */
-	public boolean doesRequireType() {
-		return doRequireType;
+	protected boolean isApplicableType(Datatype type) {
+		return true;
 	}
 
 	/**

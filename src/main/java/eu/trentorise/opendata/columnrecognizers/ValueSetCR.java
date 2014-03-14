@@ -29,8 +29,13 @@ public class ValueSetCR extends ColumnContentBasedCR {
 	 * @param data			The table
 	 */
 	public ValueSetCR(String id, long conceptID, Set<String> valueSet, Table table) {
-		super(id, conceptID, Datatype.STRING, table);
+		super(id, conceptID, table);
 		this.valueSet = valueSet;
+	}
+	
+	@Override
+	protected boolean isApplicableType(Datatype type) {
+		return type == Datatype.STRING;
 	}
 
 	/**
