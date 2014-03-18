@@ -42,10 +42,10 @@ it_restaurant_tfidf		2001 	TF_IDF			it_restaurant_tfidf.txt
 
 # Restaurant
 #two_features_osterie	2001	SVM				svm-two_features_osterie/svm-model-two_features_osterie; it_restaurant_tfidf
-restaurant_2cr_osterie	2001	SVM				svm-restaurant_2cr_osterie/svm-model-restaurant_2cr_osterie; it_restaurant_tfidf, it_restaurant_regex
+#restaurant_2cr_osterie	2001	SVM				svm-restaurant_2cr_osterie/svm-model-restaurant_2cr_osterie; it_restaurant_tfidf, it_restaurant_regex
 
 # Comune
-comune_2cr_osterie		4001	SVM				svm-comune_2cr_osterie/svm-model-comune_2cr_osterie; comune_set, frazione_set
+#comune_2cr_osterie		4001	SVM				svm-comune_2cr_osterie/svm-model-comune_2cr_osterie; comune_set, frazione_set
 
 # Get concept IDs from column headers
 header					0		HEADER

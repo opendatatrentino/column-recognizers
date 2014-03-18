@@ -3,6 +3,7 @@ package eu.trentorise.opendata.columnrecognizers;
 import it.unitn.disi.sweb.core.nlp.model.NLMeaning;
 import it.unitn.disi.sweb.core.nlp.model.NLMultiWord;
 import it.unitn.disi.sweb.core.nlp.model.NLNamedEntity;
+import it.unitn.disi.sweb.core.nlp.model.NLSenseMeaning;
 import it.unitn.disi.sweb.core.nlp.model.NLSentence;
 import it.unitn.disi.sweb.core.nlp.model.NLText;
 import it.unitn.disi.sweb.core.nlp.model.NLToken;
@@ -84,12 +85,16 @@ public class NLPUtils {
 		Iterator<NLMeaning> itMeanings = meanings.iterator();
 		while (itMeanings.hasNext()) {
 			NLMeaning meaning = itMeanings.next();
-			ColumnConceptCandidate candidate = new ColumnConceptCandidate(
-					columnNumber, 
-					meaning.getObjectID(), 
-					meaning.getProbability(), 
-					originator);
-			candidates.add(candidate);
+			if (meaning instanceof NLSenseMeaning) {
+				ColumnConceptCandidate candidate = new ColumnConceptCandidate(
+						columnNumber,
+//						meaning.getObjectID(),
+						((NLSenseMeaning)meaning).getGlobalId(),
+//						((NLSenseMeaning)meaning).getConceptId(),
+						meaning.getProbability(), 
+						originator);
+				candidates.add(candidate);
+			}
 		}
 		return candidates;
 	}
