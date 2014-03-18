@@ -73,8 +73,13 @@ public class ColumnRecognizerFactory {
 					table, 
 					new File(modelPath), 
 					inputRecognizers);
-		} else if (type.equals("HEADER")) {
-			recognizer = new HeaderBasedCR(recognizerID, table);
+		} else if (type.equals("HEADER_NLP")) {
+			recognizer = new HeaderNLPCR(recognizerID, table);
+		} else if (type.equals("HEADER_REGEX")) {
+			String[] fields = model.split("\\s*;\\s*");
+			double score = Double.parseDouble(fields[0]);
+			String regEx = fields[1];
+			recognizer = new HeaderRegExCR(recognizerID, conceptID, regEx, score, table);
 		}
 		// TODO signal error for unknown type
 		

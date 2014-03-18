@@ -47,8 +47,14 @@ it_restaurant_tfidf		2001 	TF_IDF			it_restaurant_tfidf.txt
 # Comune
 #comune_2cr_osterie		4001	SVM				svm-comune_2cr_osterie/svm-model-comune_2cr_osterie; comune_set, frazione_set
 
+# Orari
+orari_24h_regex			80505	REGEX			([01]?[0-9]|2[0-3])[.:][0-5][0-9]\s*-\s*([01]?[0-9]|2[0-3])[.:][0-5][0-9]
+
+# Class - headers like TypeEn or TypeIt represent the 'class' concept
+class_header_regex		43482	HEADER_REGEX	1; [Tt]ype[A-Z]([A-Z]|[a-z])
+
 # Get concept IDs from column headers
-header					0		HEADER
+header_nlp					0	HEADER_NLP
 
 # Combine the evidence by summing and thresholding
 #sum_threshold			0		SUM_THRESHOLD	0.1

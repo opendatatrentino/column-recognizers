@@ -27,6 +27,9 @@ import java.util.regex.Pattern;
  */
 
 public class RegExColumnRecognizer extends RowBasedCR {
+	/**
+	 * The regular expression pattern
+	 */
 	private Pattern pattern = null; 
 	
 	/**
