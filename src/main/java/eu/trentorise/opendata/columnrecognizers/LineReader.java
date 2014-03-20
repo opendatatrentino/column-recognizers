@@ -1,9 +1,11 @@
 package eu.trentorise.opendata.columnrecognizers;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 
 
@@ -78,7 +80,10 @@ public abstract class LineReader {
 	 
 		try {
 	 
-			br = new BufferedReader(new FileReader(file));
+//			br = new BufferedReader(new FileReader(file));
+			br = new BufferedReader(
+					new InputStreamReader(
+			                  new FileInputStream(file), "UTF8"));
 			while ((line = br.readLine()) != null) {
 				if (trimLines) {
 					line = line.trim();

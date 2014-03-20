@@ -15,6 +15,11 @@ public abstract class RowBasedCR extends ContentBasedCR {
 	 */
 	private RowTable rowTable = null;
 	
+	/*
+	 * True if comparisons are case sensitive
+	 */
+	private boolean isCaseSensitive = false;
+	
 	/**
 	 * Creates the column recognizer.
 	 * 
@@ -45,6 +50,7 @@ public abstract class RowBasedCR extends ContentBasedCR {
 		countColumnMatches(columnMatches);
 		computeCandidates(columnMatches, candidates);
 	}
+	
 	/**
 	 * For each column, counts the number of rows in which the regular 
 	 * expression matches and the match covers the column.
@@ -55,7 +61,9 @@ public abstract class RowBasedCR extends ContentBasedCR {
 		Iterator<String> it = getRowTable().getRowIterator();
 		while (it.hasNext()) {
 			String row = it.next();
-			row = normalize(row);
+			if (!caseSensitive()) {
+				row = normalize(row);			
+			}
 			Set<Integer> columnSet = computeColumnMatches(row);
 			
 			Iterator<Integer> itColumnNumber = columnSet.iterator();
@@ -63,6 +71,22 @@ public abstract class RowBasedCR extends ContentBasedCR {
 				columnMatches[itColumnNumber.next() - 1]++;				
 			}
 		}
+	}
+
+	/**
+	 * Returns true if comparison / matching is done case sensitively
+	 * 
+	 * @return		True if case sensitive
+	 */
+	public boolean caseSensitive() {
+		return isCaseSensitive;
+	}
+	
+	/**
+	 * Sets the recognizer to be case sensitive.
+	 */
+	public void beCaseSensitive() {
+		isCaseSensitive = true;
 	}
 
 	/**

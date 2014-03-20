@@ -89,7 +89,8 @@ public class ColumnRecognizerPrototype {
 //		final double CONFIDENCE_THRESHOLD = 0.1;
 //		final String CSV_PATH = "Elenco_osterie_tipiche_civici.1386925759.csv";
 //		final String CSV_PATH = "Punti-di-ristoro-ViviFiemme.csv";
-		final String CSV_PATH = "Impianti-Risalita-Vivifiemme.csv";
+		final String CSV_PATH = "prodotti_protetti.csv";
+//		final String CSV_PATH = "Impianti-Risalita-Vivifiemme.csv";
 //		final char COLUMN_SEPARATOR = ';';
 		final char COLUMN_SEPARATOR = ',';
 	

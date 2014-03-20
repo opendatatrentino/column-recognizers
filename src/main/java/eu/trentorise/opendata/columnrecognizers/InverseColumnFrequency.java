@@ -66,8 +66,13 @@ public class InverseColumnFrequency {
 	 */
 	public static void main(String[] args) {
 		final String OUTPUT_FILE_NAME = "inverse-frequencies.txt";
+		final int NUMBER_OF_HEADER_ROWS = 1;
+		final int MIN_ARG_COUNT = 2;
 		
-		// TODO some argument checking
+		if (args.length < MIN_ARG_COUNT) {
+			System.out.println("Usage: InverseColumnFrequency <csv_file_path> <column_separator> ...");
+			System.exit(1);
+		}
 		
 		// The number of columns each word occurs in
 		Map<String, Integer> frequencies = new HashMap<String, Integer>();
@@ -80,6 +85,7 @@ public class InverseColumnFrequency {
 			char columnSeparator = args[i + 1].charAt(0);
 			File csvFile = new File(pathName);
 			RowTable table = RowTable.loadFromCSV(csvFile, columnSeparator);
+			table.removeHeaders(NUMBER_OF_HEADER_ROWS);
 			List<Column> columns = table.extractColumns();
 			for (Column column: columns) {
 				InverseColumnFrequency.addColumn(column, frequencies);

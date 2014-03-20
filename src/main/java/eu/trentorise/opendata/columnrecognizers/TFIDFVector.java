@@ -51,7 +51,44 @@ public class TFIDFVector {
 		super();
 		this.vector = vector;
 	}
-
+	
+	/**
+	 * Builds a prototype model file. 
+	 * <p>
+	 * The arguments:
+	 * 	<csv_file> <column_separator> <column_number> <inverse_freq_file> <output_file>
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		final int MIN_ARG_COUNT = 5;
+		final int NUMBER_OF_HEADER_ROWS = 1;
+		
+		if (args.length < MIN_ARG_COUNT) {
+			System.out.println("Usage: TFIDFVector <csv_file_path> <column_separator> " +
+					"<column_number> <inverse_freq_file> <output_file>");
+			System.exit(1);
+		}
+		
+		int argIndex = 0;
+		
+		String csvPath = args[argIndex++];
+		char columnSeparator = args[argIndex++].charAt(0);
+		int columnNumber = Integer.parseInt(args[argIndex++]);
+		String inverseFreqPath = args[argIndex++];
+		String outputPath = args[argIndex++];
+		
+		RowTable table = RowTable.loadFromCSV(new File(csvPath), columnSeparator);
+		table.removeHeaders(NUMBER_OF_HEADER_ROWS);
+		Column column = table.extractColumn(columnNumber);
+		File inverseFrequencyFile = new File(inverseFreqPath);
+		InverseColumnFrequency inverseFrequencies 
+			= InverseColumnFrequency.readFromFile(inverseFrequencyFile);
+		TFIDFVector prototype = new TFIDFVector(column, inverseFrequencies);
+		File outputFile = new File(outputPath);
+		prototype.writeToFile(outputFile);
+	}
+	
 	/**
 	 * Saves the vector to a file.
 	 * 

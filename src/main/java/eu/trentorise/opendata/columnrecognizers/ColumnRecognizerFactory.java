@@ -38,6 +38,11 @@ public class ColumnRecognizerFactory {
 		
 		if (type.equals("REGEX")) {
 			recognizer = new RegExColumnRecognizer(recognizerID, conceptID, model, sample);
+		} else if (type.equals("REGEX_S")) {
+			RegExColumnRecognizer regExRecognizer 
+				= new RegExColumnRecognizer(recognizerID, conceptID, model, sample);
+			regExRecognizer.beCaseSensitive();
+			recognizer = regExRecognizer;
 		} else if (type.equals("VALUE_SET")) {
 			File modelFile = new File(model);
 			recognizer = new ValueSetCR(recognizerID, 

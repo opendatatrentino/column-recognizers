@@ -8,12 +8,14 @@
 # 	<recognizer_name> <conceptID> <type> <model_string>
 #
 # where <type> can be any of:
-# 	REGEX, VALUE_SET, TF_IDF, SVM, HEADER, SUM_THRESHOLD, ONE_BEST
+# 	REGEX, REGEX_S, HEADER_REGEX, VALUE_SET, TF_IDF, SVM, HEADER, SUM_THRESHOLD, ONE_BEST
 #
 # The model string differs depending on the type of recognizer:
 #
 # Type			Model string
 # REGEX 		regular expression
+# REGEX_S 		regular expression (case sensitive)
+# HEADER_REGEX	regular expression (case sensitive)
 # VALUE_SET 	model file path
 # TF_IDF 		model file path
 # SVM			model file path; component recognizer name, ...
@@ -38,7 +40,7 @@ comune_set				4001	VALUE_SET		comune.txt
 frazione_set			5001	VALUE_SET		frazione.txt
 
 # Restaurant
-it_restaurant_tfidf		2001 	TF_IDF			it_restaurant_tfidf.txt
+#it_restaurant_tfidf		2001 	TF_IDF			it_restaurant_tfidf.txt
 
 # Restaurant
 #two_features_osterie	2001	SVM				svm-two_features_osterie/svm-model-two_features_osterie; it_restaurant_tfidf
@@ -52,6 +54,24 @@ orari_24h_regex			80505	REGEX			([01]?[0-9]|2[0-3])[.:][0-5][0-9]\s*-\s*([01]?[0
 
 # Class - headers like TypeEn or TypeIt represent the 'class' concept
 class_header_regex		43482	HEADER_REGEX	1; [Tt]ype[A-Z]([A-Z]|[a-z])
+
+# Italian protected product name
+#prodotto_protetto_regex	6001	REGEX			((DOP)|(IGP)|(STP))\s+[A-Z]
+#prodotto_protetto_regex	6001	REGEX			DOP\s+[A-Z][A-Za-z ]*
+prodotto_protetto_regex	2		REGEX_S			((DOP)|(IGP)|(STG)) [A-Z][A-Za-z ]*
+
+# Product characteristics
+prod_charatteristiche_tfidf		8001 	TF_IDF	prodotti_caratteristiche_tfidf.txt
+
+# Product 'riferimenti'
+prod_riferimenti_tfidf		9001 	TF_IDF	prodotti_riferimenti_tfidf.txt
+
+# Product production zone
+prod_zona_tfidf				10001 	TF_IDF	prodotti_zona_tfidf.txt
+
+
+# URL
+url_regex				7001	REGEX_S			http\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(/\S*)?
 
 # Get concept IDs from column headers
 header_nlp					0	HEADER_NLP
