@@ -98,6 +98,22 @@ public class NLPUtils {
 		}
 		return candidates;
 	}
+	
+	/**
+	 * Finds the NLMeaning with the highest probability.
+	 */
+	public static NLMeaning findMaxProbabilityMeaning(Set<NLMeaning> meanings) {
+		NLMeaning maxMeaning = null;
+		Iterator<NLMeaning> itMeanings = meanings.iterator();
+		while (itMeanings.hasNext()) {
+			NLMeaning meaning = itMeanings.next();
+			if (maxMeaning == null || maxMeaning.getProbability() < meaning.getProbability()) {
+				maxMeaning = meaning;
+			} 
+		}
+			
+		return maxMeaning;
+	}
 
 	/**
 	 * Runs the NLP pipeline on a list of texts.

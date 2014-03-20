@@ -1,7 +1,12 @@
 package eu.trentorise.opendata.columnrecognizers;
+import it.unitn.disi.sweb.core.nlp.model.NLMeaning;
+import it.unitn.disi.sweb.core.nlp.model.NLSenseMeaning;
+import it.unitn.disi.sweb.core.nlp.model.NLText;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -62,6 +67,26 @@ public abstract class ColumnRecognizer {
 		compositeCR.computeScoredCandidates(candidates);
 		
 		return candidates;
+	}
+	
+	/**
+	 * Run the NLP pipeline on a text and extract the highest-probability concept ID
+	 * 
+	 * @param text		The text
+	 * @return			
+	 */
+	public static long conceptFromText(String text) {
+		long conceptID = -1;
+		List<String> texts = new ArrayList<String>();
+		texts.add(text);
+		List<NLText> nlTexts = NLPUtils.processTexts(texts);
+		Set<NLMeaning> meanings = NLPUtils.extractMeanings(nlTexts.get(0));
+		NLMeaning maxMeaning = NLPUtils.findMaxProbabilityMeaning(meanings);
+		if (maxMeaning instanceof NLSenseMeaning) {
+			conceptID = ((NLSenseMeaning)maxMeaning).getGlobalId();
+		}
+		
+		return conceptID;
 	}
 
 	/**
