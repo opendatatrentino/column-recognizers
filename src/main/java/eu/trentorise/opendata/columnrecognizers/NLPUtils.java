@@ -14,6 +14,7 @@ import it.unitn.disi.sweb.webapi.model.NLPInput;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -21,11 +22,19 @@ import java.util.Locale;
 import java.util.Set;
 
 /**
+ * NLPUtils encapsulates the NLP functionality in the column recognizer library.
+ * 
  * @author Simon
  *
  */
 public class NLPUtils {
 
+	/**
+	 * Extracts all the NLMeanings from the first sentence of an NLText.
+	 * 
+	 * @param nlText	The NLText
+	 * @return			The set of NLMeanings
+	 */
 	static Set<NLMeaning> extractMeanings(NLText nlText) {
 		Set<NLMeaning> meanings = new HashSet<NLMeaning>();
 		
@@ -38,22 +47,26 @@ public class NLPUtils {
 		// Add meanings of all tokens that are not part of multiwords or NEs
 		Iterator<NLToken> itToken = tokens.iterator();
 		while (itToken.hasNext()) {
-			NLToken token = itToken.next();
-			boolean hasMultiWords = token.getMultiWords() != null && !token.getMultiWords().isEmpty();
-			boolean hasNamedEntities = token.getNamedEntities() != null && !token.getNamedEntities().isEmpty();
-			if (!hasMultiWords && !hasNamedEntities) {
-				if (token.getMeanings() == null || token.getMeanings().isEmpty()) {
-					// This is a hack to handle a bug where the set of meanings
-					// is empty but there is a selected meaning.
-					
-					NLMeaning selectedMeaning = token.getSelectedMeaning();
-					if (selectedMeaning != null) {
-						meanings.add(selectedMeaning);
-					}
-				} else {
-					meanings.addAll(token.getMeanings());
-				}
+			Set<NLMeaning> tokenMeanings = getTokenMeanings(itToken.next());
+			if (tokenMeanings != null) {
+				meanings.addAll(tokenMeanings);			
 			}
+//			NLToken token = itToken.next();
+//			boolean hasMultiWords = token.getMultiWords() != null && !token.getMultiWords().isEmpty();
+//			boolean hasNamedEntities = token.getNamedEntities() != null && !token.getNamedEntities().isEmpty();
+//			if (!hasMultiWords && !hasNamedEntities) {
+//				if (token.getMeanings() == null || token.getMeanings().isEmpty()) {
+//					// This is a hack to handle a bug where the set of meanings
+//					// is empty but there is a selected meaning.
+//					
+//					NLMeaning selectedMeaning = token.getSelectedMeaning();
+//					if (selectedMeaning != null) {
+//						meanings.add(selectedMeaning);
+//					}
+//				} else {
+//					meanings.addAll(token.getMeanings());
+//				}
+//			}
 		}
 		
 		// Add meanings of multiwords and NEs
@@ -68,6 +81,33 @@ public class NLPUtils {
 			meanings.addAll(namedEntity.getMeanings());
 		}
 		
+		return meanings;
+	}
+
+	/**
+	 * Getw the meanings of a token that is not part of a multiword or named entity.
+	 * 
+	 * @param token	The token
+	 * @return		The meanings
+	 */
+	private static Set<NLMeaning> getTokenMeanings(NLToken token) {
+		Set<NLMeaning> meanings = null;
+		boolean hasMultiWords = token.getMultiWords() != null && !token.getMultiWords().isEmpty();
+		boolean hasNamedEntities = token.getNamedEntities() != null && !token.getNamedEntities().isEmpty();
+		if (!hasMultiWords && !hasNamedEntities) {
+			if (token.getMeanings() == null || token.getMeanings().isEmpty()) {
+				// This is a hack to handle a bug where the set of meanings
+				// is empty but there is a selected meaning.
+				
+				NLMeaning selectedMeaning = token.getSelectedMeaning();
+				if (selectedMeaning != null) {
+					meanings = new HashSet<NLMeaning>();
+					meanings.add(selectedMeaning);
+				}
+			} else {
+				meanings = token.getMeanings();
+			}
+		}
 		return meanings;
 	}
 
@@ -88,9 +128,7 @@ public class NLPUtils {
 			if (meaning instanceof NLSenseMeaning) {
 				ColumnConceptCandidate candidate = new ColumnConceptCandidate(
 						columnNumber,
-//						meaning.getObjectID(),
 						((NLSenseMeaning)meaning).getGlobalId(),
-//						((NLSenseMeaning)meaning).getConceptId(),
 						meaning.getProbability(), 
 						originator);
 				candidates.add(candidate);

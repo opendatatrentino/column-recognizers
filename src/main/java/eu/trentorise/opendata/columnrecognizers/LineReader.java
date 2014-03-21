@@ -79,21 +79,11 @@ public abstract class LineReader {
 		String line = "";
 	 
 		try {
-	 
-//			br = new BufferedReader(new FileReader(file));
 			br = new BufferedReader(
 					new InputStreamReader(
 			                  new FileInputStream(file), "UTF8"));
 			while ((line = br.readLine()) != null) {
-				if (trimLines) {
-					line = line.trim();
-				}
-				boolean ignoreLine 
-					= ignoreBlankLines && line.isEmpty() 
-					|| ignoreCommentLines && (line.charAt(0) == COMMENT_CHAR); 
-				if (!ignoreLine) {
-					processLine(line);
-				}
+				handleLine(line);
 			}
 	 
 		} catch (FileNotFoundException e) {
@@ -108,6 +98,18 @@ public abstract class LineReader {
 					e.printStackTrace();
 				}
 			}
+		}		
+	}
+	
+	private void handleLine(String line) {
+		if (trimLines) {
+			line = line.trim();
+		}
+		boolean ignoreLine 
+			= ignoreBlankLines && line.isEmpty() 
+			|| ignoreCommentLines && (line.charAt(0) == COMMENT_CHAR); 
+		if (!ignoreLine) {
+			processLine(line);
 		}		
 	}
 

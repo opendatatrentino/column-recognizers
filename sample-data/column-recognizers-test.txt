@@ -1,0 +1,42 @@
+# Test file for column recognizer configuration
+
+# Restaurant
+it_restaurant_regex		2001	REGEX			((trattoria)|(ristorante)|(hosteria)|(ost[ae]ria)|(pizzeria)) [a-z]+
+
+# Street address
+# The regex assumes that the column separator is in [;,] or the null character
+it_street_address_regex	3001	REGEX			((via)|(viale)|(piazza)|(piazzetta)) [ a-z]+\s*[;,\x00]?[0-9]+
+
+# Town (comune)
+comune_set				4001	VALUE_SET		comune.txt
+
+# Frazione
+frazione_set			5001	VALUE_SET		frazione.txt
+
+# Orari
+orari_24h_regex			80505	REGEX			([01]?[0-9]|2[0-3])[.:][0-5][0-9]\s*-\s*([01]?[0-9]|2[0-3])[.:][0-5][0-9]
+
+# Class - headers like TypeEn or TypeIt represent the 'class' concept
+#class_header_regex		43482	HEADER_REGEX	1; [Tt]ype[A-Z]([A-Z]|[a-z])
+
+# Italian protected product name
+prodotto_protetto_regex	2		REGEX_S			((DOP)|(IGP)|(STG)) [A-Z][A-Za-z ]*
+
+# Product characteristics
+prod_charatteristiche_tfidf		8001 	TF_IDF	prodotti_caratteristiche_tfidf.txt
+
+# Product 'riferimenti'
+prod_riferimenti_tfidf		9001 	TF_IDF	prodotti_riferimenti_tfidf.txt
+
+# Product production zone
+prod_zona_tfidf				10001 	TF_IDF	prodotti_zona_tfidf.txt
+
+# URL
+url_regex				7001	REGEX_S			http\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(/\S*)?
+
+# Get concept IDs from column headers
+#header_nlp					0	HEADER_NLP
+
+# Retain the one best candidate for each column
+one_best				0		ONE_BEST		
+

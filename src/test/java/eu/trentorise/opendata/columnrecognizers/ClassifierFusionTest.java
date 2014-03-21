@@ -165,6 +165,8 @@ public class ClassifierFusionTest {
 		// Verify the score of the fusion candidate
 		assertTrue(resultingCandidate.getScore() > 0.7);
 	}
+	
+	
 
 	
 }

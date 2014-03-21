@@ -78,8 +78,23 @@ public class CompositeColumnRecognizer extends ColumnRecognizer {
 		componentRecognizersByName.remove(component.getId());
 	}
 
-	public ColumnRecognizer get(String string) {
-		return componentRecognizersByName.get(string);
+	/** 
+	 * Gets the component recognizer with the given identifier.
+	 * 
+	 * @param componentID	The name of the component
+	 * @return				The component column recognizer
+	 */
+	public ColumnRecognizer get(String componentID) {
+		return componentRecognizersByName.get(componentID);
+	}
+
+	/**
+	 * Gets the number of component column recognizers.
+	 * 
+	 * @return	The number of recognizers
+	 */
+	public int getComponentCount() {
+		return componentRecognizers.size();
 	}
 
 }

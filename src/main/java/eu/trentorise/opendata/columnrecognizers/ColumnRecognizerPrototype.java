@@ -70,7 +70,7 @@ public class ColumnRecognizerPrototype {
 	 */
 	public static void main(String[] args) {
 		ColumnRecognizerPrototype app = new ColumnRecognizerPrototype();
-//		app.runRecognizers();
+		app.runRecognizers();
 //		app.testCSVProcessor();
 //		app.testWordFrequencies();
 //		app.readWordScores();
@@ -83,10 +83,10 @@ public class ColumnRecognizerPrototype {
 //		app.testNLPPipeline();
 //		app.testWebAPI();
 //		app.testTypeDectection();
-		app.textConceptFromText();
+//		app.testConceptFromText();
 	}
 
-	private void textConceptFromText() {
+	private void testConceptFromText() {
 		long conceptID = ColumnRecognizer.conceptFromText("impianti risalita");
 		System.out.println(conceptID);
 	}
