@@ -1,6 +1,4 @@
 package eu.trentorise.opendata.columnrecognizers;
-import it.unitn.disi.sweb.core.kb.model.types.attributes.DataType;
-
 import java.util.List;
 
 import eu.trentorise.opendata.nlprise.DataTypeGuess.Datatype;

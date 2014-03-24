@@ -14,7 +14,6 @@ import it.unitn.disi.sweb.webapi.model.NLPInput;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;

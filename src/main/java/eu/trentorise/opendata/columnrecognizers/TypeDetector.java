@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 import eu.trentorise.opendata.nlprise.DataTypeGuess.Datatype;
-import eu.trentorise.opendata.nlprise.typecheckers.DateTypeChecker;
 import eu.trentorise.opendata.nlprise.typecheckers.EmptyTypeChecker;
 import eu.trentorise.opendata.nlprise.typecheckers.FloatTypeChecker;
 import eu.trentorise.opendata.nlprise.typecheckers.IntTypeChecker;

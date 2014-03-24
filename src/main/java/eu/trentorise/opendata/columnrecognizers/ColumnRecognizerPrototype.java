@@ -4,17 +4,13 @@ import it.unitn.disi.sweb.core.kb.IKnowledgeBaseService;
 import it.unitn.disi.sweb.core.kb.model.KnowledgeBase;
 import it.unitn.disi.sweb.core.kb.model.vocabularies.Vocabulary;
 import it.unitn.disi.sweb.core.nlp.INLPPipeline;
-import it.unitn.disi.sweb.core.nlp.components.chunkers.Chunker;
 import it.unitn.disi.sweb.core.nlp.components.chunkers.IChunker;
 import it.unitn.disi.sweb.core.nlp.model.NLMeaning;
 import it.unitn.disi.sweb.core.nlp.model.NLText;
 import it.unitn.disi.sweb.core.nlp.parameters.NLPParameters;
-import it.unitn.disi.sweb.core.nlp.pipelines.ODHPipeline;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -36,8 +32,6 @@ import eu.trentorise.opendata.nlprise.typecheckers.XmlTypeChecker;
 import it.unitn.disi.sweb.webapi.client.IProtocolClient;
 import it.unitn.disi.sweb.webapi.client.ProtocolFactory;
 import it.unitn.disi.sweb.webapi.client.nlp.PipelineClient;
-import it.unitn.disi.sweb.webapi.model.ComponentDescription;
-import it.unitn.disi.sweb.webapi.model.PipelineDescription;
 import it.unitn.disi.sweb.webapi.model.NLPInput;
 //import it.unitn.disi.sweb.webapi.model.*;
 

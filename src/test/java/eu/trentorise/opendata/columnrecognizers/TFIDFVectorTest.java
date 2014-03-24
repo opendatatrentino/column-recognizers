@@ -8,7 +8,9 @@ import org.junit.Test;
 
 public class TFIDFVectorTest {
 	
-	
+	/**
+	 * Tests the reading and writing of vectors from files.
+	 */
 	@Test
 	public void test() {
 		final String VECTOR_PATH = "test_vector_tfidf.txt";
