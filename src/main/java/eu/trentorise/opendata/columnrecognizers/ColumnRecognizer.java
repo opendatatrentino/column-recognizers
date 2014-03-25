@@ -48,7 +48,8 @@ public abstract class ColumnRecognizer {
 	}
 	
 	/**
-	 * Static API method for computing column-concept candidates for a table.
+	 * Static API method for computing column-concept candidates for a table 
+	 * using the default specification file.
 	 * 
 	 * @param columnHeaders	The column headers
 	 * @param columnData	The column contents
@@ -57,13 +58,56 @@ public abstract class ColumnRecognizer {
 	public static List<ColumnConceptCandidate> computeScoredCandidates(
 		    List<String> columnHeaders,
 		    List<List<String>> columnData) {
-		final String SPECIFICATION_PATH = "column-recognizers.txt";
+		return computeScoredCandidates(
+				columnHeaders, 
+				columnData, 
+				FileUtils.getDefaultSpecificationFile());
+	}
+
+	/**
+	 * Static API method for computing column-concept candidates for a table.
+	 * 
+	 * @param columnHeaders		The column headers
+	 * @param columnData		The column contents
+	 * @param specificationFile	The specification file
+	 * @return					The column-concept candidates
+	 */
+	public static List<ColumnConceptCandidate> computeScoredCandidates(
+		    List<String> columnHeaders,
+		    List<List<String>> columnData,
+		    File specificationFile) {
+		return computeScoredCandidates(
+				columnHeaders, 
+				columnData,
+				specificationFile,
+				/* model directories: */ null);
+	}
+
+	/**
+	 * Static API method for computing column-concept candidates allowing the
+	 * caller to provide a set of directories for finding recognizer models.
+	 * 
+	 * @param columnHeaders		The column headers
+	 * @param columnData		The column contents
+	 * @param specificationFile	The specification file
+	 * @param modelDirectories	A list of directories containing model files
+	 * @return					The column-concept candidates
+	 */
+	public static List<ColumnConceptCandidate> computeScoredCandidates(
+		    List<String> columnHeaders,
+		    List<List<String>> columnData,
+			File specificationFile, 
+			List<File> modelDirectories) {
 		ColumnTable columnTable = ColumnTable.makeColumnTableFromStringLists(columnHeaders, columnData);
 		RowTable rowSample = columnTable.extractRowSample();
 		List<ColumnConceptCandidate> candidates = new ArrayList<ColumnConceptCandidate>();
 		CompositeColumnRecognizer compositeCR = new CompositeColumnRecognizer("composite");
-		File specificationFile = new File(SPECIFICATION_PATH);
-		ColumnRecognizerFactory.attachRecognizers(compositeCR, specificationFile, columnTable, rowSample);
+		ColumnRecognizerFactory.attachRecognizers(
+				compositeCR, 
+				specificationFile, 
+				modelDirectories,
+				columnTable, 
+				rowSample);
 		compositeCR.computeScoredCandidates(candidates);
 		
 		return candidates;
@@ -89,24 +133,24 @@ public abstract class ColumnRecognizer {
 		return conceptID;
 	}
 
-	/**
-	 * Sets the folder with the SVM-Light executables. Use this if you want
-	 * to put the folder in a location different from the default.
-	 * 
-	 * @param svmExecutablesFolder The folder with the SVM-Light executables
-	 */
-	public static void setSVMExecutablesFolder(File svmExecutablesFolder) {
-		FileUtils.setSVMExecutablesFolder(svmExecutablesFolder);
-	}
-
-	/**
-	 * Sets the folder containing column recognizer data, configuration, and
-	 * model files. Use this if you want to put the folder in a location 
-	 * different from the default. 
-	 * 
-	 * @param dataFolder	The data folder
-	 */
-	public static void setDataFolder(File dataFolder) {
-		FileUtils.setDataFolder(dataFolder);
-	}
+//	/**
+//	 * Sets the folder with the SVM-Light executables. Use this if you want
+//	 * to put the folder in a location different from the default.
+//	 * 
+//	 * @param svmExecutablesFolder The folder with the SVM-Light executables
+//	 */
+//	public static void setSVMExecutablesFolder(File svmExecutablesFolder) {
+//		FileUtils.setSVMExecutablesFolder(svmExecutablesFolder);
+//	}
+//
+//	/**
+//	 * Sets the folder containing column recognizer data, configuration, and
+//	 * model files. Use this if you want to put the folder in a location 
+//	 * different from the default. 
+//	 * 
+//	 * @param dataFolder	The data folder
+//	 */
+//	public static void setDataFolder(File dataFolder) {
+//		FileUtils.setDataFolder(dataFolder);
+//	}
 }

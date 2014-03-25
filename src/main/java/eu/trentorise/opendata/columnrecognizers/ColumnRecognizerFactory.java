@@ -2,6 +2,7 @@ package eu.trentorise.opendata.columnrecognizers;
 import java.io.File;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -23,6 +24,7 @@ public class ColumnRecognizerFactory {
 	 * @param conceptID		The knowledge base concept ID
 	 * @param type			The recognizer type (REGEX, VALUE_SET, ...)
 	 * @param model			The model data (a regex, a file name...)
+	 * @param modelDirectories 
 	 * @param table			The entire data table (or largest possible sample)
 	 * @param sample		A small sample of the data
 	 * @return				The new column recognizer
@@ -31,6 +33,7 @@ public class ColumnRecognizerFactory {
 			long conceptID, 
 			String type, 
 			String model,
+			List<File> modelDirectories, 
 			Table table,
 			RowTable sample) {
 		ColumnRecognizer recognizer = null;
@@ -40,9 +43,11 @@ public class ColumnRecognizerFactory {
 		} else if (type.equals("REGEX_S")) {
 			recognizer = makeRegExRecognizer(recognizerID, conceptID, model, sample, true);
 		} else if (type.equals("VALUE_SET")) {
-			recognizer = makeValueSetRecognizer(recognizerID, conceptID, model, table);
+			recognizer 
+				= makeValueSetRecognizer(recognizerID, conceptID, model, modelDirectories, table);
 		} else if (type.equals("TF_IDF")) {
-			recognizer = makeTFIDFRecognizer(recognizerID, conceptID, model, table);
+			recognizer 
+				= makeTFIDFRecognizer(recognizerID, conceptID, model, modelDirectories, table);
 		} else if (type.equals("SUM_THRESHOLD")) {
 			double threshold = Double.parseDouble(model);
 			recognizer = new SumThresholdFusionCR(recognizerID, threshold);
@@ -59,7 +64,7 @@ public class ColumnRecognizerFactory {
 					recognizerID, 
 					conceptID, 
 					table, 
-					new File(modelPath), 
+					FileUtils.getModelFile(modelPath, modelDirectories),
 					inputRecognizers);
 		} else if (type.equals("HEADER_NLP")) {
 			recognizer = new HeaderNLPCR(recognizerID, table);
@@ -77,18 +82,20 @@ public class ColumnRecognizerFactory {
 	/**
 	 * Constructs a ValueSetCR.
 	 * 
-	 * @param recognizerID 	The identifier of the recognizer instance
-	 * @param conceptID		The knowledge base concept ID
-	 * @param model			The model data (a regex, a file name...)
-	 * @param table			The entire data table (or largest possible sample)
-	 * @return				The recognizer
+	 * @param recognizerID 		The identifier of the recognizer instance
+	 * @param conceptID			The knowledge base concept ID
+	 * @param model				The model file path
+	 * @param modelDirectories	A list of model directories
+	 * @param table				The entire data table (or largest possible sample)
+	 * @return					The recognizer
 	 */
 	private static ColumnRecognizer makeValueSetRecognizer(
 			String recognizerID,
 			long conceptID, 
 			String model, 
+			List<File> modelDirectories, 
 			Table table) {
-		File modelFile = new File(model);
+		File modelFile = FileUtils.getModelFile(model, modelDirectories);
 		return new ValueSetCR(recognizerID, 
 				conceptID, 
 				RowTable.loadValueSet(modelFile), 
@@ -98,24 +105,26 @@ public class ColumnRecognizerFactory {
 	/**
 	 * Constructs a TFIDFColumnRecognizer.
 	 * 
-	 * @param recognizerID 	The identifier of the recognizer instance
-	 * @param conceptID		The knowledge base concept ID
-	 * @param model			The model data (a regex, a file name...)
-	 * @param table			The entire data table (or largest possible sample)
-	 * @return				The recognizer
+	 * @param recognizerID 		The identifier of the recognizer instance
+	 * @param conceptID			The knowledge base concept ID
+	 * @param model				The model file path
+	 * @param modelDirectories	A list of model directories
+	 * @param table				The entire data table (or largest possible sample)
+	 * @return					The recognizer
 	 */
 	private static ColumnRecognizer makeTFIDFRecognizer(
 			String recognizerID,
 			long conceptID, 
 			String model, 
+			List<File> modelDirectories, 
 			Table table) {
 		InverseColumnFrequency inverseFrequencies = null;
 		
 		if (inverseFrequencies == null) {
-			File idfFile = new File(INVERSE_FREQUENCIES_PATH);
+			File idfFile = FileUtils.getModelFile(INVERSE_FREQUENCIES_PATH, modelDirectories);
 			inverseFrequencies = InverseColumnFrequency.readFromFile(idfFile);
 		}
-		File modelFile = new File(model);
+		File modelFile = FileUtils.getModelFile(model, modelDirectories);
 		return new TFIDFColumnRecognizer(recognizerID,
 				conceptID, 
 				TFIDFVector.readFromFile(modelFile),
@@ -153,15 +162,22 @@ public class ColumnRecognizerFactory {
 	 * 
 	 * @param compositeCR		The composite CR that will hold the recognizers
 	 * @param specificationFile	The file that specifies the recognizers
+	 * @param modelDirectories 
 	 * @param table				The entire data table (or largest possible sample)
 	 * @param sample			A small sample of the data
 	 */
 	public static void attachRecognizers(CompositeColumnRecognizer compositeCR, 
 			File specificationFile,
+			List<File> modelDirectories, 
 			Table table,
 			RowTable sample) {
 		CRSpecificationReader reader 
-			= new CRSpecificationReader(specificationFile, compositeCR, table, sample);
+			= new CRSpecificationReader(
+					specificationFile, 
+					modelDirectories, 
+					compositeCR, 
+					table, 
+					sample);
 		reader.read();
 	}	
 

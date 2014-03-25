@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -72,6 +73,17 @@ public class RowTable implements Table {
 		}
 		clearCaches();
 	}
+	
+	/**
+	 * Removes the first row containing the headers from the table.
+	 * 
+	 */
+	public void removeHeaders() {
+		assert(!rows.isEmpty());
+		final int DEFAULT_NUMBER_OF_HEADER_ROWS = 1;
+		removeHeaders(DEFAULT_NUMBER_OF_HEADER_ROWS);
+	}
+
 	
 	/**
 	 * Clear caches after modifying the table
@@ -180,7 +192,7 @@ public class RowTable implements Table {
 		}
 		return columnNumber;
 	}
-	
+		
 	/* (non-Javadoc)
 	 * @see eu.trentorise.opendata.columnrecognizers.Table#extractColumn(int)
 	 */
@@ -301,7 +313,22 @@ public class RowTable implements Table {
 	}
 
 	public List<String> getHeaders() {
-		throw new RuntimeException("getHeaders not yet implemented for RowTable");
+		assert(!rows.isEmpty());
+		String headerRow = rows.get(0);
+		List<String> headers = new ArrayList<String>(Arrays.asList(
+					CSVProcessor.splitRecord(headerRow, columnSeparator)));
+		return headers;
+	}
+
+	/**
+	 * Removes headers (first row) of table and returns the headers.
+	 * 
+	 * @return	The headers
+	 */
+	public List<String> popHeaders() {
+		List<String> headers = getHeaders();
+		removeHeaders();
+		return headers;
 	}
 	
 }

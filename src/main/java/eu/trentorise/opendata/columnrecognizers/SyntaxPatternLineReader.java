@@ -1,5 +1,6 @@
 package eu.trentorise.opendata.columnrecognizers;
 import java.io.File;
+import java.io.InputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,6 +26,18 @@ public abstract class SyntaxPatternLineReader extends LineReader {
 	 */
 	public SyntaxPatternLineReader(File file, String syntaxPattern) {
 		super(file, /* ignoreCommentLines: */ true, /* ignoreBlankLines: true */ true,
+				/* trimLines: */ true);
+		this.syntaxPattern = Pattern.compile(syntaxPattern);
+	}
+
+	/**
+	 * Constructs the SyntaxPatternLineReader.
+	 * 
+	 * @param stream			The input stream
+	 * @param syntaxPattern		A regular expression that specifies the line syntax
+	 */
+	public SyntaxPatternLineReader(InputStream stream, String syntaxPattern) {
+		super(stream, /* ignoreCommentLines: */ true, /* ignoreBlankLines: true */ true,
 				/* trimLines: */ true);
 		this.syntaxPattern = Pattern.compile(syntaxPattern);
 	}

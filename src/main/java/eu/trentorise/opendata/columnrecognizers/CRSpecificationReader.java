@@ -1,5 +1,7 @@
 package eu.trentorise.opendata.columnrecognizers;
 import java.io.File;
+import java.io.InputStream;
+import java.util.List;
 import java.util.regex.Matcher;
 
 // TODO The description below is out of date.
@@ -46,6 +48,12 @@ public class CRSpecificationReader extends SyntaxPatternLineReader {
 	final static int CONCEPT_ID_POSITION = 2;
 	final static int TYPE_POSITION = 3;
 	final static int MODEL_POSITION = 4;
+	
+	/**
+	 * List of directories containing recognizer models.
+	 */
+	List<File> modelDirectories = null;
+	
 	CompositeColumnRecognizer compositeCR = null;
 	Table table = null;
 	RowTable sample = null;
@@ -53,19 +61,61 @@ public class CRSpecificationReader extends SyntaxPatternLineReader {
 	/**
 	 * Constructs the reader
 	 * 
-	 * @param file			The specification file
-	 * @param compositeCR	The composite recognizer to which the CRs will be attached
-	 * @param table			The data table (or a large sample)
-	 * @param sample		A smaller sample of rows from the table
+	 * @param file				The specification file
+	 * @param modelDirectories 	List of model directories (can be null)
+	 * @param compositeCR		The composite recognizer to which the CRs will be attached
+	 * @param table				The data table (or a large sample)
+	 * @param sample			A smaller sample of rows from the table
 	 */
-	public CRSpecificationReader(File file, CompositeColumnRecognizer compositeCR,
-			Table table, RowTable sample) {
+	public CRSpecificationReader(
+			File file, 
+			List<File> modelDirectories, 
+			CompositeColumnRecognizer compositeCR,
+			Table table, 
+			RowTable sample) {
 		super(file, LINE_SYNTAX);
+		init(modelDirectories, compositeCR, table, sample);
+	}
+		
+	/**
+	 * Constructs the reader
+	 * 
+	 * @param stream			An input stream to the specification file
+	 * @param modelDirectories 	List of model directories (can be null)
+	 * @param compositeCR		The composite recognizer to which the CRs will be attached
+	 * @param table				The data table (or a large sample)
+	 * @param sample			A smaller sample of rows from the table
+	 */
+	public CRSpecificationReader(
+			InputStream stream,
+			List<File> modelDirectories, 
+			CompositeColumnRecognizer compositeCR,
+			Table table, 
+			RowTable sample) {
+		super(stream, LINE_SYNTAX);
+		init(modelDirectories, compositeCR, table, sample);
+	}
+	
+	/**
+	 * Initializes the CRSpecificationReader.
+	 * 
+	 * @param modelDirectories 	List of model directories (can be null)
+	 * @param compositeCR		The composite recognizer to which the CRs will be attached
+	 * @param table				The data table (or a large sample)
+	 * @param sample			A smaller sample of rows from the table
+	 */
+	private void init(
+			List<File> modelDirectories, 
+			CompositeColumnRecognizer compositeCR,
+			Table table, 
+			RowTable sample) {
+		this.modelDirectories = modelDirectories;
 		this.compositeCR = compositeCR;
 		this.table = table;
 		this.sample = sample;
 	}
-		
+
+
 	/**
 	 * Processes the matched line.
 	 */
@@ -82,6 +132,7 @@ public class CRSpecificationReader extends SyntaxPatternLineReader {
 					conceptID, 
 					type, 
 					model, 
+					modelDirectories,
 					table, 
 					sample);
 		compositeCR.add(newRecognizer); 		

@@ -26,7 +26,7 @@ prodotto_protetto_regex	2		REGEX_S			((DOP)|(IGP)|(STG)) [A-Z][A-Za-z ]*
 prod_charatteristiche_tfidf		8001 	TF_IDF	prodotti_caratteristiche_tfidf.txt
 
 # Product 'riferimenti'
-prod_riferimenti_tfidf		9001 	TF_IDF	prodotti_riferimenti_tfidf.txt
+prod_riferimenti_tfidf		9001 	TF_IDF	prodotti_riferimenti_2_tfidf.txt
 
 # Product production zone
 prod_zona_tfidf				10001 	TF_IDF	prodotti_zona_tfidf.txt
@@ -35,7 +35,7 @@ prod_zona_tfidf				10001 	TF_IDF	prodotti_zona_tfidf.txt
 url_regex				7001	REGEX_S			http\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(/\S*)?
 
 # Get concept IDs from column headers
-#header_nlp					0	HEADER_NLP
+header_nlp					0	HEADER_NLP
 
 # Retain the one best candidate for each column
 one_best				0		ONE_BEST		

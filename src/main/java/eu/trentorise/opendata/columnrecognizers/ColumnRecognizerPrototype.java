@@ -56,7 +56,7 @@ public class ColumnRecognizerPrototype {
 	private final static String LONG_DIVIDER = DIVIDER + DIVIDER + DIVIDER;
 	private final static String INVERSE_FREQUENCIES_PATH = "inverse-frequencies.txt";
 	private final static int NUMBER_OF_HEADER_ROWS = 1;
-	private final static String SPECIFICATION_PATH = "column-recognizers.txt";
+//	private final static String SPECIFICATION_PATH = "column-recognizers.txt";
 	
 
 	/**
@@ -70,42 +70,42 @@ public class ColumnRecognizerPrototype {
 //		app.readWordScores();
 //		app.testTFIDF();
 //		app.testClassifierFeatures();
-//		app.testFusionClassifier();
 //        ContextLoader cl = new ContextLoader();
 //        IChunker<NLPParameters> chunker = cl.getApplicationContext().getBean(Chunker.class);
 //        ColumnRecognizerPrototype app = cl.getApplicationContext().getBean(ColumnRecognizerPrototype.class);
 //		app.testNLPPipeline();
 //		app.testWebAPI();
 //		app.testTypeDectection();
-//		app.testConceptFromText();
 	}
 
-	private void testConceptFromText() {
-		long conceptID = ColumnRecognizer.conceptFromText("impianti risalita");
-		System.out.println(conceptID);
-	}
+	/*
+	 * Superseded by unit test
+	 * 
+	 */
+//	private void testConceptFromText() {
+//		long conceptID = ColumnRecognizer.conceptFromText("impianti risalita");
+//		System.out.println(conceptID);
+//	}
 
 	private void runRecognizers() {
 //		final double CONFIDENCE_THRESHOLD = 0.1;
 //		final String CSV_PATH = "Elenco_osterie_tipiche_civici.1386925759.csv";
 //		final String CSV_PATH = "Punti-di-ristoro-ViviFiemme.csv";
-		final String CSV_PATH = "prodotti_protetti.csv";
-//		final String CSV_PATH = "Impianti-Risalita-Vivifiemme.csv";
+//		final String CSV_PATH = "prodotti_protetti.csv";
+		final String CSV_PATH = "Impianti-Risalita-Vivifiemme.csv";
 //		final char COLUMN_SEPARATOR = ';';
 		final char COLUMN_SEPARATOR = ',';
 	
 		// Load CSV file
 		File csvFile = new File(CSV_PATH); 
 		RowTable rowTable = RowTable.loadFromCSV(csvFile, COLUMN_SEPARATOR);
-		String headerRow = rowTable.getRowIterator().next();
-		List<String> headers = new ArrayList<String>(Arrays.asList(
-					CSVProcessor.splitRecord(headerRow, COLUMN_SEPARATOR)));
-		rowTable.removeHeaders(NUMBER_OF_HEADER_ROWS);
+		List<String> headers = rowTable.popHeaders();
 				
 //		ColumnTable columnTable = new ColumnTable(null, rowTable);		
 //		List<ColumnConceptCandidate> scoredCandidates = recognizeTable(columnTable);
 		
-		List<List<String>> columnData = getColumnsAsLists(rowTable);
+		List<Column> columns = rowTable.extractColumns();
+		List<List<String>> columnData = Column.toStringLists(columns);
 		List<ColumnConceptCandidate> scoredCandidates 
 			= ColumnRecognizer.computeScoredCandidates(headers, columnData);
 		
@@ -116,31 +116,18 @@ public class ColumnRecognizerPrototype {
 		}
 	}
 	
-	private List<List<String>> getColumnsAsLists(RowTable rowTable) {
-		List<Column> columns = rowTable.extractColumns();
-		List<List<String>> strings = new ArrayList<List<String>>();
-		Iterator<Column> it = columns.iterator();
-		while (it.hasNext()) {
-			Column column = it.next();
-			strings.add(column.getContents());
-		}
-		
-		return strings;
-	}
-
-	private List<ColumnConceptCandidate> recognizeTable(ColumnTable columnTable) {
-		RowTable rowSample = columnTable.extractRowSample();
-		
-		// Create recognizers from specification file
-		CompositeColumnRecognizer compositeCR = new CompositeColumnRecognizer("composite");
-		File specificationFile = new File(SPECIFICATION_PATH);
-//		ColumnRecognizerFactory.attachRecognizers(compositeCR, specificationFile, table, sample);
-		ColumnRecognizerFactory.attachRecognizers(compositeCR, specificationFile, columnTable, rowSample);
-		
-		List<ColumnConceptCandidate> scoredCandidates = new ArrayList<ColumnConceptCandidate>();
-		compositeCR.computeScoredCandidates(scoredCandidates);
-		return scoredCandidates;
-	}
+//	private List<ColumnConceptCandidate> recognizeTable(ColumnTable columnTable) {
+//		RowTable rowSample = columnTable.extractRowSample();
+//		
+//		// Create recognizers from specification file
+//		CompositeColumnRecognizer compositeCR = new CompositeColumnRecognizer("composite");
+//		File specificationFile = new File(SPECIFICATION_PATH);
+//		ColumnRecognizerFactory.attachRecognizers(compositeCR, specificationFile, columnTable, rowSample);
+//		
+//		List<ColumnConceptCandidate> scoredCandidates = new ArrayList<ColumnConceptCandidate>();
+//		compositeCR.computeScoredCandidates(scoredCandidates);
+//		return scoredCandidates;
+//	}
 
 	public void updateDataFiles(RowTable table) {
 		// Print towns to file

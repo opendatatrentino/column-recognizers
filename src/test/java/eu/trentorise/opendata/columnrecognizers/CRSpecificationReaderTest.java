@@ -3,6 +3,7 @@ package eu.trentorise.opendata.columnrecognizers;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.InputStream;
 
 import org.junit.Test;
 
@@ -13,14 +14,17 @@ public class CRSpecificationReaderTest {
 	public void test() {
 		final String CSV_PATH = "prodotti_protetti.csv";
 		final char COLUMN_SEPARATOR = ',';
-		final int NUMBER_OF_COMPONENT_RECOGNIZERS = 11;
+		final int NUMBER_OF_COMPONENT_RECOGNIZERS = 12;
 		
 		File csvFile = new File(CSV_PATH); 
 		RowTable rowTable = RowTable.loadFromCSV(csvFile, COLUMN_SEPARATOR);
 		CompositeColumnRecognizer compositeCR = new CompositeColumnRecognizer("composite");
+		InputStream stream = getClass().getResourceAsStream("/" + CONFIGURATION_PATH);
 		CRSpecificationReader reader 
 			= new CRSpecificationReader(
-					new File(CONFIGURATION_PATH), 
+//					new File(CONFIGURATION_PATH), 
+					stream,
+					null,
 					compositeCR, 
 					rowTable, 
 					rowTable.extractRowSample());

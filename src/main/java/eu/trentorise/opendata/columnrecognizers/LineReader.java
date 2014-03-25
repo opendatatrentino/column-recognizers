@@ -3,8 +3,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
 
@@ -25,7 +25,12 @@ public abstract class LineReader {
 	/**
 	 * The input file
 	 */
-	private File file = null;
+//	private File file = null;
+	
+	/**
+	 * The input stream
+	 */
+	private InputStream inputStream = null;
 	
 	/**
 	 * Set to true to ignore comment lines
@@ -49,7 +54,12 @@ public abstract class LineReader {
 	 */
 	public LineReader(File file) {
 		super();
-		this.file = file;
+//		this.file = file;
+		try {
+			inputStream = new FileInputStream(file);
+		} catch (FileNotFoundException e) {		
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -60,16 +70,39 @@ public abstract class LineReader {
 	 * @param ignoreBlankLines		Ignore empty lines
 	 * @param trimLines				Ignore leading and trailing space
 	 */
-	public LineReader(File file, boolean ignoreCommentLines,
-			boolean ignoreBlankLines, boolean trimLines) {
+	public LineReader(File file, 
+			boolean ignoreCommentLines,
+			boolean ignoreBlankLines, 
+			boolean trimLines) {
 		super();
-		this.file = file;
+//		this.file = file;
+		try {
+			inputStream = new FileInputStream(file);
+		} catch (FileNotFoundException e) {		
+			e.printStackTrace();
+		}
 		this.ignoreCommentLines = ignoreCommentLines;
 		this.ignoreBlankLines = ignoreBlankLines;
 		this.trimLines = trimLines;
 	}
 
-
+	/**
+	 * Creates the LineReader.
+	 * 
+	 * @param stream				The input stream
+	 * @param ignoreCommentLines	Ignore comments
+	 * @param ignoreBlankLines		Ignore empty lines
+	 * @param trimLines				Ignore leading and trailing space
+	 */
+	public LineReader(InputStream stream, 
+			boolean ignoreCommentLines,
+			boolean ignoreBlankLines, 
+			boolean trimLines) {
+		inputStream = stream;
+		this.ignoreCommentLines = ignoreCommentLines;
+		this.ignoreBlankLines = ignoreBlankLines;
+		this.trimLines = trimLines;
+	}
 
 	/**
 	 * Processes the file, calling processLine for each line.
@@ -79,9 +112,8 @@ public abstract class LineReader {
 		String line = "";
 	 
 		try {
-			br = new BufferedReader(
-					new InputStreamReader(
-			                  new FileInputStream(file), "UTF8"));
+			br = new BufferedReader(new InputStreamReader(inputStream, "UTF8"));
+//								new FileInputStream(file), "UTF8"));
 			while ((line = br.readLine()) != null) {
 				handleLine(line);
 			}

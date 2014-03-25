@@ -296,6 +296,7 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 		CompositeColumnRecognizer compositeCR = new CompositeColumnRecognizer("composite");
 		ColumnRecognizerFactory.attachRecognizers(compositeCR, 
 				specificationFile, 
+				null,
 				table, 
 				table.extractRowSample());
 		

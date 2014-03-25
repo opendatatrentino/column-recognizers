@@ -53,6 +53,24 @@ public class Column {
 	public Column(List<String> fields) {
 		this.fields = fields;
 	}
+	
+	/**
+	 * Converts a list of columns to a list of string lists. Useful for working
+	 * with the ColumnRecognizer static API methods.
+	 * 
+	 * @param columns	The column list
+	 * @return			The list of string lists
+	 */
+	public static List<List<String>> toStringLists(List<Column> columns) {
+		List<List<String>> strings = new ArrayList<List<String>>();
+		Iterator<Column> it = columns.iterator();
+		while (it.hasNext()) {
+			Column column = it.next();
+			strings.add(column.getContents());
+		}
+		
+		return strings;		
+	}
 
 	/**
 	 * Gets the set of values that exist in a single column.

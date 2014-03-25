@@ -2,6 +2,8 @@ package eu.trentorise.opendata.columnrecognizers;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * The all-static FileUtils class centralizes the task of locating files
@@ -30,6 +32,16 @@ public class FileUtils {
 	 * The name of the executable that does training of the SVM classifier
 	 */
 	private final static String SVM_LEARNER_NAME = "svm_learn";
+	
+	/**
+	 * Name of the default column recognizer specification file
+	 */
+	private final static String DEFAULT_SPECIFICATION_FILE_NAME = "column-recognizers.txt";
+	
+	/**
+	 * Path for finding model files among the application resources
+	 */
+	private final static String MODEL_RESOURCE_PATH = "/models/";
 	
 	/**
 	 * The top-level column recognizers folder
@@ -83,8 +95,12 @@ public class FileUtils {
 	 * Gets the folder with the SVM-Light executables
 	 */
 	public static File getSVMExecutablesFolder() {
+//		if (svmExecutablesFolder == null) {
+//			svmExecutablesFolder = new File(getRoot(), SVM_EXECUTABLES_FOLDER_NAME);
+//		}
 		if (svmExecutablesFolder == null) {
-			svmExecutablesFolder = new File(getRoot(), SVM_EXECUTABLES_FOLDER_NAME);
+			URL url = FileUtils.class.getResource("/" + SVM_EXECUTABLES_FOLDER_NAME);
+			svmExecutablesFolder = new File(url.getPath());
 		}
 		return svmExecutablesFolder;
 	}
@@ -210,6 +226,58 @@ public class FileUtils {
 	private static File getClassDirectory() {
 		URL url = new FileUtils().getClass().getProtectionDomain().getCodeSource().getLocation();
 		return new File(url.getPath());
+	}
+
+	/**
+	 * Gets the default column recognizer specification file.
+	 * 
+	 * @return	The specification file
+	 */
+	public static File getDefaultSpecificationFile() {
+		URL url = FileUtils.class.getResource("/" + DEFAULT_SPECIFICATION_FILE_NAME);
+		return new File(url.getPath());
+	}
+
+	/**
+	 * Returns a model file from the working directory or a resource.
+	 *  
+	 * @param modelPath		The relative path to the model file
+	 * @return				The file
+	 */
+	public static File getModelFile(String modelPath) {
+		File modelFile = null;
+		URL url = FileUtils.class.getResource(MODEL_RESOURCE_PATH + modelPath);
+		if (url != null) {
+			modelFile = new File(url.getPath());
+		} else {
+			modelFile = new File(modelPath);
+		}
+		return modelFile;
+	}
+
+	/**
+	 * Returns a model file from the working directory, a resource, or any of 
+	 * the model directories supplied by the caller.
+	 * 
+	 * @param modelPath				The relative path to the model file
+	 * @param modelDirectories		A list of model directories
+	 * @return						The file 
+	 */
+	public static File getModelFile(String modelPath, List<File> modelDirectories) {
+		File modelFile = getModelFile(modelPath);
+		if (modelFile == null || !modelFile.exists()) {
+			Iterator<File> it = modelDirectories.iterator();
+			boolean foundModel = false;
+			File probe = null;
+			while (!foundModel && it.hasNext()) {
+				probe = new File(it.next(), modelPath);
+				foundModel = probe.exists();
+			}
+			if (foundModel) {
+				modelFile = probe;
+			}
+		}
+		return modelFile;
 	}
 	
 }
