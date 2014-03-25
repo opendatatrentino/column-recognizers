@@ -104,9 +104,9 @@ public class APITest {
 	 * @return					The table
 	 */
 	private RowTable loadTable(String resourcePath, char columnSeparator) {
-		URL url = getClass().getResource(IMPIANTI_CSV_RESOURCE_PATH);
+		URL url = getClass().getResource(resourcePath);
 		File csvFile = new File(url.getPath()); 
-		return RowTable.loadFromCSV(csvFile, IMPIANTI_COLUMN_SEPARATOR);
+		return RowTable.loadFromCSV(csvFile, columnSeparator);
 	}
 
 

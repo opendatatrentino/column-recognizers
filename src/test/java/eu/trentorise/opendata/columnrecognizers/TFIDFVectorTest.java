@@ -13,13 +13,13 @@ public class TFIDFVectorTest {
 	 */
 	@Test
 	public void test() {
-		final String VECTOR_PATH = "test_vector_tfidf.txt";
+		final String VECTOR_PATH = "/models/test_vector_tfidf.txt";
+		final String DIFFERENT_VECTOR_PATH = "/models/test_vector_2_tfidf.txt";
 		final String IDENTICAL_VECTOR_PATH = "test_vector_tfidf_tmp.txt";
-		final String DIFFERENT_VECTOR_PATH = "test_vector_2_tfidf.txt";
 		
-		File vectorFile = new File(VECTOR_PATH);
+		File vectorFile = FileUtils.getResourceFile(VECTOR_PATH);
+		File differentVectorFile = FileUtils.getResourceFile(DIFFERENT_VECTOR_PATH);
 		File identicalVectorFile = new File(IDENTICAL_VECTOR_PATH);
-		File differentVectorFile = new File(DIFFERENT_VECTOR_PATH);
 		
 		TFIDFVector vector = TFIDFVector.readFromFile(vectorFile);
 		vector.writeToFile(identicalVectorFile);
@@ -31,6 +31,7 @@ public class TFIDFVectorTest {
 		assertTrue(vector.cosineSimilarity(differentVector) < 1.0);
 		assertTrue(vector.cosineSimilarity(differentVector) > 0);
 
+		identicalVectorFile.delete();
 	}
 
 }

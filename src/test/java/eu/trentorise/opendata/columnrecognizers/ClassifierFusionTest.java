@@ -2,8 +2,6 @@ package eu.trentorise.opendata.columnrecognizers;
 
 import static org.junit.Assert.*;
 
-import it.unitn.disi.sweb.core.nlp.components.lemmatizers.ILemmatizer;
-import it.unitn.disi.sweb.core.nlp.parameters.NLPParameters;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,8 +13,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 /**
  * @author Simon
@@ -29,10 +25,6 @@ public class ClassifierFusionTest {
 	private static final long RESTAURANT_CONCEPT_ID = 2001;
 	private static final double TIPO_SIMILARITY_SCORE = 0.633739;
 	private static final double INSEGNA_SIMILARITY_SCORE = 0.285785;
-	
-	@Autowired
-	@Qualifier("Lemmatizer")
-    private ILemmatizer<NLPParameters> lemmatizer;
 	
 
 	/**

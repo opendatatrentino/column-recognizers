@@ -279,5 +279,16 @@ public class FileUtils {
 		}
 		return modelFile;
 	}
+
+	/**
+	 * Get a file from the application resources.
+	 * 
+	 * @param path	The resource path (including leading '/')
+	 * @return		The file
+	 */
+	public static File getResourceFile(String path) {
+		URL url = FileUtils.class.getResource(path);
+		return new File(url.getPath());
+	}
 	
 }
