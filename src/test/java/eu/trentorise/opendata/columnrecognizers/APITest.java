@@ -3,7 +3,6 @@ package eu.trentorise.opendata.columnrecognizers;
 import static org.junit.Assert.*;
 
 import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,9 +103,7 @@ public class APITest {
 	 * @return					The table
 	 */
 	private RowTable loadTable(String resourcePath, char columnSeparator) {
-		URL url = getClass().getResource(resourcePath);
-		File csvFile = new File(url.getPath()); 
-		return RowTable.loadFromCSV(csvFile, columnSeparator);
+		return RowTable.loadFromCSV(FileUtils.getResourceFile(resourcePath), columnSeparator);
 	}
 
 
@@ -139,8 +136,7 @@ public class APITest {
 	 */
 	@Test
 	public void testComplexAPI() {
-		URL url = getClass().getResource(ALTERNATIVE_SPEC_FILE_RESOURCE_PATH);
-		File alternativeSpecFile = new File(url.getPath()); 
+		File alternativeSpecFile = FileUtils.getResourceFile(ALTERNATIVE_SPEC_FILE_RESOURCE_PATH);
 		List<ColumnConceptCandidate> scoredCandidates 
 			= ColumnRecognizer.computeScoredCandidates(
 				prodottiHeaders, 
@@ -148,10 +144,8 @@ public class APITest {
 				alternativeSpecFile);
 		assertTrue(scoredCandidates.size() >= MINIMUM_CANDIDATE_COUNT);
 		
-		url = getClass().getResource(ALTERNATIVE_SPEC_FILE_2_RESOURCE_PATH);
-		alternativeSpecFile = new File(url.getPath()); 
-		url = getClass().getResource(MODEL_DIRECTORY_RESOURCE_PATH);		
-		File modelDirectory = new File(url.getPath()); 
+		alternativeSpecFile = FileUtils.getResourceFile(ALTERNATIVE_SPEC_FILE_2_RESOURCE_PATH);
+		File modelDirectory = FileUtils.getResourceFile(MODEL_DIRECTORY_RESOURCE_PATH);
 		List<File> modelDirectories = new ArrayList<File>();
 		modelDirectories.add(modelDirectory);
 		scoredCandidates = ColumnRecognizer.computeScoredCandidates(

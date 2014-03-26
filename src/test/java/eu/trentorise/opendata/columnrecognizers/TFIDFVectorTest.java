@@ -19,7 +19,8 @@ public class TFIDFVectorTest {
 		
 		File vectorFile = FileUtils.getResourceFile(VECTOR_PATH);
 		File differentVectorFile = FileUtils.getResourceFile(DIFFERENT_VECTOR_PATH);
-		File identicalVectorFile = new File(IDENTICAL_VECTOR_PATH);
+		File identicalVectorFile = FileUtils.getTmpFile(IDENTICAL_VECTOR_PATH);
+		identicalVectorFile.deleteOnExit();
 		
 		TFIDFVector vector = TFIDFVector.readFromFile(vectorFile);
 		vector.writeToFile(identicalVectorFile);
@@ -30,8 +31,6 @@ public class TFIDFVectorTest {
 		TFIDFVector differentVector = TFIDFVector.readFromFile(differentVectorFile);
 		assertTrue(vector.cosineSimilarity(differentVector) < 1.0);
 		assertTrue(vector.cosineSimilarity(differentVector) > 0);
-
-		identicalVectorFile.delete();
 	}
 
 }

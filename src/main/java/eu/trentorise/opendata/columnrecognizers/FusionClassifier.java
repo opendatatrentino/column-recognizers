@@ -133,7 +133,8 @@ public class FusionClassifier {
 	 * @param featureVectors		A feature vector for each column
 	 */
 	public static void writeExamples(List<List<Double>> featureVectors) {
-		File exampleFile = new File(FileUtils.getDataFolder(), EXAMPLE_FILE_NAME);
+//		File exampleFile = new File(FileUtils.getDataFolder(), EXAMPLE_FILE_NAME);
+		File exampleFile = FileUtils.getTmpFile(EXAMPLE_FILE_NAME);
 		SVMLightWriter writer = new SVMLightWriter(exampleFile, featureVectors);
 		writer.write();
 	}
@@ -215,9 +216,9 @@ public class FusionClassifier {
 	 * 
 	 */
 	private void classify() {
-		File classifierExe = new File(FileUtils.getSVMExecutablesFolder(), CLASSIFIER_EXE_NAME);
-		File exampleFile = new File(FileUtils.getDataFolder(), EXAMPLE_FILE_NAME);
-		File predictionsFile = new File(FileUtils.getDataFolder(), PREDICTIONS_FILE_NAME);
+		File classifierExe = FileUtils.getSVMClassifier();
+		File exampleFile = FileUtils.getTmpFile(EXAMPLE_FILE_NAME);
+		File predictionsFile = FileUtils.getTmpFile(PREDICTIONS_FILE_NAME);
 		String[] commandArray = {
 				classifierExe.getAbsolutePath(),
 				exampleFile.getAbsolutePath(),
@@ -237,7 +238,7 @@ public class FusionClassifier {
 	 */
 	private List<Double> readPredictions() {
 	// TODO use static read method
-		File predictionsFile = new File(FileUtils.getDataFolder(), PREDICTIONS_FILE_NAME);
+		File predictionsFile = FileUtils.getTmpFile(PREDICTIONS_FILE_NAME);
 		VectorReader reader = new VectorReader(predictionsFile);
 		reader.read();
 		return reader.getVector();

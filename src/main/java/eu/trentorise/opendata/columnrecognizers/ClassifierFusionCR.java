@@ -231,39 +231,39 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 		FusionClassifier.train(exampleFile, modelFile);
 	}
 
-	/**
-	 * Adds copies of positive examples in order to give them more weight.
-	 * 
-	 * @param allExamples			The example list
-	 * @param allLabels				The list of training labels
-	 */
-	private static void multiplyPositives(List<List<Double>> allExamples,
-			List<Double> allLabels) {
-		final double POSITIVE_LABEL = 1;
-		final int NUMBER_OF_COPIES = 4;
-		
-		List<List<Double>> extraExamples = new ArrayList<List<Double>>();
-		List<Double> extraLabels = new ArrayList<Double>();
-		
-		Iterator<List<Double>> itExample = allExamples.iterator();
-		Iterator<Double> itLabel = allLabels.iterator();
-		
-		while (itLabel.hasNext()) {
-			Double label = itLabel.next();
-			List<Double> example = itExample.next();
-			
-			if (label == POSITIVE_LABEL) {
-				for (int i = 0; i < NUMBER_OF_COPIES; i++) {
-					extraExamples.add(example);
-					extraLabels.add(label);
-				}
-			}
-		}
-		
-		allExamples.addAll(extraExamples);
-		allLabels.addAll(extraLabels);
-		
-	}
+//	/**
+//	 * Adds copies of positive examples in order to give them more weight.
+//	 * 
+//	 * @param allExamples			The example list
+//	 * @param allLabels				The list of training labels
+//	 */
+//	private static void multiplyPositives(List<List<Double>> allExamples,
+//			List<Double> allLabels) {
+//		final double POSITIVE_LABEL = 1;
+//		final int NUMBER_OF_COPIES = 4;
+//		
+//		List<List<Double>> extraExamples = new ArrayList<List<Double>>();
+//		List<Double> extraLabels = new ArrayList<Double>();
+//		
+//		Iterator<List<Double>> itExample = allExamples.iterator();
+//		Iterator<Double> itLabel = allLabels.iterator();
+//		
+//		while (itLabel.hasNext()) {
+//			Double label = itLabel.next();
+//			List<Double> example = itExample.next();
+//			
+//			if (label == POSITIVE_LABEL) {
+//				for (int i = 0; i < NUMBER_OF_COPIES; i++) {
+//					extraExamples.add(example);
+//					extraLabels.add(label);
+//				}
+//			}
+//		}
+//		
+//		allExamples.addAll(extraExamples);
+//		allLabels.addAll(extraLabels);
+//		
+//	}
 
 	/**
 	 * Runs the input recognizers and puts together the SVM training examples

@@ -1,6 +1,0 @@
--1 1:0.145833 2:0.633739 # Osterie Restaurant type
-1 1:1.000000 2:0.285785 # Osterie Restaurant name
-#-1 1:1.000000 2:0.000000 # Osterie ID
--1 1:0.054945 2:0.666336 # Vivifiemme Restaurant type
-1 1:0.994505 2:1.000000 # Vivifiemme Restaurant name
-#-1 1:1.000000 2:0.000000 # Vivifiemme ID

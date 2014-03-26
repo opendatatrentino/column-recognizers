@@ -34,6 +34,11 @@ public class FileUtils {
 	private final static String SVM_LEARNER_NAME = "svm_learn";
 	
 	/**
+	 * The name of the executable that does SVM classification
+	 */
+	private final static String SVM_CLASSIFIER_NAME = "svm_learn";
+	
+	/**
 	 * Name of the default column recognizer specification file
 	 */
 	private final static String DEFAULT_SPECIFICATION_FILE_NAME = "column-recognizers.txt";
@@ -95,12 +100,10 @@ public class FileUtils {
 	 * Gets the folder with the SVM-Light executables
 	 */
 	public static File getSVMExecutablesFolder() {
-//		if (svmExecutablesFolder == null) {
-//			svmExecutablesFolder = new File(getRoot(), SVM_EXECUTABLES_FOLDER_NAME);
-//		}
 		if (svmExecutablesFolder == null) {
-			URL url = FileUtils.class.getResource("/" + SVM_EXECUTABLES_FOLDER_NAME);
-			svmExecutablesFolder = new File(url.getPath());
+//			URL url = FileUtils.class.getResource("/" + SVM_EXECUTABLES_FOLDER_NAME);
+//			svmExecutablesFolder = new File(url.getPath());
+			svmExecutablesFolder = getResourceFile("/" + SVM_EXECUTABLES_FOLDER_NAME);
 		}
 		return svmExecutablesFolder;
 	}
@@ -112,6 +115,15 @@ public class FileUtils {
 	 */
 	public static File getSVMLearner() {
 		return new File(getSVMExecutablesFolder(), SVM_LEARNER_NAME);
+	}
+
+	/**
+	 * Gets the executable that does SVM classification
+	 * 
+	 * @return	The executable file
+	 */
+	public static File getSVMClassifier() {
+		return new File(getSVMExecutablesFolder(), SVM_CLASSIFIER_NAME);
 	}
 	
 	/**
@@ -139,13 +151,26 @@ public class FileUtils {
 	/**
 	 * Returns the directory with the model and training files for an SVM 
 	 * classifier column recognizer.
+	 * <p>
+	 * Looks first amoung application resources, then in the data directory.
+	 * If the folder is missing from the data directory, it is created.
 	 * 
 	 * @param recognizerID		The name of the recognizer
 	 * @return					The directory
 	 */
 	private static File getSVMModelFolder(String recognizerID) {
-		File svmModelFolder = new File(getDataFolder(), "svm-" + recognizerID);
-		sureDirectory(svmModelFolder);
+		File svmModelFolder = null;
+		String svmModelFolderName = "svm-" + recognizerID;
+//		URL folderURL = FileUtils.class.getResource(MODEL_RESOURCE_PATH + svmModelFolderName);
+		URL folderURL = getResourceURL(MODEL_RESOURCE_PATH + svmModelFolderName);
+		boolean foundInResources = folderURL != null;
+		if (foundInResources) {
+			svmModelFolder = new File(folderURL.getPath());
+		} else {
+			svmModelFolder = new File(getDataFolder(), svmModelFolderName);
+			sureDirectory(svmModelFolder);
+		}
+
 		return svmModelFolder;
 	}
 
@@ -234,8 +259,9 @@ public class FileUtils {
 	 * @return	The specification file
 	 */
 	public static File getDefaultSpecificationFile() {
-		URL url = FileUtils.class.getResource("/" + DEFAULT_SPECIFICATION_FILE_NAME);
-		return new File(url.getPath());
+		return getResourceFile("/" + DEFAULT_SPECIFICATION_FILE_NAME);
+//		URL url = FileUtils.class.getResource("/" + DEFAULT_SPECIFICATION_FILE_NAME);
+//		return new File(url.getPath());
 	}
 
 	/**
@@ -246,7 +272,8 @@ public class FileUtils {
 	 */
 	public static File getModelFile(String modelPath) {
 		File modelFile = null;
-		URL url = FileUtils.class.getResource(MODEL_RESOURCE_PATH + modelPath);
+//		URL url = FileUtils.class.getResource(MODEL_RESOURCE_PATH + modelPath);
+		URL url = getResourceURL(MODEL_RESOURCE_PATH + modelPath);
 		if (url != null) {
 			modelFile = new File(url.getPath());
 		} else {
@@ -281,7 +308,7 @@ public class FileUtils {
 	}
 
 	/**
-	 * Get a file from the application resources.
+	 * Gets a file from the application resources.
 	 * 
 	 * @param path	The resource path (including leading '/')
 	 * @return		The file
@@ -291,4 +318,45 @@ public class FileUtils {
 		return new File(url.getPath());
 	}
 	
+	/**
+	 * Checks if a resource file exists.
+	 * 
+	 * @param path		The resource path (including leading '/')
+	 * @return			True if the file exists
+	 */
+	public static boolean resourceExists(String path) {
+		return FileUtils.class.getResource(path) != null;
+	}
+
+	/**
+	 * Gets a URL for a resource file.
+	 * 
+	 * @param path	The resource path (including leading '/')
+	 * @return		The file URL
+	 */
+	public static URL getResourceURL(String path) {
+		return FileUtils.class.getResource(path);
+	}
+	
+	/**
+	 * Returns the current temp file directory. If it doesn't exist, it is 
+	 * created.
+	 * 
+	 * @return The directory
+	 */
+	public static File getTmpDirectory() {
+		File tmpDirectory = new File(System.getProperty("java.io.tmpdir"));
+		sureDirectory(tmpDirectory);
+		return tmpDirectory;
+	}
+	
+	/**
+	 * Returns a file in the tmp file directory.
+	 * 
+	 * @param tmpFileName	The name of the file
+	 * @return				A file in the tmp directory
+	 */
+	public static File getTmpFile(String tmpFileName) {
+		return new File(getTmpDirectory(), tmpFileName);
+	}
 }
