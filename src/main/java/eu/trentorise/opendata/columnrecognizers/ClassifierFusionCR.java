@@ -45,6 +45,7 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 			long conceptID, 
 			Table table,
 			File modelFile, 
+//			InputStream modelFile, 
 			Set<String> inputRecognizers) {
 		super(id, conceptID);
 		columnCount = table.getColumnCount();

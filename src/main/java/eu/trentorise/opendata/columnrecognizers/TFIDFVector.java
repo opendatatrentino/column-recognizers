@@ -1,5 +1,6 @@
 package eu.trentorise.opendata.columnrecognizers;
 import java.io.File;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -107,6 +108,19 @@ public class TFIDFVector {
 	 */
 	public static TFIDFVector readFromFile(File file) {
 		WordScoreReader reader = new WordScoreReader(file);
+		reader.read();
+		Map<String, Double> vector = reader.getWordScores();
+		return new TFIDFVector(vector);
+	}
+
+	/**
+	 * Loads a vector from a stream.
+	 * 
+	 * @param stream	The input stream
+	 * @return			The new vector
+	 */
+	public static TFIDFVector readFromStream(InputStream stream) {
+		WordScoreReader reader = new WordScoreReader(stream);
 		reader.read();
 		Map<String, Double> vector = reader.getWordScores();
 		return new TFIDFVector(vector);

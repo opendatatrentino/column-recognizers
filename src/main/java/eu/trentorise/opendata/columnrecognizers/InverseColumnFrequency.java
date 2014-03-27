@@ -1,5 +1,6 @@
 package eu.trentorise.opendata.columnrecognizers;
 import java.io.File;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -188,6 +189,18 @@ public class InverseColumnFrequency {
 	 */
 	public static InverseColumnFrequency readFromFile(File file) {
 		WordScoreReader reader = new WordScoreReader(file);
+		reader.read();
+		return new InverseColumnFrequency(reader.getWordScores());
+	}
+
+	/**
+	 * Loads an InverseColumnFrequency table from a stream.
+	 * 
+	 * @param stream	The input stream
+	 * @return			The new InverseColumnFrequency object
+	 */
+	public static InverseColumnFrequency readFromStream(InputStream stream) {
+		WordScoreReader reader = new WordScoreReader(stream);
 		reader.read();
 		return new InverseColumnFrequency(reader.getWordScores());
 	}

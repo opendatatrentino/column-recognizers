@@ -3,6 +3,7 @@ package eu.trentorise.opendata.columnrecognizers;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,7 +137,8 @@ public class APITest {
 	 */
 	@Test
 	public void testComplexAPI() {
-		File alternativeSpecFile = FileUtils.getResourceFile(ALTERNATIVE_SPEC_FILE_RESOURCE_PATH);
+//		File alternativeSpecFile = FileUtils.getResourceFile(ALTERNATIVE_SPEC_FILE_RESOURCE_PATH);
+		InputStream alternativeSpecFile = FileUtils.getResourceStream(ALTERNATIVE_SPEC_FILE_RESOURCE_PATH);
 		List<ColumnConceptCandidate> scoredCandidates 
 			= ColumnRecognizer.computeScoredCandidates(
 				prodottiHeaders, 
@@ -144,7 +146,8 @@ public class APITest {
 				alternativeSpecFile);
 		assertTrue(scoredCandidates.size() >= MINIMUM_CANDIDATE_COUNT);
 		
-		alternativeSpecFile = FileUtils.getResourceFile(ALTERNATIVE_SPEC_FILE_2_RESOURCE_PATH);
+//		alternativeSpecFile = FileUtils.getResourceFile(ALTERNATIVE_SPEC_FILE_2_RESOURCE_PATH);
+		alternativeSpecFile = FileUtils.getResourceStream(ALTERNATIVE_SPEC_FILE_2_RESOURCE_PATH);
 		File modelDirectory = FileUtils.getResourceFile(MODEL_DIRECTORY_RESOURCE_PATH);
 		List<File> modelDirectories = new ArrayList<File>();
 		modelDirectories.add(modelDirectory);

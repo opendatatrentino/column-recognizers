@@ -1,5 +1,6 @@
 package eu.trentorise.opendata.columnrecognizers;
 import java.io.File;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -35,6 +36,15 @@ public class WordScoreReader extends SyntaxPatternLineReader {
 	 */
 	public WordScoreReader(File file) {
 		super(file, LINE_SYNTAX);
+	}
+
+	/**
+	 * Constructs the WordScoreReader
+	 * 
+	 * @param stream	The input stream
+	 */
+	public WordScoreReader(InputStream stream) {
+		super(stream, LINE_SYNTAX);
 	}
 
 	@Override

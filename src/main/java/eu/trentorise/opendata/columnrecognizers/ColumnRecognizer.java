@@ -4,6 +4,7 @@ import it.unitn.disi.sweb.core.nlp.model.NLSenseMeaning;
 import it.unitn.disi.sweb.core.nlp.model.NLText;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -75,7 +76,8 @@ public abstract class ColumnRecognizer {
 	public static List<ColumnConceptCandidate> computeScoredCandidates(
 		    List<String> columnHeaders,
 		    List<List<String>> columnData,
-		    File specificationFile) {
+//		    File specificationFile) {
+		    InputStream specificationFile) {
 		return computeScoredCandidates(
 				columnHeaders, 
 				columnData,
@@ -96,7 +98,8 @@ public abstract class ColumnRecognizer {
 	public static List<ColumnConceptCandidate> computeScoredCandidates(
 		    List<String> columnHeaders,
 		    List<List<String>> columnData,
-			File specificationFile, 
+//			File specificationFile, 
+			InputStream specificationFile, 
 			List<File> modelDirectories) {
 		ColumnTable columnTable = ColumnTable.makeColumnTableFromStringLists(columnHeaders, columnData);
 		RowTable rowSample = columnTable.extractRowSample();

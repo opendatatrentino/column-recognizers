@@ -1,5 +1,6 @@
 package eu.trentorise.opendata.columnrecognizers;
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -30,6 +31,11 @@ public class CSVProcessor extends LineReader {
 	 */
 	public CSVProcessor(File file, RowTable table) {
 		super(file);
+		this.table = table;
+	}
+
+	public CSVProcessor(InputStream stream, RowTable table) {
+		super(stream);
 		this.table = table;
 	}
 

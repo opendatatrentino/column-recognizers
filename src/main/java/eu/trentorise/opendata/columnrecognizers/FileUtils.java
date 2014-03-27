@@ -1,6 +1,9 @@
 package eu.trentorise.opendata.columnrecognizers;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
@@ -256,10 +259,12 @@ public class FileUtils {
 	/**
 	 * Gets the default column recognizer specification file.
 	 * 
-	 * @return	The specification file
+	 * @return	The specification file input stream
 	 */
-	public static File getDefaultSpecificationFile() {
-		return getResourceFile("/" + DEFAULT_SPECIFICATION_FILE_NAME);
+	public static InputStream getDefaultSpecificationFile() {
+		return getResourceStream("/" + DEFAULT_SPECIFICATION_FILE_NAME);
+		
+//		return getResourceFile("/" + DEFAULT_SPECIFICATION_FILE_NAME);
 //		URL url = FileUtils.class.getResource("/" + DEFAULT_SPECIFICATION_FILE_NAME);
 //		return new File(url.getPath());
 	}
@@ -270,16 +275,29 @@ public class FileUtils {
 	 * @param modelPath		The relative path to the model file
 	 * @return				The file
 	 */
-	public static File getModelFile(String modelPath) {
-		File modelFile = null;
-//		URL url = FileUtils.class.getResource(MODEL_RESOURCE_PATH + modelPath);
-		URL url = getResourceURL(MODEL_RESOURCE_PATH + modelPath);
-		if (url != null) {
-			modelFile = new File(url.getPath());
-		} else {
-			modelFile = new File(modelPath);
+//	public static File getModelFile(String modelPath) {
+	public static InputStream getModelFile(String modelPath) {
+//		File modelFile = null;
+		InputStream modelStream = getResourceStream(MODEL_RESOURCE_PATH + modelPath);
+		if (modelStream == null) {
+			File modelFile = new File(modelPath);
+			if (modelFile.exists()) {
+				try {
+					modelStream = new FileInputStream(modelFile);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
-		return modelFile;
+//		URL url = getResourceURL(MODEL_RESOURCE_PATH + modelPath);
+//		if (url != null) {
+//			modelFile = new File(url.getPath());
+//		} else {
+//			modelFile = new File(modelPath);
+//		}
+//		return modelFile;
+		return modelStream;
 	}
 
 	/**
@@ -290,9 +308,12 @@ public class FileUtils {
 	 * @param modelDirectories		A list of model directories
 	 * @return						The file 
 	 */
-	public static File getModelFile(String modelPath, List<File> modelDirectories) {
-		File modelFile = getModelFile(modelPath);
-		if (modelFile == null || !modelFile.exists()) {
+//	public static File getModelFile(String modelPath, List<File> modelDirectories) {
+	public static InputStream getModelFile(String modelPath, List<File> modelDirectories) {
+//		File modelFile = getModelFile(modelPath);
+		InputStream modelStream = getModelFile(modelPath);
+//		if (modelFile == null || !modelFile.exists()) {
+		if (modelStream == null) {
 			Iterator<File> it = modelDirectories.iterator();
 			boolean foundModel = false;
 			File probe = null;
@@ -301,10 +322,17 @@ public class FileUtils {
 				foundModel = probe.exists();
 			}
 			if (foundModel) {
-				modelFile = probe;
+//				modelFile = probe;
+				try {
+					modelStream = new FileInputStream(probe);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
-		return modelFile;
+//		return modelFile;
+		return modelStream;
 	}
 
 	/**
@@ -316,6 +344,17 @@ public class FileUtils {
 	public static File getResourceFile(String path) {
 		URL url = FileUtils.class.getResource(path);
 		return new File(url.getPath());
+	}
+	
+	/**
+	 * Gets an input stream from resources. Call this rather than 
+	 * getResourceFile if the resource may be in a jar.
+	 * 
+	 * @param path	The resource path (including leading '/')
+	 * @return		The input stream
+	 */
+	public static InputStream getResourceStream(String path) {
+		return FileUtils.class.getResourceAsStream(path);
 	}
 	
 	/**

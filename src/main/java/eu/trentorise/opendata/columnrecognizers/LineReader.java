@@ -105,6 +105,15 @@ public abstract class LineReader {
 	}
 
 	/**
+	 * Constructs the LineReader. 
+	 * 
+	 * @param stream 	The input stream
+	 */
+	public LineReader(InputStream stream) {
+		inputStream = stream;
+	}
+
+	/**
 	 * Processes the file, calling processLine for each line.
 	 */
 	public void read() {

@@ -3,6 +3,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -221,6 +222,16 @@ public class RowTable implements Table {
 	}
 
 	/**
+	 * Loads rows from a CSV input stream and appends them to the table.
+	 * 
+	 * @param csvFile	The input file
+	 */
+	public void loadRowsFromCSV(InputStream stream) {
+		CSVProcessor csv = new CSVProcessor(stream, this);
+		csv.read();
+	}
+
+	/**
 	 * Loads a new row table from a CSV file.
 	 * 
 	 * @param csvFile				The input file
@@ -230,6 +241,19 @@ public class RowTable implements Table {
 	public static RowTable loadFromCSV(File csvFile, char columnSeparator) {
 		RowTable rowTable = new RowTable(columnSeparator);
 		rowTable.loadRowsFromCSV(csvFile);
+		return rowTable;
+	}
+
+	/**
+	 * Loads a new row table from a CSV input stream.
+	 * 
+	 * @param stream				The input stream
+	 * @param columnSeparator		The column separator character
+	 * @return						The new table
+	 */
+	private static RowTable loadFromCSV(InputStream stream, char columnSeparator) {
+		RowTable rowTable = new RowTable(columnSeparator);
+		rowTable.loadRowsFromCSV(stream);
 		return rowTable;
 	}
 	
@@ -280,6 +304,17 @@ public class RowTable implements Table {
 	 */
 	public static Set<String> loadValueSet(File file) {
 		RowTable table = loadFromCSV(file, DEFAULT_COLUMN_SEPARATOR);
+		return table.extractColumn(1).getValueSet();
+	}
+
+	/**
+	 * Gets a value set from an input stream.
+	 * 
+	 * @param file	The input file
+	 * @return		The set of values represented in the file
+	 */
+	public static Set<String> loadValueSet(InputStream stream) {
+		RowTable table = loadFromCSV(stream, DEFAULT_COLUMN_SEPARATOR);
 		return table.extractColumn(1).getValueSet();
 	}
 
