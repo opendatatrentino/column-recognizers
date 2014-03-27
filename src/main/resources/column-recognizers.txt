@@ -80,5 +80,5 @@ header_nlp					0	HEADER_NLP
 #sum_threshold			0		SUM_THRESHOLD	0.1
 
 # Retain the one best candidate for each column
-#one_best				0		ONE_BEST		
+one_best				0		ONE_BEST		
 
