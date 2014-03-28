@@ -37,7 +37,7 @@ public class TestBench {
 	private void runRecognizers() {
 //		final String CSV_PATH = "Elenco_osterie_tipiche_civici.1386925759.csv";
 //		final String CSV_PATH = "Punti-di-ristoro-ViviFiemme.csv";
-//		final String CSV_PATH = "prodotti_protetti.csv";
+//		final String CSV_PATH = "/tables/prodotti_protetti.csv";
 		final String CSV_PATH = "/tables/Impianti-Risalita-Vivifiemme.csv";
 //		final char COLUMN_SEPARATOR = ';';
 		final char COLUMN_SEPARATOR = ',';

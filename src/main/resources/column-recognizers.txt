@@ -61,17 +61,22 @@ class_header_regex		43482	HEADER_REGEX	1; [Tt]ype[A-Z]([A-Z]|[a-z])
 prodotto_protetto_regex	2		REGEX_S			((DOP)|(IGP)|(STG)) [A-Z][A-Za-z ]*
 
 # Product characteristics
-prod_charatteristiche_tfidf		8001 	TF_IDF	prodotti_caratteristiche_tfidf.txt
+prod_charatteristiche_tfidf		3 	TF_IDF	prodotti_caratteristiche_tfidf.txt
 
 # Product 'riferimenti'
-prod_riferimenti_tfidf		9001 	TF_IDF	prodotti_riferimenti_tfidf.txt
+prod_riferimenti_tfidf		120794 	TF_IDF	prodotti_riferimenti_tfidf.txt
 
 # Product production zone
-prod_zona_tfidf				10001 	TF_IDF	prodotti_zona_tfidf.txt
+prod_zona_tfidf				120792 	TF_IDF	prodotti_zona_tfidf.txt
 
+# Consortium 
+conzortio_regex				44543	REGEX		consorzio .*
+
+# Consortium 
+conzortio_header_regex		44543	HEADER_REGEX		1; [Cc]onsorzio
 
 # URL
-url_regex				7001	REGEX_S			http\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(/\S*)?
+url_regex				34123	REGEX_S			http\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(/\S*)?
 
 # Get concept IDs from column headers
 header_nlp					0	HEADER_NLP

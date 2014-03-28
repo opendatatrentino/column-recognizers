@@ -1,12 +1,23 @@
 package eu.trentorise.opendata.columnrecognizers;
 
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.security.CodeSource;
+import java.security.ProtectionDomain;
 import java.util.Iterator;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
+import java.util.zip.ZipFile;
 
 /**
  * The all-static FileUtils class centralizes the task of locating files
@@ -398,4 +409,153 @@ public class FileUtils {
 	public static File getTmpFile(String tmpFileName) {
 		return new File(getTmpDirectory(), tmpFileName);
 	}
+
+	/**
+	 * Extracts a resource (such as an executable file) from inside the jar and
+	 * writes it to a destination outside the jar.
+	 * <p>
+	 * The code is derived from the post "run exe which is packaged inside jar"
+	 * at StackOverflow.
+	 * <p> 
+	 * http://stackoverflow.com/questions/600146/run-exe-which-is-packaged-inside-jar
+	 * 
+	 * @param resource		The URL to the resource
+	 * @param destination	The destination file
+	 */
+	public static void extractFromJar(URL resource, File destination) {
+		try {
+            final ZipEntry entry;
+            final InputStream zipStream;
+            OutputStream fileStream;
+            final String entryName;
+            
+            final URI jarURI = getJarURI();
+            entryName = jarURI.relativize(resource.toURI()).getPath();
+
+			@SuppressWarnings("resource")
+			ZipFile zipFile = new ZipFile(new File(jarURI));
+			entry = zipFile.getEntry(entryName);
+
+            if(entry == null)
+            {
+                throw new FileNotFoundException("cannot find file: " + entryName + " in archive: " + zipFile.getName());
+            }
+
+            zipStream  = zipFile.getInputStream(entry);
+            fileStream = null;
+
+            try
+            {
+                final byte[] buf;
+                int          i;
+
+                fileStream = new FileOutputStream(destination);
+                buf        = new byte[1024];
+                i          = 0;
+
+                while((i = zipStream.read(buf)) != -1)
+                {
+                    fileStream.write(buf, 0, i);
+                }
+            }
+            finally
+            {
+            	if (zipStream != null) {
+            		zipStream.close();
+            	}
+            	if (fileStream != null) {
+            		fileStream.close();
+            	}
+            }
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();			
+		}
+	}
+	
+	/**
+	 * Returns the URI of the current jar.
+	 * 
+	 * The code is from the post "run exe which is packaged inside jar"
+	 * at StackOverflow.
+	 * <p> 
+	 * http://stackoverflow.com/questions/600146/run-exe-which-is-packaged-inside-jar
+	 */
+    private static URI getJarURI()
+            throws URISyntaxException
+        {
+            final ProtectionDomain domain;
+            final CodeSource       source;
+            final URL              url;
+            final URI              uri;
+
+            domain = FileUtils.class.getProtectionDomain();
+            source = domain.getCodeSource();
+            url    = source.getLocation();
+            uri    = url.toURI();
+
+            return (uri);
+        }
+
+//    private static URI extract(final ZipFile zipFile,
+//                                   final String  fileName)
+//            throws IOException
+//        {
+//            final File         tempFile;
+//            final ZipEntry     entry;
+//            final InputStream  zipStream;
+//            OutputStream       fileStream;
+//
+//            tempFile = File.createTempFile(fileName, Long.toString(System.currentTimeMillis()));
+//            tempFile.deleteOnExit();
+//            entry    = zipFile.getEntry(fileName);
+//
+//            if(entry == null)
+//            {
+//                throw new FileNotFoundException("cannot find file: " + fileName + " in archive: " + zipFile.getName());
+//            }
+//
+//            zipStream  = zipFile.getInputStream(entry);
+//            fileStream = null;
+//
+//            try
+//            {
+//                final byte[] buf;
+//                int          i;
+//
+//                fileStream = new FileOutputStream(tempFile);
+//                buf        = new byte[1024];
+//                i          = 0;
+//
+//                while((i = zipStream.read(buf)) != -1)
+//                {
+//                    fileStream.write(buf, 0, i);
+//                }
+//            }
+//            finally
+//            {
+//                close(zipStream);
+//                close(fileStream);
+//            }
+//
+//            return (tempFile.toURI());
+//        }
+
+//        private static void close(final Closeable stream)
+//        {
+//            if(stream != null)
+//            {
+//                try
+//                {
+//                    stream.close();
+//                }
+//                catch(final IOException ex)
+//                {
+//                    ex.printStackTrace();
+//                }
+//            }
+//        }
 }
