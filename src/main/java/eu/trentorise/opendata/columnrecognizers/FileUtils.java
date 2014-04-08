@@ -1,6 +1,5 @@
 package eu.trentorise.opendata.columnrecognizers;
 
-import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,7 +15,6 @@ import java.security.ProtectionDomain;
 import java.util.Iterator;
 import java.util.List;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
 /**
@@ -166,7 +164,7 @@ public class FileUtils {
 	 * Returns the directory with the model and training files for an SVM 
 	 * classifier column recognizer.
 	 * <p>
-	 * Looks first amoung application resources, then in the data directory.
+	 * Looks first among application resources, then in the data directory.
 	 * If the folder is missing from the data directory, it is created.
 	 * 
 	 * @param recognizerID		The name of the recognizer
@@ -354,7 +352,21 @@ public class FileUtils {
 	 */
 	public static File getResourceFile(String path) {
 		URL url = FileUtils.class.getResource(path);
-		return new File(url.getPath());
+		File file = null;
+		try {
+			URI uri = url.toURI();
+			file = new File(uri);
+			if (!file.exists()) {
+				file = getTmpFile(file.getName());
+				file.deleteOnExit();
+				extractFromJar(path, file);
+			}
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		return new File(url.getPath());
+		return file;
 	}
 	
 	/**
@@ -422,7 +434,7 @@ public class FileUtils {
 	 * @param resource		The URL to the resource
 	 * @param destination	The destination file
 	 */
-	public static void extractFromJar(URL resource, File destination) {
+	public static void extractFromJar(String resourcePath, File destination) {
 		try {
             final ZipEntry entry;
             final InputStream zipStream;
@@ -430,7 +442,8 @@ public class FileUtils {
             final String entryName;
             
             final URI jarURI = getJarURI();
-            entryName = jarURI.relativize(resource.toURI()).getPath();
+//            entryName = jarURI.relativize(resource.toURI()).getPath();
+            entryName = resourcePath.startsWith("/") ? resourcePath.substring(1) : resourcePath;
 
 			@SuppressWarnings("resource")
 			ZipFile zipFile = new ZipFile(new File(jarURI));
@@ -499,6 +512,41 @@ public class FileUtils {
 
             return (uri);
         }
+    
+//    private static URI getFile(final URI    where,
+//    		final String fileName)
+//    				throws ZipException,
+//    				IOException
+//    {
+//    	final File location;
+//    	final URI  fileURI;
+//
+//    	location = new File(where);
+//
+//    	// not in a JAR, just return the path on disk
+//    	if(location.isDirectory())
+//    	{
+//    		fileURI = URI.create(where.toString() + fileName);
+//    	}
+//    	else
+//    	{
+//    		final ZipFile zipFile;
+//
+//    		zipFile = new ZipFile(location);
+//
+//    		try
+//    		{
+//    			fileURI = extract(zipFile, fileName);
+//    		}
+//    		finally
+//    		{
+//    			zipFile.close();
+//    		}
+//    	}
+//
+//    	return (fileURI);
+//   }
+
 
 //    private static URI extract(final ZipFile zipFile,
 //                                   final String  fileName)

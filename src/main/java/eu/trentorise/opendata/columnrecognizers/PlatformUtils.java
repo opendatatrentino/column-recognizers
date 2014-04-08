@@ -46,4 +46,14 @@ public class PlatformUtils {
 		return os + bits;
 	}
 	
+	/**
+	 * Returns a platform-dependent suffix to be appended to the name of an 
+	 * executable file. 
+	 * 
+	 * @return	The extension
+	 */
+	public static String getExeExtension() {
+		return isOSWindows() ? ".exe" : "";
+	}
+	
 }

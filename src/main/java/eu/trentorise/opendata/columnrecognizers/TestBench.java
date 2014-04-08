@@ -2,6 +2,9 @@ package eu.trentorise.opendata.columnrecognizers;
 import it.unitn.disi.sweb.core.nlp.model.NLMeaning;
 import it.unitn.disi.sweb.core.nlp.model.NLText;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -26,13 +29,76 @@ public class TestBench {
 	 */
 	public static void main(String[] args) {
 		TestBench app = new TestBench();
-		app.runRecognizers();
+		
+		if (args.length < 3) {
+			app.runRecognizers();			
+		} else if (args.length == 3) {
+			String csvPath = args[0];
+			char columnSeparator = args[1].charAt(0);
+			File specificationFile = new File(args[2]);
+			app.runRecognizers(
+					new File(csvPath), 
+					columnSeparator, 
+					specificationFile);
+		}
+	
+//		System.out.println(ColumnRecognizer.conceptFromText("civico"));
 //		app.testCSVProcessor();
 //		app.testWordFrequencies();
 //		app.readWordScores();
 //		app.testTFIDF();
 //		app.testWebAPI();
 	}
+
+	private void runRecognizers(File csvFile, char columnSeparator, File specificationFile) {
+		RowTable rowTable = RowTable.loadFromCSV(csvFile, columnSeparator);
+		List<String> headers = rowTable.popHeaders();
+		List<Column> columns = rowTable.extractColumns();
+		List<List<String>> columnData = Column.toStringLists(columns);
+		List<ColumnConceptCandidate> scoredCandidates = null;
+
+		if (specificationFile == null) {
+			scoredCandidates = ColumnRecognizer.computeScoredCandidates(headers, columnData);
+		} else {
+			File modelDirectory = new File(specificationFile.getParentFile(), "models");
+			List<File> modelDirectories = new ArrayList<File>();
+			modelDirectories.add(modelDirectory);
+			InputStream specificationStream = null;
+			try {
+				specificationStream = new FileInputStream(specificationFile);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			scoredCandidates  
+				= ColumnRecognizer.computeScoredCandidates(
+					headers, 
+					columnData, 
+					specificationStream, 
+					modelDirectories);
+		}
+
+		Iterator<ColumnConceptCandidate> it = scoredCandidates.iterator();
+		while (it.hasNext()) {
+			System.out.println(it.next().toString());
+		}
+	}
+
+//	private void runRecognizers(File csvFile, char columnSeparator) {
+//		RowTable rowTable = RowTable.loadFromCSV(csvFile, columnSeparator);
+//		List<String> headers = rowTable.popHeaders();
+//				
+//		List<Column> columns = rowTable.extractColumns();
+//		List<List<String>> columnData = Column.toStringLists(columns);
+//		List<ColumnConceptCandidate> scoredCandidates 
+//			= ColumnRecognizer.computeScoredCandidates(headers, columnData);
+//		
+//		// Print scored candidates
+//		Iterator<ColumnConceptCandidate> it = scoredCandidates.iterator();
+//		while (it.hasNext()) {
+//			System.out.println(it.next().toString());
+//		}
+//	}
 
 	private void runRecognizers() {
 //		final String CSV_PATH = "Elenco_osterie_tipiche_civici.1386925759.csv";
@@ -42,21 +108,8 @@ public class TestBench {
 //		final char COLUMN_SEPARATOR = ';';
 		final char COLUMN_SEPARATOR = ',';
 	
-		// Load CSV file
 		File csvFile = FileUtils.getResourceFile(CSV_PATH);
-		RowTable rowTable = RowTable.loadFromCSV(csvFile, COLUMN_SEPARATOR);
-		List<String> headers = rowTable.popHeaders();
-				
-		List<Column> columns = rowTable.extractColumns();
-		List<List<String>> columnData = Column.toStringLists(columns);
-		List<ColumnConceptCandidate> scoredCandidates 
-			= ColumnRecognizer.computeScoredCandidates(headers, columnData);
-		
-		// Print scored candidates
-		Iterator<ColumnConceptCandidate> it = scoredCandidates.iterator();
-		while (it.hasNext()) {
-			System.out.println(it.next().toString());
-		}
+		runRecognizers(csvFile, COLUMN_SEPARATOR, null);
 	}
 
 	// TODO Replace with interface (on ValueSetCR) to dump value sets to files

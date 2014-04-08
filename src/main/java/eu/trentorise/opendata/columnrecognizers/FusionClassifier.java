@@ -28,7 +28,7 @@ public class FusionClassifier {
 	/**
 	 * Path to the classifier executable
 	 */
-	public final static String CLASSIFIER_EXE_NAME = "svm_classify.exe";
+//	public final static String CLASSIFIER_EXE_NAME = "svm_classify.exe";
 	
 	/**
 	 * The SVM-Light model file

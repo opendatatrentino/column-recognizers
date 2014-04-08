@@ -36,7 +36,7 @@ public class ClassifierFusionTest {
 	 * 
 	 */
 	@Test
-	public void testFusionClassifier() {
+	public void testClassifier() {
 		
 		List<List<Double>> columnFeatures = new ArrayList<List<Double>>();
 		Set<String> inputRecognizers = new HashSet<String>();
@@ -106,18 +106,18 @@ public class ClassifierFusionTest {
 	 * 
 	 */
 //	@Test
-	public void testRecognizerSimpleModel() {
+	public void testRecognizer() {
 		final int TIPO_COLUMN_NUMBER = 4;
 		final int INSEGNA_COLUMN_NUMBER = 3;
 		final String FUSION_CR_ID = "fusion";
-		final String CSV_PATH = "Elenco_osterie_tipiche_civici.1386925759.csv";
+		final String CSV_PATH = "/tables/Elenco_osterie_tipiche_civici.1386925759.csv";
 		final char COLUMN_SEPARATOR = ';';
-		final int NUMBER_OF_HEADER_ROWS = 1;
 
 		// Load CSV file
-		File csvFile = new File(CSV_PATH); 
+//		File csvFile = new File(CSV_PATH); 
+		File csvFile = FileUtils.getResourceFile(CSV_PATH);
 		RowTable rowTable = RowTable.loadFromCSV(csvFile, COLUMN_SEPARATOR);
-		rowTable.removeHeaders(NUMBER_OF_HEADER_ROWS);
+		rowTable.removeHeaders();
 		
 		// Create recognizer
 		Set<String> inputRecognizers = new HashSet<String>();
@@ -158,6 +158,14 @@ public class ClassifierFusionTest {
 		assertTrue(resultingCandidate.getScore() > 0.7);
 	}
 	
+//	@Test
+	public void testTraining() {
+//		TODO 
+		String referenceModel = "";
+		String model = "";
+		
+		assertTrue(model.equals(referenceModel));
+	}
 	
 
 	
