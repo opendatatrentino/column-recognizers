@@ -48,7 +48,7 @@ public class FileUtils {
 	/**
 	 * The name of the executable that does SVM classification
 	 */
-	private final static String SVM_CLASSIFIER_NAME = "svm_learn";
+	private final static String SVM_CLASSIFIER_NAME = "svm_classify";
 	
 	/**
 	 * Name of the default column recognizer specification file
