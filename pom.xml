@@ -59,7 +59,7 @@
     </repositories>
 
     <properties>
-        <sweb.nlp.version>2.5.0-SNAPSHOT</sweb.nlp.version>
+        <sweb.nlp.version>2.5.0-RELEASE</sweb.nlp.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
