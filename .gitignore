@@ -1,4 +1,6 @@
 conf/sweb-webapi-model.properties
+logs/
+trans_predictions
 
 *.class
 
