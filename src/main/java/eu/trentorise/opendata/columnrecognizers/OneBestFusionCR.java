@@ -91,12 +91,46 @@ public class OneBestFusionCR extends ColumnRecognizer {
 		Iterator<ColumnConceptCandidate> it = candidateList.iterator();
 		while (it.hasNext()) {
 			ColumnConceptCandidate candidate = it.next();
-			if (maxCandidate == null || candidate.getScore() > maxCandidate.getScore()) {
+//			if (maxCandidate == null || candidate.getScore() > maxCandidate.getScore()) {
+//				maxCandidate = candidate;
+//			}
+			if (maxCandidate == null) {
 				maxCandidate = candidate;
+			} else {
+				maxCandidate = pickMaxCandidate(maxCandidate, candidate);
 			}
 		}
 		return maxCandidate;
 	}
 
+	/**
+	 * Given two column concept candidates, pick the one with the higher score
+	 * and in case of equal scores, break the tie by preferring the one with 
+	 * the smaller concept ID.
+	 * 
+	 * @param candidate1	A column concept candidate
+	 * @param candidate2	Another candidate
+	 * @return				The candidate with the higher score
+	 */
+	private ColumnConceptCandidate pickMaxCandidate(
+			ColumnConceptCandidate candidate1, 
+			ColumnConceptCandidate candidate2) {
+		double score1 = candidate1.getScore();
+		double score2 = candidate2.getScore();
+		
+		ColumnConceptCandidate maxCandidate = candidate1;
+		
+		if (score1 > score2) {
+			maxCandidate = candidate1;
+		} else if (score1 < score2) {
+			maxCandidate = candidate2;
+		} else if (candidate1.getConceptID() < candidate2.getConceptID()) {
+			maxCandidate = candidate1;
+		} else {
+			maxCandidate = candidate2;
+		}
+		
+		return maxCandidate;
+	}
 
 }

@@ -84,7 +84,7 @@ public class NLPUtils {
 	}
 
 	/**
-	 * Getw the meanings of a token that is not part of a multiword or named entity.
+	 * Get the meanings of a token that is not part of a multiword or named entity.
 	 * 
 	 * @param token	The token
 	 * @return		The meanings
@@ -144,11 +144,42 @@ public class NLPUtils {
 		Iterator<NLMeaning> itMeanings = meanings.iterator();
 		while (itMeanings.hasNext()) {
 			NLMeaning meaning = itMeanings.next();
-			if (maxMeaning == null || maxMeaning.getProbability() < meaning.getProbability()) {
+			if (maxMeaning == null) {
 				maxMeaning = meaning;
-			} 
+			} else {
+				maxMeaning = pickMaxProbabilityMeaning(maxMeaning, meaning);
+			}
 		}
 			
+		return maxMeaning;
+	}
+	
+	/**
+	 * Chooses the meaning with the highest probability and, when probabilities
+	 * are equal, breaks the tie by prefering the meaning with the lowest
+	 * globalID.
+	 * 
+	 * @param nlMeaning1	A meaning
+	 * @param nlMeaning2	Another meaning
+	 * @return				The meaning with higher probability
+	 */
+	private static NLMeaning pickMaxProbabilityMeaning(NLMeaning nlMeaning1, NLMeaning nlMeaning2) {
+		Float probability1 = nlMeaning1.getProbability();
+		Float probability2 = nlMeaning2.getProbability();
+		
+		NLMeaning maxMeaning = nlMeaning1;
+		if (probability1 > probability2) {
+			maxMeaning = nlMeaning1;
+		} else if (probability1 < probability2) {
+			maxMeaning = nlMeaning2;
+		} else if (nlMeaning1 instanceof NLSenseMeaning && nlMeaning2 instanceof NLSenseMeaning) {
+			if (((NLSenseMeaning)nlMeaning1).getGlobalId() < ((NLSenseMeaning)nlMeaning2).getGlobalId()) {
+				maxMeaning = nlMeaning1;
+			} else {
+				maxMeaning = nlMeaning2;
+			}
+		}
+		
 		return maxMeaning;
 	}
 

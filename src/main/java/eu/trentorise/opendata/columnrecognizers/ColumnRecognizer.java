@@ -135,6 +135,25 @@ public abstract class ColumnRecognizer {
 		
 		return conceptID;
 	}
+	
+	/**
+	 * The main method is used for ad hoc testing.
+	 * 
+	 * @param args	Arguments - currently one, the name of a column, like LATITUDINE
+	 */
+	public static void main(String[] args) {
+		String columnName = args[0];
+//		System.out.println(conceptFromText(columnName));
+		
+	    List<String> columnHeaders = new ArrayList<String>();
+		columnHeaders.add(columnName);
+	    List<List<String>> columnData = new ArrayList<List<String>>();
+	    List<String> column = new ArrayList<String>();
+	    column.add("");
+	    columnData.add(column);
+
+		System.out.println(computeScoredCandidates(columnHeaders, columnData));
+	}
 
 //	/**
 //	 * Sets the folder with the SVM-Light executables. Use this if you want
