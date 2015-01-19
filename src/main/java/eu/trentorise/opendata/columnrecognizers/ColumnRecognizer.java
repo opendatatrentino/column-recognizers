@@ -49,6 +49,51 @@ public abstract class ColumnRecognizer {
 	}
 	
 	/**
+	 * Convenience method for retrieving the best-scoring concept ID for each
+	 * column, with -1 returned for columns with no candidate concepts.
+	 * 
+	 * @param columnHeaders	The column headers
+	 * @param columnData	The column contents
+	 * @return				The concepts ID for each column
+	 */
+	public static List<Long> computeColumnConceptIDs(
+		    List<String> columnHeaders,
+		    List<List<String>> columnData) {
+		int columnCount = columnData.size();
+		List<ColumnConceptCandidate> candidates
+			= computeScoredCandidates(columnHeaders, columnData);
+		
+		List<ColumnConceptCandidate> maxCandidates 
+			= new ArrayList<ColumnConceptCandidate>(columnCount);
+		for (int index = 0; index < columnCount; index++) {
+			maxCandidates.add(null);
+		}
+		
+		for (ColumnConceptCandidate candidate : candidates) {
+			int columnIndex = candidate.getColumnNumber() - 1;
+			ColumnConceptCandidate maxCandidate = maxCandidates.get(columnIndex);
+			if (maxCandidate == null) {
+				maxCandidate = candidate;
+			} else {
+				maxCandidate = OneBestFusionCR.pickMaxCandidate(maxCandidate, candidate);
+			}
+
+			maxCandidates.set(columnIndex, maxCandidate);
+		}
+		
+		List<Long> maxIDs = new ArrayList<Long>(columnCount);
+		for (ColumnConceptCandidate maxCandidate : maxCandidates) {
+			if (maxCandidate == null) {
+				maxIDs.add(-1L);
+			} else {
+				maxIDs.add(maxCandidate.getConceptID());
+			}
+		}
+		
+		return maxIDs;
+	}
+	
+	/**
 	 * Static API method for computing column-concept candidates for a table 
 	 * using the default specification file.
 	 * 
@@ -127,7 +172,9 @@ public abstract class ColumnRecognizer {
 		List<String> texts = new ArrayList<String>();
 		texts.add(text);
 		List<NLText> nlTexts = NLPUtils.processTexts(texts);
+//System.out.println(nlTexts.get(0));
 		Set<NLMeaning> meanings = NLPUtils.extractMeanings(nlTexts.get(0));
+//System.out.println(meanings.size());
 		NLMeaning maxMeaning = NLPUtils.findMaxProbabilityMeaning(meanings);
 		if (maxMeaning instanceof NLSenseMeaning) {
 			conceptID = ((NLSenseMeaning)maxMeaning).getGlobalId();
@@ -139,20 +186,34 @@ public abstract class ColumnRecognizer {
 	/**
 	 * The main method is used for ad hoc testing.
 	 * 
-	 * @param args	Arguments - currently one, the name of a column, like LATITUDINE
+	 * @param args	Arguments - column names
 	 */
 	public static void main(String[] args) {
+		testConceptFromText(args);
+//		testComputeScoredCandidates(args);
+	}
+
+	private static void testConceptFromText(String[] args) {
 		String columnName = args[0];
-//		System.out.println(conceptFromText(columnName));
-		
+		System.out.println(conceptFromText(columnName));
+	}
+
+	private static void testComputeScoredCandidates(String[] args) {
 	    List<String> columnHeaders = new ArrayList<String>();
-		columnHeaders.add(columnName);
+	    for (int index = 0; index < args.length; index++) {
+			columnHeaders.add(args[index]);	
+	    }
 	    List<List<String>> columnData = new ArrayList<List<String>>();
 	    List<String> column = new ArrayList<String>();
-	    column.add("");
+	    for (int index = 0; index < args.length; index++) {
+	    	column.add("");
+	    }
 	    columnData.add(column);
 
-		System.out.println(computeScoredCandidates(columnHeaders, columnData));
+	    List<ColumnConceptCandidate> candidates 
+	    	= computeScoredCandidates(columnHeaders, columnData);
+		System.out.println(candidates);
+		System.out.println(candidates.size());
 	}
 
 //	/**

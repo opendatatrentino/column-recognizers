@@ -131,6 +131,17 @@ public class APITest {
 		assertTrue(scoredCandidates.size() >= MINIMUM_CANDIDATE_COUNT);
 	}
 	
+	@Test
+	public void testComputeColumnConcepts() {
+		List<Long> conceptIDs 
+			= ColumnRecognizer.computeColumnConceptIDs(
+					impiantiHeaders, 
+					Column.toStringLists(impiantiColumns));
+		
+		assertTrue(conceptIDs.size() == impiantiHeaders.size());
+//		System.out.println(conceptIDs);
+	}
+	
 	/**
 	 * Tests the ColumnRecognizer.computeScoredCandidates API with added 
 	 * parameters.

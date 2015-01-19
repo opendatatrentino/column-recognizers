@@ -112,7 +112,7 @@ public class OneBestFusionCR extends ColumnRecognizer {
 	 * @param candidate2	Another candidate
 	 * @return				The candidate with the higher score
 	 */
-	private ColumnConceptCandidate pickMaxCandidate(
+	public static ColumnConceptCandidate pickMaxCandidate(
 			ColumnConceptCandidate candidate1, 
 			ColumnConceptCandidate candidate2) {
 		double score1 = candidate1.getScore();
