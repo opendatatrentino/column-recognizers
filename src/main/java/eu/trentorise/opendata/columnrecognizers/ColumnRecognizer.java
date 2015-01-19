@@ -54,7 +54,7 @@ public abstract class ColumnRecognizer {
 	 * 
 	 * @param columnHeaders	The column headers
 	 * @param columnData	The column contents
-	 * @return				The concepts ID for each column
+	 * @return				The concept ID for each column
 	 */
 	public static List<Long> computeColumnConceptIDs(
 		    List<String> columnHeaders,
