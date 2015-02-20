@@ -1,9 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <!-- /** * ***************************************************************************** 
-    * Copyright 2014 Trento Rise (www.trentorise.eu/) * * All rights reserved. 
-    * ******************************************************************************* 
-    */ -->
+    <!--  
+        /* 
+         * Copyright 2015 Trento Rise  (trentorise.eu) 
+         *
+         * Licensed under the Apache License, Version 2.0 (the "License");
+         * you may not use this file except in compliance with the License.
+         * You may obtain a copy of the License at
+         *
+         *      http://www.apache.org/licenses/LICENSE-2.0
+         *
+         * Unless required by applicable law or agreed to in writing, software
+         * distributed under the License is distributed on an "AS IS" BASIS,
+         * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+         * See the License for the specific language governing permissions and
+         * limitations under the License.
+         */  
+    --> 
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -20,9 +33,14 @@
         <version>7</version> 
     </parent>
 
-    <!-- <licenses> <license> <name>GNU Lesser General Public License, Version 
-    2.1</name> <url>http://www.gnu.org/licenses/lgpl-2.1.txt</url> <distribution>repo</distribution> 
-    </license> </licenses> -->
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
 
     <repositories>
         <repository>
@@ -60,9 +78,11 @@
 
     <properties>
         <sweb.nlp.version>2.5.0-RELEASE</sweb.nlp.version>
+        <scmUrl>https://github.com/opendatatrentino/column-recognizers</scmUrl>        
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
+
 
 
     <profiles>
@@ -105,7 +125,7 @@
                 <version>2.12.4</version>
                 <configuration>
                     <includes>
-                        <include>**/*ITCase*</include>
+                        <include>**/*IT*</include>
                     </includes>
                 </configuration>
                 <executions>
@@ -199,20 +219,27 @@
                 <version>2.1</version>
                 <configuration>
                     <mavenExecutorId>forked-path</mavenExecutorId>
-                    <useReleaseProfile>false</useReleaseProfile>
-                    <arguments>${arguments} -Psonatype-oss-release</arguments>
+                    <useReleaseProfile>false</useReleaseProfile>                    
+                    <arguments>${arguments} -Psonatype-oss-release -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true</arguments>          
                 </configuration>
             </plugin>                                                
         </plugins>
 
     </build>
 
-    <scm> 
-        <url>git@github.com:opendatatrentino/column-recognizers.git</url> 
-        <connection>scm:git:git@github.com:opendatatrentino/column-recognizers.git</connection> 
-        <developerConnection>scm:git:git@github.com:opendatatrentino/column-recognizers.git</developerConnection> 
+    <scm>
+        <url>${scmUrl}</url>
+        <connection>scm:git:${scmUrl}.git</connection>
+        <developerConnection>scm:git:${scmUrl}.git</developerConnection>        
+        <tag>HEAD</tag>
     </scm>
-    <description>DISI ODR Java Client</description>
+    
+    <issueManagement>
+        <system>Github</system>
+        <url>${scmUrl}/issues</url>
+    </issueManagement>     
+    
+    <description>This project implements techniques for identifying the knowledgebase concepts corresponding to columns in databases.</description>
 
     <developers>
         <developer>
@@ -238,11 +265,11 @@
             <scope>test</scope>
         </dependency>
         <!-- 		<dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>2.1</version>
-        </dependency>
-         -->	
+           <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-compiler-plugin</artifactId>
+           <version>2.1</version>
+       </dependency>
+        -->	
         <dependency>
             <groupId>it.unitn.disi.sweb</groupId>
             <artifactId>sweb-webapi-nlp-client</artifactId>
@@ -251,7 +278,7 @@
         <dependency>
             <groupId>eu.trentorise.opendata</groupId>
             <artifactId>nlprise</artifactId>
-            <version>0.2.0-SNAPSHOT</version>
+            <version>0.2.0</version>
         </dependency>
         <!-- 		 <dependency>
                                <groupId>eu.trentorise.opendata</groupId>
