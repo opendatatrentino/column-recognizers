@@ -273,7 +273,7 @@
         <dependency>
             <groupId>it.unitn.disi.sweb</groupId>
             <artifactId>sweb-webapi-nlp-client</artifactId>
-            <version>3.0.0-SNAPSHOT</version>
+            <version>3.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>eu.trentorise.opendata</groupId>
