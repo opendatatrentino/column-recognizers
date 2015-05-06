@@ -27,24 +27,24 @@
 #
 
 # Restaurant
-it_restaurant_regex		2001	REGEX			((trattoria)|(ristorante)|(hosteria)|(ost[ae]ria)|(pizzeria)) [a-z]+
+it_restaurant_regex		22500	REGEX			((trattoria)|(ristorante)|(hosteria)|(ost[ae]ria)|(pizzeria)) [a-z]+
 
 # Street address
 # The regex assumes that the column separator is in [;,] or the null character
-it_street_address_regex	3001	REGEX			((via)|(viale)|(piazza)|(piazzetta)) [ a-z]+\s*[;,\x00]?[0-9]+
+it_street_address_regex	45803	REGEX			((via)|(viale)|(piazza)|(piazzetta)) [ a-z]+\s*[;,\x00]?[0-9]+
 
 # Town (comune)
-comune_set				4001	VALUE_SET		comune.txt
+comune_set				46431	VALUE_SET		comune.txt
 
 # Frazione
-frazione_set			5001	VALUE_SET		frazione.txt
+frazione_set			72963	VALUE_SET		frazione.txt
 
 # Restaurant
-#it_restaurant_tfidf		2001 	TF_IDF			it_restaurant_tfidf.txt
+#it_restaurant_tfidf		22500 	TF_IDF			it_restaurant_tfidf.txt
 
 # Restaurant
-#two_features_osterie	2001	SVM				svm-two_features_osterie/svm-model-two_features_osterie; it_restaurant_tfidf
-#restaurant_2cr_osterie	2001	SVM				svm-restaurant_2cr_osterie/svm-model-restaurant_2cr_osterie; it_restaurant_tfidf, it_restaurant_regex
+#two_features_osterie	22500	SVM				svm-two_features_osterie/svm-model-two_features_osterie; it_restaurant_tfidf
+#restaurant_2cr_osterie	22500	SVM				svm-restaurant_2cr_osterie/svm-model-restaurant_2cr_osterie; it_restaurant_tfidf, it_restaurant_regex
 
 # Comune
 #comune_2cr_osterie		4001	SVM				svm-comune_2cr_osterie/svm-model-comune_2cr_osterie; comune_set, frazione_set
