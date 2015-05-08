@@ -16,10 +16,13 @@ import it.unitn.disi.sweb.webapi.client.IProtocolClient;
 import it.unitn.disi.sweb.webapi.client.ProtocolFactory;
 import it.unitn.disi.sweb.webapi.client.nlp.PipelineClient;
 import it.unitn.disi.sweb.webapi.model.NLPInput;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 
 public class TestBench {
+        private static final Logger LOG = LoggerFactory.getLogger(TestBench.class);    
 	private final static String DIVIDER = "________________________________________________________________";
 	private final static String LONG_DIVIDER = DIVIDER + DIVIDER + DIVIDER;
 	private final static String INVERSE_FREQUENCIES_PATH = "/models/inverse-frequencies.txt";
@@ -224,8 +227,8 @@ public class TestBench {
 	private void testWebAPI() {
 //		IProtocolClient api = ProtocolFactory.getHttpClient(Locale.ENGLISH,
 //				"ui.disi.unitn.it", 8092);
-        IProtocolClient api = ProtocolFactory.getHttpClient(Locale.ENGLISH,
-        		"opendata.disi.unitn.it", 8080);
+        LOG.warn("TODO - USING HARDCODED ENGLISH WHEN CREATING SWEB CLIENT IN  testWebAPI");
+        IProtocolClient api = ProtocolFactory.getHttpClient(Locale.ENGLISH);
         PipelineClient pipelineClient = new PipelineClient(api);
 
         List<String> text = new ArrayList<String>();

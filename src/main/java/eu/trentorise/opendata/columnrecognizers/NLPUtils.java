@@ -19,6 +19,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * NLPUtils encapsulates the NLP functionality in the column recognizer library.
@@ -28,6 +30,8 @@ import java.util.Set;
  */
 public class NLPUtils {
 
+        private static final Logger LOG = LoggerFactory.getLogger(NLPUtils.class);
+    
 	/**
 	 * Extracts all the NLMeanings from the first sentence of an NLText.
 	 * 
@@ -186,13 +190,13 @@ public class NLPUtils {
 	/**
 	 * Runs the NLP pipeline on a list of texts.
 	 * 
-	 * @param texts		The texts
-	 * @return			The NLTexts
+	 * @param texts The texts
+	 * @return      The NLTexts
 	 */
 	public static List<NLText> processTexts(List<String> texts) {
 //        IProtocolClient api = ProtocolFactory.getHttpClient(Locale.ENGLISH, "ui.disi.unitn.it", 8092);
-        IProtocolClient api = ProtocolFactory.getHttpClient(Locale.ENGLISH,
-"opendata.disi.unitn.it", 8080);
+            LOG.warn("TODO - USING HARDCODED ENGLISH when creating sweb client in processTexts");
+        IProtocolClient api = ProtocolFactory.getHttpClient(Locale.ENGLISH);
 		PipelineClient pipelineClient = new PipelineClient(api);
         NLPInput input = new NLPInput();
         input.setText(texts);
