@@ -43,35 +43,35 @@ public class ClassifierFusionTest {
 		exampleFile.delete();
 		predictionsFile.delete();
 		
-		List<List<Double>> columnFeatures = new ArrayList<List<Double>>();
-		Set<String> inputRecognizers = new HashSet<String>();
-		List<Map<String, Double>> supportingCandidates = new ArrayList<Map<String, Double>>();
-		List<Map<String, Double>> competingCandidates = new ArrayList<Map<String, Double>>();
+		List<List<Double>> columnFeatures = new ArrayList<>();
+		Set<String> inputRecognizers = new HashSet();
+		List<Map<String, Double>> supportingCandidates = new ArrayList();
+		List<Map<String, Double>> competingCandidates = new ArrayList();
 		
 		// Supporting candidates
-		Map<String, Double> supportingCandidatesTipo = new HashMap<String, Double>();
+		Map<String, Double> supportingCandidatesTipo = new HashMap();
 		supportingCandidatesTipo.put(INPUT_RECOGNIZER_ID, TIPO_SIMILARITY_SCORE);
 		supportingCandidates.add(supportingCandidatesTipo);
 
-		Map<String, Double> supportingCandidatesInsegna = new HashMap<String, Double>();
+		Map<String, Double> supportingCandidatesInsegna = new HashMap();
 		supportingCandidatesInsegna.put(INPUT_RECOGNIZER_ID, INSEGNA_SIMILARITY_SCORE);
 		supportingCandidates.add(supportingCandidatesInsegna);
 		
 		// Competing candidates
-		Map<String, Double> competingCandidatesTipo = new HashMap<String, Double>();
+		Map<String, Double> competingCandidatesTipo = new HashMap();
 		competingCandidatesTipo.put(INPUT_RECOGNIZER_ID, 0.);
 		competingCandidates.add(competingCandidatesTipo);
-		Map<String, Double> competingCandidatesInsegna = new HashMap<String, Double>();
+		Map<String, Double> competingCandidatesInsegna = new HashMap();
 		competingCandidatesInsegna.put(INPUT_RECOGNIZER_ID, 0.);
 		competingCandidates.add(competingCandidatesInsegna);
 
 		// Two columns: insegna and tipo from osterie_tipiche
 		// A single column feature: uniqueness
-		List<Double> featuresTipo = new ArrayList<Double>();
+		List<Double> featuresTipo = new ArrayList();
 		featuresTipo.add(0.145833);
 		columnFeatures.add(featuresTipo);
 		
-		List<Double> featuresInsegna = new ArrayList<Double>();
+		List<Double> featuresInsegna = new ArrayList();
 		featuresInsegna.add(1.0);
 		columnFeatures.add(featuresInsegna);
 		
