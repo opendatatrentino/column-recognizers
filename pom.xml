@@ -146,7 +146,9 @@
 
 
     <dependencies>
-        <dependency>
+        
+      
+        <!-- <dependency>
             <groupId>it.unitn.disi.sweb</groupId>
             <artifactId>sweb-nlp</artifactId>
             <version>${sweb.nlp.version}</version>
@@ -169,21 +171,17 @@
                 </exclusion>  
             </exclusions>
         </dependency>
+        -->
+     
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>            
-            <scope>test</scope>
+            <groupId>eu.trentorise.opendata.commons</groupId>
+            <artifactId>odt-commons</artifactId>
         </dependency>
-        <!-- 		<dependency>
-           <groupId>org.apache.maven.plugins</groupId>
-           <artifactId>maven-compiler-plugin</artifactId>
-           <version>2.1</version>
-       </dependency>
-        -->	
+        
         <dependency>
             <groupId>it.unitn.disi.sweb</groupId>
             <artifactId>sweb-webapi-nlp-client</artifactId>
-            <version>3.0.1-SNAPSHOT</version>
+            <version>3.0.1-RELEASE</version>
             <exclusions>
                 <exclusion>
                     <groupId> org.slf4j </groupId>
@@ -205,6 +203,7 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
         
+        <!-- used by both langdetect and sweb-nlp -->
         <dependency>
             <groupId>net.arnx</groupId>
             <artifactId>jsonic</artifactId>
