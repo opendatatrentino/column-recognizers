@@ -9,7 +9,7 @@
 target/
 logs/
 trans_predictions
-#/conf/*
+/conf/*
 !/conf/README.txt
 
 
