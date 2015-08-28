@@ -54,6 +54,7 @@ public class SwebConfiguration extends Configuration {
     private static String host;
     private static int port;
     private static String root;
+    private static SwebUrlMapper urlMapper;
 
     private SwebConfiguration() {
         super(SWEB_PROPERTIES_FILENAME);
@@ -71,7 +72,8 @@ public class SwebConfiguration extends Configuration {
     }
 
     /**
-     * Overrides existing configuration merging given properties to existing ones.
+     * Overrides existing configuration merging given properties to existing
+     * ones.
      */
     static public void init(Map<String, String> properties) {
         checkNotNull(properties);
@@ -87,6 +89,7 @@ public class SwebConfiguration extends Configuration {
         host = checkNotNull(SwebConfiguration.getString(SWEB_WEBAPI_HOST));
         port = Integer.parseInt(SwebConfiguration.getString(SWEB_WEBAPI_PORT));
         root = checkNotNull(SwebConfiguration.getString(SWEB_WEBAPI_ROOT));
+        urlMapper = SwebUrlMapper.of(getBaseUrl());
 
     }
 
@@ -96,6 +99,9 @@ public class SwebConfiguration extends Configuration {
         return "http://" + host + ":" + port + root;
     }
 
+    public static SwebUrlMapper getUrlMapper() {
+        checkInitialized();
+        return urlMapper;
+    }
+
 }
-
-
