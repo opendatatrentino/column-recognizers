@@ -182,9 +182,9 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 		checkParameters(args);
 		
 		String fusionRecognizerID = args[FUSION_RECOGNIZER_ID_POSITION];
-		List<File> tableFiles = new ArrayList<File>();
-		List<Character> columnSeparators = new ArrayList<Character>();
-		List<File> labelFiles = new ArrayList<File>();
+		List<File> tableFiles = new ArrayList();
+		List<Character> columnSeparators = new ArrayList();
+		List<File> labelFiles = new ArrayList();
 		getTrainingFilesFromArgs(args, tableFiles, columnSeparators, labelFiles);
 		
 		train(fusionRecognizerID, tableFiles, columnSeparators, labelFiles);
@@ -203,8 +203,8 @@ public class ClassifierFusionCR extends FusionColumnRecognizer {
 			List<File> tableFiles,
 			List<Character> columnSeparators,
 			List<File> labelFiles) {
-		List<List<Double>> allExamples = new ArrayList<List<Double>>();
-		List<Double> allLabels = new ArrayList<Double>();		
+		List<List<Double>> allExamples = new ArrayList();
+		List<Double> allLabels = new ArrayList();		
 		Iterator<File> itTables = tableFiles.iterator();
 		Iterator<Character> itColumnSeparators = columnSeparators.iterator();
 		Iterator<File> itLabels = labelFiles.iterator();

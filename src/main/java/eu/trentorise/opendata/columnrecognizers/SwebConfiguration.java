@@ -17,7 +17,10 @@ package eu.trentorise.opendata.columnrecognizers;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import eu.trentorise.opendata.commons.OdtUtils;
+import it.unitn.disi.sweb.webapi.client.IProtocolClient;
+import it.unitn.disi.sweb.webapi.client.ProtocolFactory;
 import it.unitn.disi.sweb.webapi.model.Configuration;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import org.slf4j.Logger;
@@ -104,4 +107,12 @@ public class SwebConfiguration extends Configuration {
         return urlMapper;
     }
 
+    
+     public static IProtocolClient getClientProtocol() {
+
+        SwebConfiguration.checkInitialized();
+        
+        return ProtocolFactory.getHttpClient(new Locale("all"));            
+
+    }
 }

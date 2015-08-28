@@ -231,7 +231,7 @@ public class TestBench {
         IProtocolClient api = ProtocolFactory.getHttpClient(Locale.ENGLISH);
         PipelineClient pipelineClient = new PipelineClient(api);
 
-        List<String> text = new ArrayList<String>();
+        List<String> text = new ArrayList();
         text.add("indirizzo");
         text.add("comune");
         text.add("descIt");
@@ -240,7 +240,7 @@ public class TestBench {
         input.setText(text);
 
         NLText[] result = pipelineClient.run("KeywordTextPipeline", input, 1l);
-		List<ColumnConceptCandidate> candidates = new ArrayList<ColumnConceptCandidate>();
+		List<ColumnConceptCandidate> candidates = new ArrayList();
 		int columnNumber = 1;
         for (NLText nlText : result) {
             System.out.println(nlText.toString());

@@ -1,25 +1,19 @@
 package eu.trentorise.opendata.columnrecognizers;
 
-//import it.unitn.disi.sweb.core.nlp.INLPPipeline;
 import it.unitn.disi.sweb.core.nlp.model.NLMeaning;
 import it.unitn.disi.sweb.core.nlp.model.NLText;
-//import it.unitn.disi.sweb.core.nlp.parameters.NLPParameters;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.beans.factory.annotation.Qualifier;
 
 /**
  * @author Simon
  *
  */
 public class HeaderNLPCR extends HeaderBasedCR {
-//    @Autowired
-//    @Qualifier("ODHPipeline")
-//    private INLPPipeline<NLPParameters> headerPipeline;
+
 
 	/**
 	 * @param id
