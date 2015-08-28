@@ -16,7 +16,7 @@ import org.junit.Test;
  * @author Simon
  *
  */
-public class APITest {
+public class ApiTest {
 	/**
 	 * Path for finding the "Impianti di risalita" table in the test resources
 	 */
@@ -139,7 +139,6 @@ public class APITest {
 					Column.toStringLists(impiantiColumns));
 		
 		assertTrue(conceptIDs.size() == impiantiHeaders.size());
-//		System.out.println(conceptIDs);
 	}
 	
 	/**
@@ -160,7 +159,7 @@ public class APITest {
 //		alternativeSpecFile = FileUtils.getResourceFile(ALTERNATIVE_SPEC_FILE_2_RESOURCE_PATH);
 		alternativeSpecFile = FileUtils.getResourceStream(ALTERNATIVE_SPEC_FILE_2_RESOURCE_PATH);
 		File modelDirectory = FileUtils.getResourceFile(MODEL_DIRECTORY_RESOURCE_PATH);
-		List<File> modelDirectories = new ArrayList<File>();
+		List<File> modelDirectories = new ArrayList();
 		modelDirectories.add(modelDirectory);
 		scoredCandidates = ColumnRecognizer.computeScoredCandidates(
 				prodottiHeaders, 

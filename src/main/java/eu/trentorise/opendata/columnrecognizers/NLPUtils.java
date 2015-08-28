@@ -39,7 +39,7 @@ public class NLPUtils {
 	 * @return			The set of NLMeanings
 	 */
 	static Set<NLMeaning> extractMeanings(NLText nlText) {
-		Set<NLMeaning> meanings = new HashSet<NLMeaning>();
+		Set<NLMeaning> meanings = new HashSet();
 		
 		List<NLSentence> sentences = nlText.getSentences();
 		NLSentence firstSentence = sentences.iterator().next();
@@ -104,7 +104,7 @@ public class NLPUtils {
 				
 				NLMeaning selectedMeaning = token.getSelectedMeaning();
 				if (selectedMeaning != null) {
-					meanings = new HashSet<NLMeaning>();
+					meanings = new HashSet();
 					meanings.add(selectedMeaning);
 				}
 			} else {
@@ -124,7 +124,7 @@ public class NLPUtils {
 	 */
 	public static List<ColumnConceptCandidate> meaningsToCandidates(
 			int columnNumber, String originator, Set<NLMeaning> meanings) {
-		List<ColumnConceptCandidate> candidates = new ArrayList<ColumnConceptCandidate>();
+		List<ColumnConceptCandidate> candidates = new ArrayList();
 		Iterator<NLMeaning> itMeanings = meanings.iterator();
 		while (itMeanings.hasNext()) {
 			NLMeaning meaning = itMeanings.next();

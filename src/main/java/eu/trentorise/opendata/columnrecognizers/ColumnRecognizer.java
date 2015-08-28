@@ -64,7 +64,7 @@ public abstract class ColumnRecognizer {
 			= computeScoredCandidates(columnHeaders, columnData);
 		
 		List<ColumnConceptCandidate> maxCandidates 
-			= new ArrayList<ColumnConceptCandidate>(columnCount);
+			= new ArrayList(columnCount);
 		for (int index = 0; index < columnCount; index++) {
 			maxCandidates.add(null);
 		}
@@ -81,7 +81,7 @@ public abstract class ColumnRecognizer {
 			maxCandidates.set(columnIndex, maxCandidate);
 		}
 		
-		List<Long> maxIDs = new ArrayList<Long>(columnCount);
+		List<Long> maxIDs = new ArrayList(columnCount);
 		for (ColumnConceptCandidate maxCandidate : maxCandidates) {
 			if (maxCandidate == null) {
 				maxIDs.add(-1L);
@@ -148,7 +148,7 @@ public abstract class ColumnRecognizer {
 			List<File> modelDirectories) {
 		ColumnTable columnTable = ColumnTable.makeColumnTableFromStringLists(columnHeaders, columnData);
 		RowTable rowSample = columnTable.extractRowSample();
-		List<ColumnConceptCandidate> candidates = new ArrayList<ColumnConceptCandidate>();
+		List<ColumnConceptCandidate> candidates = new ArrayList();
 		CompositeColumnRecognizer compositeCR = new CompositeColumnRecognizer("composite");
 		ColumnRecognizerFactory.attachRecognizers(
 				compositeCR, 
@@ -169,7 +169,7 @@ public abstract class ColumnRecognizer {
 	 */
 	public static long conceptFromText(String text) {
 		long conceptID = -1;
-		List<String> texts = new ArrayList<String>();
+		List<String> texts = new ArrayList();
 		texts.add(text);
 		List<NLText> nlTexts = NLPUtils.processTexts(texts);
 //System.out.println(nlTexts.get(0));
@@ -199,15 +199,15 @@ public abstract class ColumnRecognizer {
 	}
 
 	private static void testComputeScoredCandidates(String[] args) {
-	    List<String> columnHeaders = new ArrayList<String>();
+	    List<String> columnHeaders = new ArrayList();
 	    for (int index = 0; index < args.length; index++) {
 			columnHeaders.add(args[index]);	
 	    }
-	    List<List<String>> columnData = new ArrayList<List<String>>();
-	    List<String> column = new ArrayList<String>();
-	    for (int index = 0; index < args.length; index++) {
-	    	column.add("");
-	    }
+	    List<List<String>> columnData = new ArrayList();
+	    List<String> column = new ArrayList();
+            for (String arg : args) {
+                column.add("");
+            }
 	    columnData.add(column);
 
 	    List<ColumnConceptCandidate> candidates 

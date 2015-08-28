@@ -15,7 +15,6 @@
  */
 package eu.trentorise.opendata.columnrecognizers;
 
-
 import static com.google.common.base.Preconditions.checkNotNull;
 import eu.trentorise.opendata.commons.OdtUtils;
 import it.unitn.disi.sweb.webapi.model.Configuration;
@@ -26,12 +25,14 @@ import org.slf4j.LoggerFactory;
 
 /**
  * This class is a little hack to sweb client to allow loading configuration
- * from wherever we want
+ * from wherever we want. Copied from Disi Client. In the future it will become
+ * the only SwebConfiguration for all odt-sweb related stuff. Todo make it
+ * unique!
  *
  * @author David Leoni
  */
 public class SwebConfiguration extends Configuration {
-    
+
     public static final String PROPERTIES_PREFIX = "sweb.webapi";
 
     private static final Logger LOG = LoggerFactory.getLogger(SwebConfiguration.class);
@@ -49,16 +50,20 @@ public class SwebConfiguration extends Configuration {
     public static final String SWEB_WEBAPI_IDLE_TIMEOUT = "sweb.webapi.idle.timeout";
     public static final String SWEB_WEBAPI_READ_TIMEOUT = "sweb.webapi.read.timeout";
     public static final String SWEB_WEBAPI_MAX_CONNECTIONS = "sweb.webapi.maxconnections";
-    
+
+    private static String host;
+    private static int port;
+    private static String root;
+
     private SwebConfiguration() {
         super(SWEB_PROPERTIES_FILENAME);
-    }   
-    
+    }
+
     /**
      * Throws exception if client is not properly initialized
      */
-    public static void checkInitialized() {       
-        OdtUtils.checkNotEmpty(getString(SWEB_WEBAPI_ROOT), SWEB_WEBAPI_ROOT + " is invalid!");        
+    public static void checkInitialized() {
+        OdtUtils.checkNotEmpty(getString(SWEB_WEBAPI_ROOT), SWEB_WEBAPI_ROOT + " is invalid!");
         OdtUtils.checkNotEmpty(getString(SWEB_WEBAPI_TEST_USER), SWEB_WEBAPI_TEST_USER + " is invalid!");
         OdtUtils.checkNotEmpty(getString(SWEB_WEBAPI_KB_DEFAULT), SWEB_WEBAPI_KB_DEFAULT + " is invalid!");
         OdtUtils.checkNotEmpty(getString(SWEB_WEBAPI_HOST), SWEB_WEBAPI_HOST + " is invalid!");
@@ -66,7 +71,7 @@ public class SwebConfiguration extends Configuration {
     }
 
     /**
-     * Overrides existing configuration with given properties.
+     * Overrides existing configuration merging given properties to existing ones.
      */
     static public void init(Map<String, String> properties) {
         checkNotNull(properties);
@@ -79,6 +84,18 @@ public class SwebConfiguration extends Configuration {
                 }
             }
         }
+        host = checkNotNull(SwebConfiguration.getString(SWEB_WEBAPI_HOST));
+        port = Integer.parseInt(SwebConfiguration.getString(SWEB_WEBAPI_PORT));
+        root = checkNotNull(SwebConfiguration.getString(SWEB_WEBAPI_ROOT));
+
+    }
+
+    public static String getBaseUrl() {
+        checkInitialized();
+        LOG.warn("TODO - ASSUMING HTTP AS PROTOCOL");
+        return "http://" + host + ":" + port + root;
     }
 
 }
+
+
