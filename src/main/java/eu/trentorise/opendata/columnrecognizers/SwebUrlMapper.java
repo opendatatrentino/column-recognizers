@@ -19,6 +19,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Multimap;
 import eu.trentorise.opendata.commons.OdtUtils;
+import static eu.trentorise.opendata.commons.validation.Preconditions.checkNotEmpty;
 import java.net.MalformedURLException;
 import java.net.URL;
 import javax.annotation.Nullable;
@@ -158,18 +159,16 @@ public final class SwebUrlMapper {
     }
 
     /**
-     * Returns the etype id as an url
+     * Returns the etype id as an url.
      *
-     * @param etypeId if unknown use -1
-     * @param globalId optional. If unknown use -1
+     * @param etypeId if unknown use -1     
      */
     // using Long as param instead of long because with the latter it might 
     // be hard to interpret implicit cast failures.
-    public String etypeIdToUrl(Long etypeId, Long conceptId) {
-        checkValidId(etypeId, "Invalid etype id!");
-        checkValidId(conceptId, "Invalid concept id!");
-        checkCongruent(etypeId, conceptId);
-        return base + ETYPE_PREFIX + "/" + etypeId + "?" + DEBUG_CONCEPT_ID + "=" + conceptId;
+    public String etypeIdToUrl(Long etypeId) {
+        checkValidId(etypeId, "Invalid etype id!");        
+        checkCongruent(etypeId);
+        return base + ETYPE_PREFIX + "/" + etypeId;
     }
 
     /**
@@ -237,20 +236,17 @@ public final class SwebUrlMapper {
 
     /**
      * Returns the concept id as an url . Concepts for some reason have TWO ids,
-     * one local and one global. The local one seems the 'most' important, still
-     * to construct with success the url both are needed (or none). todo check
-     * docs.
+     * one local and one global. The local one seems the 'most' important, so we
+     * use that one for urls. Notice column recognizers seems to prefer the
+     * global ids, so hacks are needed just for it. Bleah.
      *
      * @param id if unknown use -1
-     * @param globalId If unknown use -1
      */
     // using Long as param instead of long because with the latter it might 
     // be hard to interpret implicit cast failures.
-    public String conceptIdToUrl(Long id, Long globalId) {
-        checkValidId(id, "Invalid concept id!");
-        checkValidId(globalId, "Invalid global concept id!");
-        checkCongruent(id, globalId);
-        return base + CONCEPT_PREFIX + "/" + id + "?" + DEBUG_GLOBAL_CONCEPT_ID + "=" + globalId;
+    public String conceptIdToUrl(Long id) {
+        checkValidId(id, "Invalid concept id!");                
+        return base + CONCEPT_PREFIX + "/" + id;
     }
 
     /**
@@ -292,6 +288,26 @@ public final class SwebUrlMapper {
      */
     public long attrDefUrlToConceptId(String url) {
         return parseIdFromParam(DEBUG_CONCEPT_ID, url);
+    }
+
+    public static boolean isEntityURL(String entityUrl) {
+        checkNotEmpty(entityUrl, "Invalid url!");
+        return entityUrl.contains(ENTITY_PREFIX);
+    }
+
+    public static boolean isConceptURL(String conceptUrl) {
+        checkNotEmpty(conceptUrl, "Invalid url!");
+        return conceptUrl.contains(CONCEPT_PREFIX);
+    }
+
+    public static boolean isEtypeURL(String etypeUrl) {
+        checkNotEmpty(etypeUrl, "Invalid url!");
+        return etypeUrl.contains(ETYPE_PREFIX);
+    }
+
+    public static boolean isAttrDefURL(String attrDefUrl) {
+        checkNotEmpty(attrDefUrl, "Invalid url!");
+        return attrDefUrl.contains(ATTR_DEF_PREFIX);
     }
 
     /**

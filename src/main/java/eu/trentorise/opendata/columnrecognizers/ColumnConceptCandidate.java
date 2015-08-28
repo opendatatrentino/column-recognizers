@@ -96,7 +96,7 @@ public class ColumnConceptCandidate {
 	 * 
 	 * @return	The recognizer ID
 	 */
-	String getOriginator() {
+	public String getOriginator() {
 		return originator;
 	}
 	

@@ -1,5 +1,8 @@
-package eu.trentorise.opendata.columnrecognizers;
+package eu.trentorise.opendata.columnrecognizers.test;
 
+import eu.trentorise.opendata.columnrecognizers.CRSpecificationReader;
+import eu.trentorise.opendata.columnrecognizers.CompositeColumnRecognizer;
+import eu.trentorise.opendata.columnrecognizers.RowTable;
 import static org.junit.Assert.*;
 
 import java.io.File;

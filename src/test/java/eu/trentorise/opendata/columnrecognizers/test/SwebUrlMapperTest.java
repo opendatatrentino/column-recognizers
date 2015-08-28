@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package eu.trentorise.opendata.columnrecognizers;
+package eu.trentorise.opendata.columnrecognizers.test;
 
+import eu.trentorise.opendata.columnrecognizers.SwebUrlMapper;
 import org.junit.After;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
@@ -76,62 +77,32 @@ public class SwebUrlMapperTest {
 
     @Test
     public void testConcept() {
-        assertEquals(1L, m.conceptUrlToId(m.conceptIdToUrl(1L, 2L)));
-        assertEquals(2L, m.conceptUrlToGlobalId(m.conceptIdToUrl(1L, 2L)));
-        assertEquals(-1L, m.conceptUrlToId(m.conceptIdToUrl(-1L, -1L)));
+        assertEquals(1L, m.conceptUrlToId(m.conceptIdToUrl(1L)));        
+        assertEquals(-1L, m.conceptUrlToId(m.conceptIdToUrl(-1L)));
+
         try {
-            m.conceptIdToUrl(-1L, 5L);
+            m.conceptIdToUrl(null);
             Assert.fail();
         }
         catch (IllegalArgumentException ex) {
 
         }
 
-        try {
-            m.conceptIdToUrl(null, 5L);
-            Assert.fail();
-        }
-        catch (IllegalArgumentException ex) {
-
-        }
-
-        try {
-            m.conceptIdToUrl(1L, null);
-            Assert.fail();
-        }
-        catch (IllegalArgumentException ex) {
-
-        }
     }
 
     @Test
     public void testEtype() {
-        assertEquals(1L, m.etypeUrlToId(m.etypeIdToUrl(1L, 2L)));
-        assertEquals(2L, m.etypeUrlToConceptId(m.etypeIdToUrl(1L, 2L)));
-        assertEquals(-1L, m.etypeUrlToId(m.etypeIdToUrl(-1L, -1L)));
+        assertEquals(1L, m.etypeUrlToId(m.etypeIdToUrl(1L)));        
+        assertEquals(-1L, m.etypeUrlToId(m.etypeIdToUrl(-1L)));
         try {
-            m.etypeIdToUrl(-1L, 5L);
+            m.etypeIdToUrl(null);
             Assert.fail();
         }
         catch (IllegalArgumentException ex) {
 
         }
 
-        try {
-            m.etypeIdToUrl(null, 5L);
-            Assert.fail();
-        }
-        catch (IllegalArgumentException ex) {
-
-        }
-
-        try {
-            m.etypeIdToUrl(1L, null);
-            Assert.fail();
-        }
-        catch (IllegalArgumentException ex) {
-
-        }
+       
     }
 
     @Test

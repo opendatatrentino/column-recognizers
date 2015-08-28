@@ -174,8 +174,8 @@
         -->
      
         <dependency>
-            <groupId>eu.trentorise.opendata.commons</groupId>
-            <artifactId>odt-commons</artifactId>
+            <groupId>eu.trentorise.opendata</groupId>
+            <artifactId>openentity-api</artifactId>
         </dependency>
         
         <dependency>

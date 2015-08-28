@@ -1,5 +1,7 @@
-package eu.trentorise.opendata.columnrecognizers;
+package eu.trentorise.opendata.columnrecognizers.test;
 
+import eu.trentorise.opendata.columnrecognizers.FileUtils;
+import eu.trentorise.opendata.columnrecognizers.TFIDFVector;
 import static org.junit.Assert.*;
 
 import java.io.File;

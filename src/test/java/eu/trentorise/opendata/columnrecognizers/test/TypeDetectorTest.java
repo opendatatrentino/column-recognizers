@@ -1,5 +1,6 @@
-package eu.trentorise.opendata.columnrecognizers;
+package eu.trentorise.opendata.columnrecognizers.test;
 
+import eu.trentorise.opendata.columnrecognizers.TypeDetector;
 import static org.junit.Assert.*;
 
 import org.junit.Test;

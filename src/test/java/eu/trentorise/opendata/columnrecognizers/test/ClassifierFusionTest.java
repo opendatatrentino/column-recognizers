@@ -1,5 +1,10 @@
-package eu.trentorise.opendata.columnrecognizers;
+package eu.trentorise.opendata.columnrecognizers.test;
 
+import eu.trentorise.opendata.columnrecognizers.ClassifierFusionCR;
+import eu.trentorise.opendata.columnrecognizers.ColumnConceptCandidate;
+import eu.trentorise.opendata.columnrecognizers.FileUtils;
+import eu.trentorise.opendata.columnrecognizers.FusionClassifier;
+import eu.trentorise.opendata.columnrecognizers.RowTable;
 import static org.junit.Assert.*;
 
 
