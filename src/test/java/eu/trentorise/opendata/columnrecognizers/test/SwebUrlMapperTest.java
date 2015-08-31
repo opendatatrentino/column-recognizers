@@ -15,7 +15,7 @@
  */
 package eu.trentorise.opendata.columnrecognizers.test;
 
-import eu.trentorise.opendata.columnrecognizers.SwebUrlMapper;
+import eu.trentorise.opendata.disiclient.UrlMapper;
 import org.junit.After;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
@@ -33,11 +33,11 @@ public class SwebUrlMapperTest {
     private static final Logger LOG = LoggerFactory.getLogger(SwebUrlMapperTest.class);
 
     public static String BASE = "http://entitybase.org";
-    private SwebUrlMapper m;
+    private UrlMapper m;
 
     @Before
     public void before() {
-        m = SwebUrlMapper.of(BASE);
+        m = UrlMapper.of(BASE);
     }
 
     @After

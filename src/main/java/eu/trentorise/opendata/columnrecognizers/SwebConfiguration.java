@@ -15,6 +15,7 @@
  */
 package eu.trentorise.opendata.columnrecognizers;
 
+import eu.trentorise.opendata.disiclient.UrlMapper;
 import static com.google.common.base.Preconditions.checkNotNull;
 import eu.trentorise.opendata.commons.OdtUtils;
 import it.unitn.disi.sweb.webapi.client.IProtocolClient;
@@ -57,7 +58,7 @@ public class SwebConfiguration extends Configuration {
     private static String host;
     private static int port;
     private static String root;
-    private static SwebUrlMapper urlMapper;
+    private static UrlMapper urlMapper;
 
     private SwebConfiguration() {
         super(SWEB_PROPERTIES_FILENAME);
@@ -92,7 +93,7 @@ public class SwebConfiguration extends Configuration {
         host = checkNotNull(SwebConfiguration.getString(SWEB_WEBAPI_HOST));
         port = Integer.parseInt(SwebConfiguration.getString(SWEB_WEBAPI_PORT));
         root = checkNotNull(SwebConfiguration.getString(SWEB_WEBAPI_ROOT));
-        urlMapper = SwebUrlMapper.of(getBaseUrl());
+        urlMapper = UrlMapper.of(getBaseUrl());
 
     }
 
@@ -102,7 +103,7 @@ public class SwebConfiguration extends Configuration {
         return "http://" + host + ":" + port + root;
     }
 
-    public static SwebUrlMapper getUrlMapper() {
+    public static UrlMapper getUrlMapper() {
         checkInitialized();
         return urlMapper;
     }

@@ -198,6 +198,11 @@
             <artifactId>nlprise</artifactId>
         </dependency>
         
+        <dependency>
+            <groupId>eu.trentorise.opendata.semtext</groupId>
+            <artifactId>semtext-nltext</artifactId>
+        </dependency>
+        
         <dependency>                
             <groupId> org.slf4j </groupId>
             <artifactId>slf4j-api</artifactId>
