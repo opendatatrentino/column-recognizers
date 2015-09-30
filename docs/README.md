@@ -5,10 +5,8 @@ RELEASE DOCS ARE ON THE <a href="http://opendatatrentino.github.io/column-recogn
 </p>
 
 
-### General notes
-
 - Currently Column recognizers has a dependency on sweb clients
-- For concepts it seems to prefer global ids.
+- For concepts uses global ids.
 
 ### Usage
 

@@ -93,7 +93,7 @@ public class RowTable implements Table {
 		cachedColumns = null;
 	}
 
-	/* (non-Javadoc)
+	/**
 	 * @see eu.trentorise.opendata.columnrecognizers.Table#extractRowSample()
 	 */
 	public RowTable extractRowSample() {
@@ -119,7 +119,7 @@ public class RowTable implements Table {
 		clearCaches();
 	}
 
-	/* (non-Javadoc)
+	/** 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -136,14 +136,14 @@ public class RowTable implements Table {
 		return rows.iterator();
 	}
 
-	/* (non-Javadoc)
+	/**
 	 * @see eu.trentorise.opendata.columnrecognizers.Table#getRowCount()
 	 */
 	public int getRowCount() {
 		return rows.size();
 	}
 
-	/* (non-Javadoc)
+	/**
 	 * @see eu.trentorise.opendata.columnrecognizers.Table#getColumnCount()
 	 */
 	public int getColumnCount() {

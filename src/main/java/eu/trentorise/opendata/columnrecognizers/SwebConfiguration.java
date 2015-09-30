@@ -15,17 +15,20 @@
  */
 package eu.trentorise.opendata.columnrecognizers;
 
-import eu.trentorise.opendata.disiclient.UrlMapper;
 import static com.google.common.base.Preconditions.checkNotNull;
-import eu.trentorise.opendata.commons.OdtUtils;
-import it.unitn.disi.sweb.webapi.client.IProtocolClient;
-import it.unitn.disi.sweb.webapi.client.ProtocolFactory;
-import it.unitn.disi.sweb.webapi.model.Configuration;
+
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import eu.trentorise.opendata.commons.validation.Preconditions;
+import eu.trentorise.opendata.disiclient.UrlMapper;
+import it.unitn.disi.sweb.webapi.client.IProtocolClient;
+import it.unitn.disi.sweb.webapi.client.ProtocolFactory;
+import it.unitn.disi.sweb.webapi.model.Configuration;
 
 /**
  * This class is a little hack to sweb client to allow loading configuration
@@ -58,7 +61,10 @@ public class SwebConfiguration extends Configuration {
     private static String host;
     private static int port;
     private static String root;
+    private static Locale locale;
+    
     private static UrlMapper urlMapper;
+    
 
     private SwebConfiguration() {
         super(SWEB_PROPERTIES_FILENAME);
@@ -68,11 +74,11 @@ public class SwebConfiguration extends Configuration {
      * Throws exception if client is not properly initialized
      */
     public static void checkInitialized() {
-        OdtUtils.checkNotEmpty(getString(SWEB_WEBAPI_ROOT), SWEB_WEBAPI_ROOT + " is invalid!");
-        OdtUtils.checkNotEmpty(getString(SWEB_WEBAPI_TEST_USER), SWEB_WEBAPI_TEST_USER + " is invalid!");
-        OdtUtils.checkNotEmpty(getString(SWEB_WEBAPI_KB_DEFAULT), SWEB_WEBAPI_KB_DEFAULT + " is invalid!");
-        OdtUtils.checkNotEmpty(getString(SWEB_WEBAPI_HOST), SWEB_WEBAPI_HOST + " is invalid!");
-        OdtUtils.checkNotEmpty(getString(SWEB_WEBAPI_PORT), SWEB_WEBAPI_PORT + " is invalid!");
+        Preconditions.checkNotEmpty(getString(SWEB_WEBAPI_ROOT), SWEB_WEBAPI_ROOT + " is invalid!");
+        Preconditions.checkNotEmpty(getString(SWEB_WEBAPI_TEST_USER), SWEB_WEBAPI_TEST_USER + " is invalid!");
+        Preconditions.checkNotEmpty(getString(SWEB_WEBAPI_KB_DEFAULT), SWEB_WEBAPI_KB_DEFAULT + " is invalid!");
+        Preconditions.checkNotEmpty(getString(SWEB_WEBAPI_HOST), SWEB_WEBAPI_HOST + " is invalid!");
+        Preconditions.checkNotEmpty(getString(SWEB_WEBAPI_PORT), SWEB_WEBAPI_PORT + " is invalid!");
     }
 
     /**
@@ -93,13 +99,19 @@ public class SwebConfiguration extends Configuration {
         host = checkNotNull(SwebConfiguration.getString(SWEB_WEBAPI_HOST));
         port = Integer.parseInt(SwebConfiguration.getString(SWEB_WEBAPI_PORT));
         root = checkNotNull(SwebConfiguration.getString(SWEB_WEBAPI_ROOT));
+        LOG.warn("Initializing locale to 'all' without reading it from config");
+        locale = new Locale("all");
         urlMapper = UrlMapper.of(getBaseUrl());
 
     }
 
+    /**
+     * I.e. http://myentitypedia.org:123/api
+     * @return
+     */
     public static String getBaseUrl() {
         checkInitialized();
-        LOG.warn("TODO - ASSUMING HTTP AS PROTOCOL");
+       // LOG.warn("TODO - ASSUMING HTTP AS PROTOCOL");
         return "http://" + host + ":" + port + root;
     }
 
@@ -111,9 +123,9 @@ public class SwebConfiguration extends Configuration {
     
      public static IProtocolClient getClientProtocol() {
 
-        SwebConfiguration.checkInitialized();
-        
-        return ProtocolFactory.getHttpClient(new Locale("all"));            
+        SwebConfiguration.checkInitialized();        
+        return ProtocolFactory.getHttpClient(locale);            
 
     }
+          
 }

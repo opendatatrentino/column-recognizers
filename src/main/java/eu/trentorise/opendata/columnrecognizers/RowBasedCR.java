@@ -41,7 +41,7 @@ public abstract class RowBasedCR extends ContentBasedCR {
 		return rowTable;
 	}
 
-	/* (non-Javadoc)
+	/**
 	 * @see ColumnRecognizer#computeScoredCandidates()
 	 */
 	@Override
