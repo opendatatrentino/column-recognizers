@@ -25,7 +25,7 @@
     <version>0.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>ODT Column Recognizers</name>
+    <name>Column Recognizers</name>
     <url>https://github.com/opendatatrentino/column-recognizers</url>
     <description>This project implements techniques for identifying the knowledgebase concepts corresponding to columns in databases.</description>
     
@@ -110,7 +110,7 @@
                 <artifactId>maven-enforcer-plugin</artifactId>
             </plugin>                
             <plugin>
-                <groupId>eu.trentorise.opendata.josman</groupId>
+                <groupId>eu.trentorise.opendata</groupId>
                 <artifactId>josman-maven-plugin</artifactId>              
             </plugin>    
             <plugin>
