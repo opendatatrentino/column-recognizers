@@ -33,7 +33,7 @@ import it.unitn.disi.sweb.webapi.model.Configuration;
 /**
  * This class is a little hack to sweb client to allow loading configuration
  * from wherever we want. Copied from Disi Client. In the future it will become
- * the only SwebConfiguration for all odt-sweb related stuff. Todo make it
+ * the only SwebConfiguration for all tod-sweb related stuff. Todo make it
  * unique!
  *
  * @author David Leoni

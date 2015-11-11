@@ -8,7 +8,7 @@ RELEASE DOCS ARE ON THE <a href="http://opendatatrentino.github.io/column-recogn
 
 - some cleanup
 - adapted to josman docs structure
-- adopted odt-super-pom
+- adopted tod-super-pom
 
 ### 0.0.2-SNAPSHOT May 13 2015 
 
