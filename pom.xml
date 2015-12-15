@@ -130,6 +130,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.4.0</version>
                         <executions>
                             <execution>
                                 <id>fix-resource-permissions</id>
@@ -145,9 +146,17 @@
                                             set -x
 
                                             SRC="${basedir}/src/test/resources"
-                                            DST="${project.build.directory}/test-classes"
+                                            DST="${project.build.directory}/test-classes/"
 
+                                            # for automated builds when permissions are not preserved, we can be brutal:
+                                            chmod u+x "$$SRC/svm-light/linux32/svm_classify"
+                                            chmod u+x "$$SRC/svm-light/linux32/svm_learn"
+                                            chmod u+x "$$SRC/svm-light/linux64/svm_classify"
+                                            chmod u+x "$$SRC/svm-light/linux64/svm_learn"                                                                                                                               
+                                            
                                             find "$$SRC" -printf "%P\0" | xargs --verbose -0 -I {} chmod --reference="$$SRC/{}" -f "$$DST/{}"
+                                            
+                                                
                                         </argument>
                                     </arguments>
                                 </configuration>
