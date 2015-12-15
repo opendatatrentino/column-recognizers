@@ -24,16 +24,15 @@ public class ResourceTest {
 		URL url = getClass().getResource("/" + CONFIGURATION_PATH);
 		assertNotNull(url);
 	}
-
+    
+        
 	@Test
 	public void testExtractExeFile() {
+                
 		final String exeName = "svm_classify";
-		final String exeResourcePath 
-			= "/svm-light/" + PlatformUtils.getPlatformName() + "/" + exeName 
-				+ PlatformUtils.getExeExtension();
 				
 		File exeDestination = FileUtils.getTmpFile(exeName);
-		URL exeResource = FileUtils.getResourceURL(exeResourcePath);
+		URL exeResource = FileUtils.getResourceURL( FileUtils.getSVMExecutable(exeName));
 		
 		assertTrue((new File(exeResource.getPath())).exists());
 		assertFalse(exeDestination.exists());

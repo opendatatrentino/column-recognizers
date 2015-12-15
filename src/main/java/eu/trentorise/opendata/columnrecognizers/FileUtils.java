@@ -108,34 +108,44 @@ public class FileUtils {
 		return dataFolder;
 	}
 	
-	/**
-	 * Gets the folder with the SVM-Light executables
-	 */
-	public static File getSVMExecutablesFolder() {
-		if (svmExecutablesFolder == null) {
-//			URL url = FileUtils.class.getResource("/" + SVM_EXECUTABLES_FOLDER_NAME);
-//			svmExecutablesFolder = new File(url.getPath());
-			svmExecutablesFolder = getResourceFile("/" + SVM_EXECUTABLES_FOLDER_NAME);
-		}
-		return svmExecutablesFolder;
-	}
-
+	
 	/**
 	 * Gets the executable that does training of the SVM classifier
 	 * 
 	 * @return	The executable file
 	 */
 	public static File getSVMLearner() {
-		return new File(getSVMExecutablesFolder(), SVM_LEARNER_NAME);
+		return getSVMExecutableFile(SVM_LEARNER_NAME);
 	}
 
+
+        /**
+         * 
+         * Returns the absolute path to the executable svm-light file. 
+         * @param exeName  the file name without extension
+         */
+        public static File getSVMExecutableFile(String exeName){
+            return new File(getResourceURL(getSVMExecutable(exeName)).getPath());
+        }
+
+        
+        /**
+         * 
+         * Returns the relative path to the executable svm-light file. 
+         * @param exeName  the file name without extension
+         */
+        public static String getSVMExecutable(String exeName){
+            return "/" + SVM_EXECUTABLES_FOLDER_NAME + "/" + PlatformUtils.getPlatformName() + "/" + exeName 
+				+ PlatformUtils.getExeExtension();
+        }
+        
 	/**
 	 * Gets the executable that does SVM classification
 	 * 
 	 * @return	The executable file
 	 */
 	public static File getSVMClassifier() {
-		return new File(getSVMExecutablesFolder(), SVM_CLASSIFIER_NAME);
+		return getSVMExecutableFile(SVM_CLASSIFIER_NAME);
 	}
 	
 	/**

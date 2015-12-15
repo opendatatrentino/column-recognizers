@@ -1,4 +1,5 @@
-conf/sweb-webapi-model.properties
+!conf/README.txt
+conf/
 logs/
 trans_predictions
 
