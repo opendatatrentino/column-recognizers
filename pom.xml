@@ -275,9 +275,22 @@
                     <useReleaseProfile>false</useReleaseProfile>                    
                     <arguments>${arguments} -Psonatype-oss-release -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true</arguments>          
                 </configuration>
-            </plugin>                                                
+            </plugin>      
+            
+            <plugin>
+                <groupId>eu.trentorise.opendata</groupId>
+                <artifactId>josman-maven-plugin</artifactId>
+                <version>0.7.0</version>
+            </plugin>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.12</version>
+            </plugin>                                          
         </plugins>
 
+
+      
     </build>
 
     <scm>
